@@ -16,9 +16,10 @@
     - [Cheapest Flights within K steps](#787)
     - [Network Delay Time](#743)
     - [Ugly Number II](#264)
-    - Find K Pairs with Smallest Sums(#373)
-    - Swim in Rising Numbers(#778)
-    - Kth Smallest Element in a Sorted Matrix(#378)
+    - [Find K Pairs with Smallest Sums](#373)
+    - [Swim in Rising Numbers](#778)
+    - [Kth Smallest Element in a Sorted Matrix](#378)
+    - [Time Needed to Inform All Employees](#1376)
 
 ### 易错点
 
@@ -217,8 +218,27 @@ class Solution(object):
             for dst, node in G[cur]:
                 if node not in dist:
                     heapq.heappush(h, (time+dst, node))
-        return -1            
-         
-        
-                
+        return -1                     
 ```
+
+# 1376
+### Time Needed to Inform All Employees
+[Leetcode](https://leetcode.com/problems/time-needed-to-inform-all-employees/)
+
+```python
+class Solution:
+    def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
+        from collections import defaultdict
+        G = defaultdict(list)
+        for employee, manager in enumerate(manager):
+            G[manager].append(employee)
+        q = [(headID, 0)]
+        res = 0
+        while q:
+            manager, time = q.pop(0)
+            res = max(res, time)
+            for employee in G[manager]:
+                q.append((employee, time + informTime[manager]))
+        return res
+```
+

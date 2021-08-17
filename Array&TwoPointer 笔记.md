@@ -1,33 +1,27 @@
-###### 总结
+### 总结
 
 1. 使用多个指针
     - 指针方向相反：two sum less than k
     - 指针方向相同
-    - 使用swap的方法： 
-
-
+    - 使用swap的方法：
 
 2. 转化成set
-
 
 3. subarray
     - 二分法
     - store prefix information in hash table
     - sliding window
-   
-   
+    - 
 4. 使用hash map记住index
 
-
-5. slidingn window
-
+5. sliding window
 
 6. #### interval题目:
     - 排序
     - greedy
     - 扫描线
     - DP
-
+    - 
 ### 题型分类
 
 - #### 先排序再做指针循环
@@ -35,11 +29,10 @@
     - [3Sum Closest](#16)
     - [4Sum](#18)
     - [3Sum Smaller](#259)
-    
+    - 
 - #### 单指针
     - [Maximum Subarray](#53)
     - [Monotonic Array](#896)
-    
     - [Increasing Triplet Subsequence](#334)
 
 - #### 双指针
@@ -78,6 +71,7 @@
     - [Subarray Sum Equals K](#560)
     - [Subarray Sums Divisible by K](#974)
     - [Product of the Last K Numbers](#1352)
+    - [Range Sum Query - Immutable](#303)
     
 - #### two direction
 
@@ -91,7 +85,6 @@
     - [Move Zeros](#283)
     - [Shortest Word Distance III](#245)
     - [Minimum Swap](#670)
- 
     
 - #### Interval(greedy)
     - 排序后让可能重叠的interval相邻
@@ -111,11 +104,11 @@
     - [Interval List Intersections](#986)
     
 - #### Sliding Window
+    - [Minimum Window Substring](#76)
     - [Permutation in String](#567)
     - [Find All Anagrams in a String](#438)
     - [Longest Substring Without Repeating Characters](#3)
     - [Longest Substring with At Most K Distinct Characters](#340)
-    - [Minimum Window Substring](#76)
     - [Longest Substring with At Most Two Distinct Characters](#159)
     - [Fruit Into Baskets](#504)
     - [Replace the Substring for Balanced String](#1234)
@@ -129,6 +122,7 @@
     - [Subarrays with k different integers](#992)
     - [Shortest subarray with sum at least K]
     - [minimum size subarray Sum](#209)
+    - [Longest Substring with At Least K Repeating Characters](#395)
     
 - #### 字符
     - [Group shifted Strings](#249)
@@ -1671,34 +1665,29 @@ class Solution(object):
 
 ###  Minimum Window Substring
 
+维护一个dictionary，key为字母，value为字母的count。初始化时是t字符串的字母个数，随着指针移动，字典中的count代表了区间范围内还剩多少个字母需要包含才能符合条件。同时cnt表示还剩下多少个数字，当达到零，说明区间内已经达到要求，可以进行清算，去更新min_range。
 
 ```python
-class Solution(object):
-    def minWindow(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: str
-        """
-        map = {}
-        for i in t:
-            map[i] = map.get(i, 0) + 1
-        i = j = 0
-        count = len(t)
-        rescount = len(s)
-        res = ''
-        while j < len(s):
-            map[s[j]] = map.get(s[j], 0) - 1
-            if map[s[j]] >= 0: count -= 1
-            j += 1
-            while count == 0: 
-                if j - i <= rescount:
-                    rescount = j - i
-                    res = s[i:j]
-                map[s[i]] += 1
-                if map[s[i]] >= 1: count += 1
-                i += 1
-        return res
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        from collections import Counter
+        d = Counter(t)
+        cnt = len(t)
+        res = len(s) + 1
+        ans = ''
+        l, r = 0, 0
+        while r < len(s):
+            d[s[r]] = d.get(s[r], 0) - 1
+            if d[s[r]] >= 0: cnt -= 1
+            r += 1
+            while cnt == 0:
+                if res >= r - l:
+                    res = r - l
+                    ans = s[l:r]
+                d[s[l]] += 1
+                if d[s[l]] > 0: cnt += 1
+                l += 1
+        return ans
 ```
 
 # 159
@@ -2880,7 +2869,19 @@ class ProductOfNumbers(object):
         return self.q[-1] / self.q[-k-1]
 ```
 
-
+# 303
+### Range Sum Query - Immutable
 ```python
+class NumArray:
 
+    def __init__(self, nums: List[int]):
+        s = 0
+        self.sum_num = []
+        self.nums = nums
+        for i in nums:
+            self.sum_num.append(s)
+            s += i
+
+    def sumRange(self, left: int, right: int) -> int:
+        return self.sum_num[right+1] - self.sum_num[left]
 ```

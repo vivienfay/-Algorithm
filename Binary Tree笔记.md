@@ -70,6 +70,7 @@ breadth first(queue): level order
     - [Delete Node in a BST](#450)
     - [Binary Tree Longest Consecutive Sequence](#298)
     - [Find Leaves of Binary Tree](#366)
+    - [Boundary of Binary Tree](#545)
     
 - #### Backtracking
     - [Path Sum II](#113)(设置res为全局变量)
@@ -2428,4 +2429,45 @@ class Solution(object):
         res = [-float('inf')]
         helper(root)
         return res[0] + 1 if res[0] != -float('inf') else 1
+```
+
+
+# 545
+### Boundary of Binary Tree
+[Leetcode](https://leetcode.com/problems/boundary-of-binary-tree/)
+
+- 复杂的问题考虑拆分
+  - 为什么不能放在同一个dfs中：因为node append进去的条件完全不一样有时候甚至相反
+- 要考虑root会不会重复加进：有一个edge case是会重复加，在选择拆分时候需要注意node会不会重复加入
+
+```python
+class Solution:
+    def boundaryOfBinaryTree(self, root: TreeNode) -> List[int]:
+        def dfsleftmost(root):
+            if not root: return 
+            if not root.left and not root.right: return
+            res.append(root.val)
+            if root.left: dfsleftmost(root.left)
+            else: dfsleftmost(root.right)
+        
+        def dfsrightmost(root):
+            if not root: return 
+            if not root.left and not root.right: return
+            if root.right: dfsrightmost(root.right)
+            else: dfsrightmost(root.left)
+            res.append(root.val)
+        
+        def dfsleaves(root):
+            if not root: return
+            dfsleaves(root.left)
+            if node != root and not root.left and not root.right: 
+                res.append(root.val)
+            dfsleaves(root.right)
+        
+        node = root
+        res = [root.val]
+        dfsleftmost(root.left)
+        dfsleaves(root)
+        dfsrightmost(root.right)
+        return res
 ```

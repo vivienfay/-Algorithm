@@ -129,6 +129,30 @@ def insertsort(nums):
         nums[j+1] = cur
 ```
 
+# 1710
+[Leetcode](https://leetcode.com/problems/maximum-units-on-a-truck/)
+### Maximum Units on a Truck
+
+```python
+class Solution:
+    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+        bucket = [0] * 1001
+        for i,j in boxTypes:
+            bucket[j] += i
+        res = 0
+        for i in range(1000,-1,-1):
+            if bucket[i] != 0:
+                if truckSize >= bucket[i]:
+                    res += bucket[i] * i
+                    truckSize -= bucket[i]
+                else:
+                    res += truckSize * i
+                    break
+        return res
+```
+
+
+
 # 1365
 [Leetcode](https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/)
 ### How Many Numbers Are Smaller Than the Current Number
