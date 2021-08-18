@@ -2514,7 +2514,7 @@ class Solution:
 ### Inorder Successor in BST II
 
 [Leetcode](https://leetcode.com/problems/inorder-successor-in-bst-ii/)
-
+![](img/510.png)
 - 考虑两种情况
   
 ```python 

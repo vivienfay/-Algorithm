@@ -72,6 +72,7 @@
     - [Subarray Sums Divisible by K](#974)
     - [Product of the Last K Numbers](#1352)
     - [Range Sum Query - Immutable](#303)
+    - [Maximum Size Subarray Sum Equals k](#325)
     
 - #### two direction
 
@@ -2929,4 +2930,28 @@ class Solution:
                 return node.parent
             node = node.parent
         return None
+```
+
+
+# 325
+### Maximum Size Subarray Sum Equals k
+[Leetcode](https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/)
+- prefix Sum 的index和 sum存在字典里
+- 遍历字典，并根据对应差找到对应字典中可能的index，寻找最大值
+```python
+class Solution:
+    def maxSubArrayLen(self, nums: List[int], k: int) -> int:
+        from collections import defaultdict
+        d = defaultdict(list)
+        s = 0
+        for i in range(len(nums)):
+            d[s].append(i)
+            s += nums[i]
+        d[s].append(i+1)
+        # print(d)
+        res = 0
+        for s, ls in d.items():
+            if k + s in d: 
+                res = max(res, d[k+s][-1] - ls[0])
+        return res            
 ```
