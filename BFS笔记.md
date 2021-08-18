@@ -78,6 +78,7 @@
     - [Course Schedule II](#210)
     - [Sequence Reconstruction](#444)
     - [Alien Dictionary](#269)
+    - [Parallel Courses](#1136)
 
 - #### 也可dfs
     - [Clone Graph](#133)
@@ -1260,4 +1261,27 @@ class Solution(object):
 
 ```python
 
+```
+
+# 1136
+### Parallel Courses
+[Leetcode](https://leetcode.com/problems/parallel-courses/)
+```python
+class Solution:
+    def minimumSemesters(self, n: int, relations: List[List[int]]) -> int:
+        from collections import defaultdict
+        G = defaultdict(list)
+        indegree = [0] * (n+1)
+        for i, j in relations:
+            G[i].append(j)
+            indegree[j] += 1
+        res = 0
+        q = [(i,1) for i in range(n) if indegree[i] == 0]
+        while q:
+            cur, step = q.pop(0)
+            for i in G[cur]:
+                indegree[i] -= 1
+                if indegree[i] == 0:
+                    q.append((i, step+1))
+        return step if sum(indegree) == 0 else -1      
 ```

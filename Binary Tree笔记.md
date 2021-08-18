@@ -100,6 +100,7 @@ breadth first(queue): level order
 - #### Iterative
     - [Closest Binary Search Tree Value](#270)
     - [Inorder Successor in BST](#285)
+    - [Lowest Common Ancestor of a Binary Tree III](#1650)
     
 - #### dfs/bfs同时使用
     - [All Nodes Distance K in Binary Tree](#863)
@@ -2470,4 +2471,63 @@ class Solution:
         dfsleaves(root)
         dfsrightmost(root.right)
         return res
+```
+
+
+
+# 1650
+### Lowest Common Ancestor of a Binary Tree III
+[Leetcode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/)
+
+- 因为有parent直接遍历不需要做recursion
+```python
+class Solution:
+    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        p_parent = [p]
+        q_parent = [q]
+        node = p
+        while node.parent:
+            node = node.parent
+            p_parent.append(node)
+        node = q
+        while node.parent:
+            node = node.parent
+            q_parent.append(node)
+        for i, j in zip(p_parent[::-1], q_parent[::-1]):
+            if i != j: return i.parent
+        return p_parent[0] if len(p_parent) < len(q_parent) else q_parent[0]
+```
+- 另一个解是利用circle的属性，两点最终会见面
+```python
+class Solution:
+    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        p1, p2 = p, q
+        while p1 != p2:
+            p1 = p1.parent if p1.parent else q
+            p2 = p2.parent if p2.parent else p
+            
+        return p1
+```
+
+# 510
+
+### Inorder Successor in BST II
+
+[Leetcode](https://leetcode.com/problems/inorder-successor-in-bst-ii/)
+
+- 考虑两种情况
+  
+```python 
+class Solution:
+    def inorderSuccessor(self, node: 'Node') -> 'Node':
+        if node.right:
+            node = node.right
+            while node.left:
+                node = node.left
+            return node
+        while node.parent:
+            if node.parent.left == node:
+                return node.parent
+            node = node.parent
+        return None
 ```

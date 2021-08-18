@@ -29,6 +29,7 @@
     - [Remove Duplicates from Sorted List II](#82)
     - [Partition List](#86)
     - [Rotate List](#61)
+    - [Plus One Linked List](#369)
 
 - #### 需要reverse链表: 
     - [Swap Nodes in Pairs](#24)
@@ -1191,4 +1192,28 @@ class Solution(object):
         new_node.next = cur.next
         cur.next = new_node
         return head
+```
+
+
+# 369
+### Plus One Linked List
+[Leetcode](https://leetcode.com/problems/plus-one-linked-list/)
+```python
+class Solution:
+    def plusOne(self, head: ListNode) -> ListNode:
+        stack = []
+        node = head
+        while node:
+            stack.append(node)
+            node = node.next
+        while stack:
+            cur = stack.pop()
+            if cur.val + 1 < 10:
+                cur.val += 1
+                return head
+            else: cur.val = 0
+        
+        new_head = ListNode(1)
+        new_head.next = head
+        return new_head
 ```

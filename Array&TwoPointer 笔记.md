@@ -102,6 +102,7 @@
     - [Range Module](#715)
     - [Employee Free Time](#759)
     - [Interval List Intersections](#986)
+    - [Meeting Scheduler](#1229)
     
 - #### Sliding Window
     - [Minimum Window Substring](#76)
@@ -2871,6 +2872,7 @@ class ProductOfNumbers(object):
 
 # 303
 ### Range Sum Query - Immutable
+[Leetcode]()
 ```python
 class NumArray:
 
@@ -2881,7 +2883,50 @@ class NumArray:
         for i in nums:
             self.sum_num.append(s)
             s += i
+        self.sum_num.append(s)
 
     def sumRange(self, left: int, right: int) -> int:
         return self.sum_num[right+1] - self.sum_num[left]
+```
+
+# 1229
+[Leetcode](https://leetcode.com/problems/meeting-scheduler/)
+- merge interval类型的题，多加一个interval长度判断的条件
+- 注意指针如何移动
+
+```python
+class Solution:
+    def minAvailableDuration(self, slots1: List[List[int]], slots2: List[List[int]], duration: int) -> List[int]:
+        slots1 = sorted(slots1, key = lambda x: (x[0], x[1]))
+        slots2 = sorted(slots2, key = lambda x: (x[0], x[1]))
+        i, j = 0, 0
+        while i < len(slots1) and j < len(slots2):
+            a, b = slots1[i]
+            c, d = slots2[j]
+            interval = min(b, d) - max(a, c)
+            if interval >= duration: return [max(a, c), max(a, c)+duration]
+            else: 
+                if b < d: i += 1
+                else: j += 1
+            print(a,b,c,d,i,j)
+        return []
+```
+
+
+# 510
+### Inorder Successor in BST II
+[Leetcode](https://leetcode.com/problems/inorder-successor-in-bst-ii/)
+```python
+class Solution:
+    def inorderSuccessor(self, node: 'Node') -> 'Node':
+        if node.right:
+            node = node.right
+            while node.left:
+                node = node.left
+            return node
+        while node.parent:
+            if node.parent.left == node:
+                return node.parent
+            node = node.parent
+        return None
 ```
