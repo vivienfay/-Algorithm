@@ -1,66 +1,69 @@
-![](img/bigO.png)
+# Binary Search总结
 
-### 总结
+## 总结
 
-- 在有排序的数列上找东西就可以用binary search
-- 如果要求O(logn)的算法可以考虑binary search
-- 要注意left right上如何移动
+- 什么时候可以用到binary search？
+  - 在有排序的数列上找东西就可以用binary search
+  - 如果要求O(logn)的算法可以考虑binary search
+- 解题注意点
+  - 要注意left right两个指针如何移动
+    - 如果target == mid， 指针移动因题而异
     - 是否需要+1 -1的移动
-    - 如果target == mid 怎么移动
-- oooxxx类型的题要找到o和x有什么样的不同
-- 注意corner case
+  - 注意corner case
     - if len(array) == 0
+    - l和r在list最左最右点
+    - 
+- 解题习惯与技巧
+  - 如果target不一定存在，用while l + 1 < r 能够避免歧义，如果存在，可以使用l <= r. 但l和r移动是只能l=mid或者r=mid
+  ![](img/bs1.png)
+  ![](img/bs2.png)
+## 题型分类
 
-### 题型分类
+- #### 标注的二分法：最大最小第一最后
+  1. 注意边界条件
+  2. 循环条件：
+     - 如果是找target：l <= r
+     - 如果是找最前的最后的： l + 1 <=r，l = mid/ r = mid 但是出了循环后要check一下外部的l和r，如果不想循环完还要check 1 < r 但是 mid - 1 或者 + 1 只能二选一
+  - [Binary Search](#704)
+  - [Find First and Last Position of Element in Sorted Array](#34)
+  - [Search a 2D Matrix](#74)
+  - [First Bad Version](#278)
+  - [Search Insert Position](#35)
+  - [Sqrt(x)](#69)
+  - [Valid Perfect Square](#367)
+  
+- #### Rotated sorted array
+    通过比对最右最左的值，同时把它设成target值。查看当前mid所在的位置在哪一段线段上。最后输出的时候记得比对r 和 l。如果有重复的值的话，可以r=r-1缩小范围
+    ![](img/bs3.png)
+  - [Search in Rotated Sorted Array](#33)
+  - [Search in Rotated sorted Array II](#81)
+  - [Find Minimum in Rotated Sorted Array](#153)
+  - [Find Minimum in Rotated Sorted Array II](#154)
+  - [Peak Index in a Mountain Array](#852)
+  - [Find in Mountain Array](#1095)
 
-- 最大最小第一最后：注意边界条件
-    - 如果是找target：l <= r
-    - 如果是找最前的最后的： l + 1 <=r ， l = mid/ r = mid 但是出了循环后要check一下外部的l和r
-    - 如果不想循环完还要check 1 < r 但是 mid - 1 或者 + 1 只能二选一
-    - [Binary Search](#704)
-    - [Find First and Last Position of Element in Sorted Array](#34)
-    - [Search a 2D Matrix](#74)
-    - [First Bad Version](#278)
-    - [Search Insert Position](#35)
-    - [Sqrt(x)](#69)
-    - [Valid Perfect Square](#367)
-    
-- Rotated sorted array
+- #### 形式有点变形
+    建立一个list，其中的元素都是答案
+  - [Missing Element in Sorted Array](#1060)
+  - [Time Based Key-Value Store](#981)
+  - [Median of Two Sorted Arrays](#4)
+  - [Single Element in a Sorted Array](#540)  
 
-    - 通过比对最右最左的值，同时把它设成target值。查看当前mid所在的位置在哪一段线段上。
-    - 最后输出的时候记得比对r 和 l。
-    - 如果有重复的值的话，可以r=r-1缩小范围
-    - [Search in Rotated Sorted Array](#33)
-    - [Search in Rotated sorted Array II](#81)
-    - [Find Minimum in Rotated Sorted Array](#153)
-    - [Find Minimum in Rotated Sorted Array II](#154)
-    - [Peak Index in a Mountain Array](#852)
-    - [Find in Mountain Array](#1095)
-    
-- 形式有点变形
-    - [Missing Element in Sorted Array](#1060)
-    - [Time Based Key-Value Store](#981)
-    - [Median of Two Sorted Arrays](#4)
+- #### 二分答案
+  - 如果题目要求寻找最大最小的可能性，有可能就是需要运用这个方法
+  - 通过题目，自己要generate一个数组，通过调整mid并且不断测试查看是否当前的mid符合条件
+  ![](img/bs4.png)
+  - [Kth Smallest Element in a Sorted Matrix](#378)
+  - [Capacity to ship packages within d days](#1011)
+  - [koko eating bananas](#875)
+  - [Split Array Largest Sum](#410)
+  - [Divide Chocolate](#1231)
+  - [Minimize Max Distance to Gas Station](#774)
+  - [Sum of Mutated Array Closest to Target](#1300)
+  - [Minimum Number of Days to Make m Bouquets](#1482)
 
-- 二分答案
-    - [Kth Smallest Element in a Sorted Matrix](#378)
-    - [Capacity to ship packages within d days](#1011)
-    - [koko eating bananas](#875)
-    - [Split Array Largest Sum](#410)
-    - [Divide Chocolate](#1231)
-    - [Minimize Max Distance to Gas Station](#774)
-    - [Sum of Mutated Array Closest to Target](#1300)
-    - [Minimum Number of Days to Make m Bouquets](#1482)
-
-- 需要自建一个list，在其中寻找
-    - [Single Element in a Sorted Array](#540)
-    
-
-- 特殊
-    - [Longest Increasing Subsequence](#300)
-
-
-- OOD
+- #### 特殊
+- [Longest Increasing Subsequence](#300)
 
 
 ### 易错
@@ -90,7 +93,7 @@ class Solution(object):
         left, right = 0, len(nums) - 1
         
         while left <= right:
-            mid = (left + right) / 2
+            mid = (left + right) // 2
             if nums[mid] < target:
                 left = mid + 1
             elif nums[mid] > target:
@@ -759,7 +762,7 @@ class Solution(object):
 ### Single Element in a Sorted Array
 [Leetcode](https://leetcode.com/problems/single-element-in-a-sorted-array/)
 
-
+指针移动的条件是，观察邻居点是不是和当前点是相同的，有奇偶的差别。
 ```python
 class Solution(object):
     def singleNonDuplicate(self, nums):
