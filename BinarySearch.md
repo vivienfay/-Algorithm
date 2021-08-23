@@ -12,11 +12,11 @@
   - 注意corner case
     - if len(array) == 0
     - l和r在list最左最右点
-    - 
 - 解题习惯与技巧
   - 如果target不一定存在，用while l + 1 < r 能够避免歧义，如果存在，可以使用l <= r. 但l和r移动是只能l=mid或者r=mid
   ![](img/bs1.png)
   ![](img/bs2.png)
+
 ## 题型分类
 
 - #### 标注的二分法：最大最小第一最后
@@ -63,25 +63,19 @@
   - [Minimum Number of Days to Make m Bouquets](#1482)
 
 - #### 特殊
-- [Longest Increasing Subsequence](#300)
-
+  - [Longest Increasing Subsequence](#300)
 
 ### 易错
 
 - rotated sorted array 类型
 - find peak
 
----
+--------
 
-# 704
-
-[Leetcode](https://leetcode.com/problems/binary-search/)
-
+# [704](https://leetcode.com/problems/binary-search/)
 ### Binary Search
 
 超经典
-
-
 ```python
 class Solution(object):
     def search(self, nums, target):
@@ -104,13 +98,10 @@ class Solution(object):
         return -1
 ```
 
-# 34
-
-[Leetcode](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+# [34](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
 ### Find First and Last Position of Element in Sorted Array
 注意mid target 相等的时候如何判断
-
 
 ```python
 class Solution(object):
@@ -157,17 +148,11 @@ class Solution(object):
         return [min_t,max_t]
 ```
 
-# 74
-
-[Leetcode](https://leetcode.com/problems/search-a-2d-matrix/)
-
+# [74](https://leetcode.com/problems/search-a-2d-matrix/)
 ### Search a 2D Matrix
 
 考虑如何转化pivot
 - 如果可以的话尽量按照binary search， left 《= right 并且每次left right = mid + 1 或者 -1
-
-
-
 
 ```python
 class Solution(object):
@@ -177,8 +162,6 @@ class Solution(object):
         :type target: int
         :rtype: bool
         """
-
-        
         nrow = len(matrix)
                 
         if nrow == 0:
@@ -203,17 +186,14 @@ class Solution(object):
         return False
 ```
 
-### Search a 2D Matrix II
 
+# [240](https://leetcode.com/problems/search-a-2d-matrix-ii/)
+### Search a 2D Matrix II
 ##### 不是binary search的题
 
 解法：找到右上角的数字，有比较明显的性质：向下变大，向左变小。作为控制
 
 O(m+n)
-
-240
-https://leetcode.com/problems/search-a-2d-matrix-ii/
-
 
 ```python
 class Solution(object):
@@ -268,7 +248,6 @@ class Solution(object):
 
 ### Last Position of Target
 
-
 ```python
 class solution(object):
     def search(self, nums, target):
@@ -287,14 +266,9 @@ class solution(object):
         return -1
 ```
 
-# 278
-
-[Leetcode](https://leetcode.com/problems/first-bad-version/)
-
+# [278](https://leetcode.com/problems/first-bad-version/)
 
 ### First Bad Version
-
-
 
 ```python
 class solution(object):

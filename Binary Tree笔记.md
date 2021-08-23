@@ -71,6 +71,7 @@ breadth first(queue): level order
     - [Binary Tree Longest Consecutive Sequence](#298)
     - [Find Leaves of Binary Tree](#366)
     - [Boundary of Binary Tree](#545)
+    - [Maximum Product of Splitted Binary Tree](#1339)
     
 - #### Backtracking
     - [Path Sum II](#113)(设置res为全局变量)
