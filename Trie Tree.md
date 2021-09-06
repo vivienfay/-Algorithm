@@ -17,12 +17,20 @@
 - [Implement Trie (Prefix Tree)](#208)
 
 #### search DFS
-- [Design Add and Search Words Data Structure](#211)
-- [Implement Magic Dictionary](#676)
-- [Word Search II](#212)
-- [Design Search Autocomplete System](#642)
-- [Longest Word in Dictionary](#720)
-- [Map Sum Pairs](#677)
+- [212](#212)
+    - [word search ii](#word-search-ii)
+- [208](#208)
+    - [Implement Trie (Prefix Tree)](#implement-trie-prefix-tree)
+- [676](#676)
+    - [Implement Magic Dictionary](#implement-magic-dictionary)
+- [211](#211)
+    - [Design Add and Search Words Data Structure](#design-add-and-search-words-data-structure)
+- [720](#720)
+    - [Longest Word in Dictionary](#longest-word-in-dictionary)
+- [648](#648)
+    - [Replace Words](#replace-words)
+- [677](#677)
+    - [Map Sum Pairs](#map-sum-pairs)
 
 #### not DFS
 - [Replace Word](#648)

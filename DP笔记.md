@@ -120,7 +120,7 @@
 
 - #### 字符匹配
     - [Edit Distance](#72)
-    - [Wildcard Matching](#44)
+    - [Wildcard Matching](#wildcard-matching)
 
 ### 易错点
 
@@ -769,10 +769,7 @@ class Solution(object):
         return dp[-1][-1]
 ```
 
-# 44
-[Leetcode](https://leetcode.com/problems/wildcard-matching/)
-### Wildcard Matching
-
+## [Wildcard Matching](https://leetcode.com/problems/wildcard-matching/)
 
 ```python
 class Solution(object):

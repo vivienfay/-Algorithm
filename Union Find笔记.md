@@ -11,15 +11,28 @@
 
 ### 题型分类
 
-- [Friend Circles](#547)
-- [Accounts Merge](#721)
-- [Satisfiability of Equality Equations](#990)
-- [Lexicographically Smallest Equivalent String](#1061)
-- [The Earliest Moment When Everyone Become Friends](#1101)
-- [Sentence Similarity](#737)
-- [Number of Connected Components in an Undirected Graph](#323)
-- [Number of Provinces](#547)
-
+- [547](#547)
+    - [Friend Circles](#friend-circles)
+- [721](#721)
+    - [Accounts Merge](#accounts-merge)
+- [990](#990)
+    - [Satisfiability of Equality Equations](#satisfiability-of-equality-equations)
+- [1061](#1061)
+    - [Lexicographically Smallest Equivalent String](#lexicographically-smallest-equivalent-string)
+- [1101](#1101)
+    - [The Earliest Moment When Everyone Become Friends](#the-earliest-moment-when-everyone-become-friends)
+- [737](#737)
+    - [Sentence Similarity II](#sentence-similarity-ii)
+- [323](#323)
+    - [Number of Connected Components in an Undirected Graph](#number-of-connected-components-in-an-undirected-graph)
+- [1168](#1168)
+    - [Optimize Water Distribution in a Village](#optimize-water-distribution-in-a-village)
+- [547](#547-1)
+    - [Number of Provinces](#number-of-provinces)
+- [323](#323-1)
+    - [Number of Connected Components in an Undirected Graph](#number-of-connected-components-in-an-undirected-graph-1)
+- [323](#323-2)
+    - [Regions Cut By Slashes](#regions-cut-by-slashes)
 最小生成树
 - [Optimize Water Distribution in a Village](#1168)
 
@@ -522,4 +535,43 @@ class Solution(object):
         for a, b in edges:
             union(a, b)
         return  self.count
+```
+
+# 323 
+### [Regions Cut By Slashes](https://leetcode.com/problems/regions-cut-by-slashes/)
+- 拆分成4个小的cell
+```python
+class Solution:
+    def regionsBySlashes(self, grid: List[str]) -> int:
+        def find(i):
+            if parent[i] == i: return i
+            parent[i] = find(parent[i])
+            return parent[i]
+            
+        def union(a, b):
+            root_a, root_b = find(a), find(b)
+            if root_a == root_b: return 
+            parent[root_b] = root_a
+            cnt[0] -= 1
+            
+        parent = {}
+        cnt = [0]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                for k in range(4):
+                    parent[(i, j, k)] = (i, j, k)
+                    cnt[0] += 1
+                if i: union((i, j, 0), (i-1, j, 2))
+                if j: union((i, j, 3), (i, j - 1, 1))
+                if grid[i][j] == '/':
+                    union((i, j, 0), (i, j, 3))
+                    union((i, j, 1), (i, j, 2))
+                elif grid[i][j] == '\\':
+                    union((i, j, 3), (i, j, 2))
+                    union((i, j, 0), (i, j, 1))
+                if grid[i][j] == ' ': 
+                    union((i, j, 1), (i, j, 2))
+                    union((i, j, 2), (i, j, 3))
+                    union((i, j, 3), (i, j, 0))
+        return cnt[0]
 ```
