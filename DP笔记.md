@@ -84,7 +84,9 @@
     - [Climbing Stairs](#70)
     - [House Robbery](#198)
     - [House Robbery II](#213)
+    - [House Robber III](#house-robber-iii)
     - [Counting Bits](#338)
+    - [Target Sum](#target-sum))
     
 - #### 划分型
     - [Decode ways](#91)
@@ -976,4 +978,44 @@ class Solution(object):
                     for z in m[j]:
                         dp[i][j] += dp[i-1][z]
         return sum(dp[-1]) % (10 ** 9 + 7)
+```
+
+### [House Robber III](https://leetcode.com/problems/house-robber-iii/)
+
+- [Leetcode详细讲解](https://leetcode.com/problems/house-robber-iii/discuss/79330/Step-by-step-tackling-of-the-problem)
+
+- 优化：原本是用一个map，现在优化成只存两个值
+
+```python
+class Solution:
+    def rob(self, root: Optional[TreeNode]) -> int:
+        def robSub(root):
+            if not root: return 0, 0
+            l_use, l_not = robSub(root.left)
+            r_use, r_not = robSub(root.right)
+            return l_not + r_not + root.val, max(l_use, l_not) + max(r_use, r_not)
+        
+        return max(robSub(root))
+```
+
+### [Target Sum](https://leetcode.com/problems/target-sum/)
+
+```python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        def dfs(i, S):
+            if (i, S) in memo:
+                return memo[(i, S)]
+            if i < 0:
+                if S == target: return 1
+                return 0
+            pos = dfs(i - 1, S + nums[i])
+            neg = dfs(i - 1, S - nums[i])
+            memo[(i, S)] = pos + neg
+            return memo[(i, S)]
+                    
+                    
+        memo = {}
+        dfs(len(nums) - 1, 0)
+        return memo[(len(nums) - 1, 0)]
 ```

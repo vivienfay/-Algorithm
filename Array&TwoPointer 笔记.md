@@ -162,6 +162,10 @@
 - #### Greedy
     - [Queue Reconstruction by Height](#406)
 
+- #### Sweep Line
+    - [The Skyline Problem](#the-skyline-problem)
+
+
 ### 易错点
 
 ### 必备模版技巧
@@ -173,9 +177,6 @@
 [Leetcode](https://leetcode.com/problems/two-sum/)
 - 由于需要输出index，使用hash dict记住index
 - O（n）
-
-
-
 
 ```python
 class Solution(object):
@@ -2955,3 +2956,6 @@ class Solution:
                 res = max(res, d[k+s][-1] - ls[0])
         return res            
 ```
+
+### [The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)
+ 

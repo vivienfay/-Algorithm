@@ -30,9 +30,10 @@
    - [Daily Temprature](#739)
    - [Online Stock Span](#901)
    - [](#239)
-   - [Largest Rectangle in Histogram](#84)
+   - [Largest Rectangle in Histogram](#largest-rectangle-in-histogram)
    - []()
    - [Buildings With an Ocean View](#1762)
+   - []
    
 #### 4. string
    - [Minimum Remove to Make Valid Parentheses](#1249)
@@ -494,14 +495,9 @@ class StockSpanner(object):
         return res  
 ```
 
-# 84
-
-[Leetcode](https://leetcode.com/problems/largest-rectangle-in-histogram/)
-
-### Largest Rectangle in Histogram
+### [Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
 
 - 单调递增栈
-
 
 ```python
 class Solution(object):
