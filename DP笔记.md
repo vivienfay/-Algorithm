@@ -63,6 +63,9 @@
         - 搜寻最后一个区间的起始位置j，将dp[i][k] 分割成dp[j-1][k-1]和s[j:i]两个部分
         - 最终的结果是dp[N][K]
 
+#### 什么时候需要建立n+1大小的dp列？
+
+
 ### 题型分类
 
 - #### 坐标型
@@ -119,7 +122,7 @@
 
 
 - #### 字符匹配
-    - [Edit Distance](#72)
+    - [Edit Distance](#edit-distance)
     - [Wildcard Matching](#wildcard-matching)
 
 ### 易错点
@@ -740,10 +743,7 @@ class Solution(object):
             return m + n - 2 * dp[m][n]
 ```
 
-# 72
-[Leetcode](https://leetcode.com/problems/edit-distance/)
-### Edit Distance
-
+### [Edit Distance](https://leetcode.com/problems/edit-distance/)
 
 ```python
 class Solution(object):
@@ -769,7 +769,7 @@ class Solution(object):
         return dp[-1][-1]
 ```
 
-## [Wildcard Matching](https://leetcode.com/problems/wildcard-matching/)
+### [Wildcard Matching](https://leetcode.com/problems/wildcard-matching/)
 
 ```python
 class Solution(object):
@@ -976,9 +976,4 @@ class Solution(object):
                     for z in m[j]:
                         dp[i][j] += dp[i-1][z]
         return sum(dp[-1]) % (10 ** 9 + 7)
-```
-
-
-```python
-
 ```
