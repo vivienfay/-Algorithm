@@ -1,27 +1,29 @@
-### 总结
+# DP总结
 
-#### 可考虑dp：
-- 求最大值最小值
+## 总结
+
+- 什么时候可以用到DP?
+  - 求最大值最小值
     - 从左上走到右下路径的最大数字和
     - 最长上升子序列长度
-- 判断是否可行
+  - 判断是否可行
     - 取石子游戏，先手是否必胜
     - 能不能选出k个数使得sum是k
-- 统计方案个数
+  - 统计方案个数
     - 有几种方式走到右下角
     - 有多少方法选出k个数使得和是sum
 
-#### 极不可能用dp：
-- 求出具体方案而非方案个数
-- 输入数据是一个集合而不是序列
-- 暴力算法的复杂度是多项式级别
+- 什么时候不可能用到DP?
+  - 求出具体方案而非方案个数
+  - 输入数据是一个集合而不是序列
+  - 暴力算法的复杂度是多项式级别
 
-#### 动态规划组成部分：
+## 动态规划组成部分：
+
 1. 确定状态
     - 最后一步
     - 化成子问题
 2. 转移方程
-
     - f(x) = min(f(x-5), f(x-7))
 3. 初始条件和边界情况
     - f(0) = 0
@@ -87,6 +89,8 @@
     - [House Robber III](#house-robber-iii)
     - [Counting Bits](#338)
     - [Target Sum](#target-sum))
+    - [Best Time to Buy and Sell Stock III](#best-time-to-buy-and-sell-stock-iii)
+    - [Best Time to Buy and Sell Stock IV]()
     
 - #### 划分型
     - [Decode ways](#91)
@@ -1019,3 +1023,48 @@ class Solution:
         dfs(len(nums) - 1, 0)
         return memo[(len(nums) - 1, 0)]
 ```
+
+
+## 股票买卖系列
+
+相关帖子：[Leetcode](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/discuss/135704/Detail-explanation-of-DP-solution)
+
+- 记录股票买卖时的几种状态，买1次，卖1次，买两次，卖两次等
+
+### [Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/)
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        buy1, buy2 = float('inf'), float('inf')
+        sell1, sell2 = -float('inf'), -float('inf')
+        for i in range(n):
+            buy1 = min(buy1, prices[i])
+            sell1 = max(sell1, prices[i] - buy1)
+            buy2 = min(buy2, prices[i] - sell1)
+            sell2 = max(sell2, prices[i] - buy2)
+            
+        return sell2
+```
+
+
+### [Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        buy1, buy2 = float('inf'), float('inf')
+        sell1, sell2 = -float('inf'), -float('inf')
+        for i in range(n):
+            buy1 = min(buy1, prices[i])
+            sell1 = max(sell1, prices[i] - buy1)
+            buy2 = min(buy2, prices[i] - sell1)
+            sell2 = max(sell2, prices[i] - buy2)
+            
+        return sell2
+```
+
+
+### [Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)

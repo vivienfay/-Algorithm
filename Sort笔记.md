@@ -1,36 +1,45 @@
-### 总结
+# Sort 总结
 
-sort 方法
-- bubble sort: O(n^2)
-    * swap邻近两个元素
-    
-- selection sort: O(n^2)
-    * 和最大元素进行调换
-    
-- quick sort：
-    * average:O(nlogn) 最差 O(n^2)
-    * 选第一个/最后一个/随机/中位数 做pivot
-    * Using recursion
-    * Choose a pivot , if the given number is smaller than pivot then put the number left to the pivot. Must to be inplace
-    *     Firstly, put the pivot value into the last element
-    * Subquestion: partition is used to put the number less than pivot before the pivot.
-    * Inplace operation, thus space complexity is O(1)
-    
-- merge sort: devide and conqouer
-    * Split the order in the middle till the level gets every element and adjust the order 
-    * Merge the subarray according to their order
-    * Subquestion: how to merge two arrays?
-    * Using recursion(time complexity depends on node counts)
-    
-- insertion sort
-- bucket sort
+## Sorting 方法
+
+### bubble sort: O(n^2)
+
+- swap邻近两个元素
+  
+### selection sort: O(n^2)
+
+- 和最大元素进行调换
+
+### quick sort: O(nlogn)
+
+- average:O(nlogn) 最差 O(n^2)
+- 选第一个/最后一个/随机/中位数 做pivot
+- Using recursion
+- Choose a pivot , if the given number is smaller than pivot then put the number left to the pivot. Must to be inplace
+- Firstly, put the pivot value into the last element
+- Subquestion: partition is used to put the number less than pivot before the pivot.
+- Inplace operation, thus space complexity is O(1)
+
+### Merge Sort
+
+- devide and conqouer
+- Split the order in the middle till the level gets every element and adjust the order 
+- Merge the subarray according to their order
+- Subquestion: how to merge two arrays?
+- Using recursion(time complexity depends on node counts)
+
+### insertion sort
+
+### bucket sort
 
 ### 题型分类
 
-
 - #### Bucket Sort
-    - [How Many Numbers Are Smaller Than the Current Number](#1365)
-    - [Maximum Gap](#164)
+
+  - [How Many Numbers Are Smaller Than the Current Number](#1365)
+  - [Maximum Gap](#164)
+
+- #### Sorting变种 
 
 ### 易错点
 

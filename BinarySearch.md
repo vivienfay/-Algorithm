@@ -14,56 +14,69 @@
     - l和r在list最左最右点
 - 解题习惯与技巧
   - 如果target不一定存在，用while l + 1 < r 能够避免歧义，如果存在，可以使用l <= r. 但l和r移动是只能l=mid或者r=mid
-  ![](img/bs1.png)
-  ![](img/bs2.png)
+
+![bs1](img/bs1.png)
+
+![bs2](img/bs2.png)
 
 ## 题型分类
 
-- #### 标注的二分法：最大最小第一最后
-  1. 注意边界条件
-  2. 循环条件：
-     - 如果是找target：l <= r
-     - 如果是找最前的最后的： l + 1 <=r，l = mid/ r = mid 但是出了循环后要check一下外部的l和r，如果不想循环完还要check 1 < r 但是 mid - 1 或者 + 1 只能二选一
-  - [Binary Search](#704)
-  - [Find First and Last Position of Element in Sorted Array](#34)
-  - [Search a 2D Matrix](#74)
-  - [First Bad Version](#278)
-  - [Search Insert Position](#35)
-  - [Sqrt(x)](#69)
-  - [Valid Perfect Square](#367)
+### 传统二分 —— 找目标数的index
+
+1. 注意边界条件
+2. 循环条件：
+   - 如果是找target：l <= r
+   - 如果是找最前的最后的： l + 1 <=r，l = mid/ r = mid 但是出了循环后要check一下外部的l和r，如果不想循环完还要check 1 < r 但是 mid - 1 或者 + 1 只能二选一
+
+- [Binary Search](#binary-search)
+- [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
+- [Search a 2D Matrix](#search-a-2d-matrix)
+- [First Bad Version](#first-bad-version)
+- [Search Insert Position](#search-insert-position)
+- [Sqrt(x)](#sqrtx)
+- [Valid Perfect Square](#valid-perfect-square)
   
-- #### Rotated sorted array
-    通过比对最右最左的值，同时把它设成target值。查看当前mid所在的位置在哪一段线段上。最后输出的时候记得比对r 和 l。如果有重复的值的话，可以r=r-1缩小范围
-    ![](img/bs3.png)
-  - [Search in Rotated Sorted Array](#33)
-  - [Search in Rotated sorted Array II](#81)
-  - [Find Minimum in Rotated Sorted Array](#153)
-  - [Find Minimum in Rotated Sorted Array II](#154)
-  - [Peak Index in a Mountain Array](#852)
-  - [Find in Mountain Array](#1095)
+### 基于Rotated sorted array 寻找目标数的index
 
-- #### 形式有点变形
-    建立一个list，其中的元素都是答案
-  - [Missing Element in Sorted Array](#1060)
-  - [Time Based Key-Value Store](#981)
-  - [Median of Two Sorted Arrays](#4)
-  - [Single Element in a Sorted Array](#540)  
+通过比对最右最左的值，同时把它设成target值。查看当前mid所在的位置在哪一段线段上。最后输出的时候记得比对r 和 l。如果有重复的值的话，可以r=r-1缩小范围
 
-- #### 二分答案
-  - 如果题目要求寻找最大最小的可能性，有可能就是需要运用这个方法
-  - 通过题目，自己要generate一个数组，通过调整mid并且不断测试查看是否当前的mid符合条件
-  ![](img/bs4.png)
-  - [Kth Smallest Element in a Sorted Matrix](#378)
-  - [Capacity to ship packages within d days](#1011)
-  - [koko eating bananas](#875)
-  - [Split Array Largest Sum](#410)
-  - [Divide Chocolate](#1231)
-  - [Minimize Max Distance to Gas Station](#774)
-  - [Sum of Mutated Array Closest to Target](#1300)
-  - [Minimum Number of Days to Make m Bouquets](#1482)
+![bs3](img/bs3.png)
 
-- #### 特殊
-  - [Longest Increasing Subsequence](#300)
+- [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+- [Search in Rotated sorted Array II](#search-in-rotated-sorted-array-ii)
+- [Find Minimum in Rotated Sorted Array](#find-minimum-in-rotated-sorted-array)
+- [Find Minimum in Rotated Sorted Array II](#find-minimum-in-rotated-sorted-array-ii)
+- [Peak Index in a Mountain Array](#peak-index-in-a-mountain-array)
+- [Find in Mountain Array](#find-in-mountain-array)
+
+### 形式有点变形
+
+建立一个list，其中的元素都是答案
+
+- [Missing Element in Sorted Array](#missing-element-in-sorted-array)
+- [Time Based Key-Value Store](#time-based-key-value-store)
+- [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
+- [Single Element in a Sorted Array](#single-element-in-a-sorted-array)  
+
+### 二分答案
+
+- 如果题目要求寻找最大最小的可能性，有可能就是需要运用这个方法
+- 通过题目，自己要generate一个数组，通过调整mid并且不断测试查看是否当前的mid符合条件
+  
+![bs4](img/bs4.png)
+
+- [Kth Smallest Element in a Sorted Matrix](#kth-smallest-element-in-a-sorted-matrix)
+- [Capacity to ship packages within d days](#capacity-to-ship-packages-within-d-days)
+- [koko eating bananas](#koko-eating-bananas)
+- [Split Array Largest Sum](#split-array-largest-sum)
+- [Divide Chocolate](#divide-chocolate)
+- [Minimize Max Distance to Gas Station](#minimize-max-distance-to-gas-station)
+- [Sum of Mutated Array Closest to Target](#sum-of-mutated-array-closest-to-target)
+- [Minimum Number of Days to Make m Bouquets](#minimum-number-of-days-to-make-m-bouquets)
+
+- ### 特殊
+  
+- [Longest Increasing Subsequence](#longest-increasing-subsequence)
 
 ### 易错
 
@@ -72,10 +85,10 @@
 
 --------
 
-# [704](https://leetcode.com/problems/binary-search/)
-### Binary Search
+### [Binary Search](https://leetcode.com/problems/binary-search/)
 
 超经典
+
 ```python
 class Solution(object):
     def search(self, nums, target):
@@ -98,9 +111,8 @@ class Solution(object):
         return -1
 ```
 
-# [34](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+### [Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
-### Find First and Last Position of Element in Sorted Array
 注意mid target 相等的时候如何判断
 
 ```python
@@ -148,10 +160,9 @@ class Solution(object):
         return [min_t,max_t]
 ```
 
-# [74](https://leetcode.com/problems/search-a-2d-matrix/)
-### Search a 2D Matrix
+### [Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
 
-考虑如何转化pivot
+- 考虑如何把2d坐标转化成1d
 - 如果可以的话尽量按照binary search， left 《= right 并且每次left right = mid + 1 或者 -1
 
 ```python
@@ -186,10 +197,9 @@ class Solution(object):
         return False
 ```
 
+### [Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/)
 
-# [240](https://leetcode.com/problems/search-a-2d-matrix-ii/)
-### Search a 2D Matrix II
-##### 不是binary search的题
+不是binary search的题
 
 解法：找到右上角的数字，有比较明显的性质：向下变大，向左变小。作为控制
 
@@ -221,10 +231,7 @@ class Solution(object):
         return False
 ```
 
-# 35
-### Search Insert Position
-[Leetcode](https://leetcode.com/problems/search-insert-position/)
-
+### [Search Insert Position](https://leetcode.com/problems/search-insert-position/)
 
 ```python
 class Solution(object):
@@ -266,9 +273,7 @@ class solution(object):
         return -1
 ```
 
-# [278](https://leetcode.com/problems/first-bad-version/)
-
-### First Bad Version
+### [First Bad Version](https://leetcode.com/problems/first-bad-version/)
 
 ```python
 class solution(object):
@@ -289,12 +294,9 @@ class solution(object):
               
 ```
 
-# 658
-### Find K Closest Elements
-[Leetcode](https://leetcode.com/problems/find-k-closest-elements/)
+### [Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/)
+
 注意边界的溢出
-
-
 
 ```python
 class Solution(object):
@@ -303,7 +305,6 @@ class Solution(object):
             return []
         left, right = 0, len(arr) - 1
         while left + 1 < right:
-
             mid = (left + right) // 2
             if arr[mid] < x:
                 left = mid
@@ -331,7 +332,6 @@ class Solution(object):
 
 ### Search in a big sorted array
 
-
 ```python
 class solution(object):
     def find(target):
@@ -355,17 +355,12 @@ class solution(object):
             return right
         else:
             return -1
-            
-        
 ```
 
-# 33
-### Search in Rotated Sorted Array
-[Leetcode](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+### [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 
 - 想象一幅图
 - 对比left 和 mid之间的关系，观察left 和mid 是不是在一条直线上
-
 
 ```python
 class Solution:
@@ -390,13 +385,11 @@ class Solution:
         return -1    
 ```
 
-# 153
-### Find Minimum in Rotated Sorted Array
-[Leetcode](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+### [Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+
 - 可以想象一幅图
 - 作为oooxxx类型的图，要找到o和x不同的性质是什么
 - 要想到特殊情况，全部rotate了
-
 
 ```python
 class Solution(object):
@@ -424,17 +417,13 @@ class Solution(object):
             return nums[right]
 ```
 
-# 154
-### Find Minimum in Rotated Sorted Array II
-[Leetcode](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/)
+### [Find Minimum in Rotated Sorted Array II](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/)
 
 特殊情况：【3 1 3】
+
 可以多一个判断，如果mid和right相等，把right往左移
-* 不可以用left做判断，在不rotate的情况下不成立
 
-
-
-
+不可以用left做判断，在不rotate的情况下不成立
 
 ```python
 class Solution(object):
@@ -463,26 +452,7 @@ class Solution(object):
             return nums[right]
 ```
 
-### Smallest Rectangle Enclosing Black Pixels
-
-
-```python
-class solution(object):
-    def rectangle(self,matrix): 
-```
-
-
-      File "<ipython-input-10-b572ded36656>", line 2
-        def rectangle(self,matrix):
-                                    ^
-    SyntaxError: unexpected EOF while parsing
-
-
-
-# 852
-### Peak Index in a Mountain Array
-[Leetcode](https://leetcode.com/problems/peak-index-in-a-mountain-array/)
-
+### [Peak Index in a Mountain Array](https://leetcode.com/problems/peak-index-in-a-mountain-array/)
 
 ```python
 class Solution:
@@ -495,14 +465,48 @@ class Solution:
         return r   
 ```
 
-### Maximum Number in Mountain Sequence
+### [Find in Mountain Array](https://leetcode.com/problems/find-in-mountain-array/)
 
-# 33
-### Search in Rotated sorted Array
-[https://leetcode.com/problemset/algorithms/?status=Solved]
+```python
+class Solution(object):
+    def findInMountainArray(self, target, mountain_arr):
+        """
+        :type target: integer
+        :type mountain_arr: MountainArray
+        :rtype: integer
+        """
+        n = mountain_arr.length()
+        l, r = 0, n - 1
+#         find peak
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if mountain_arr.get(mid) < mountain_arr.get(mid+1):
+                l = mid
+            else: r = mid
+        if mountain_arr.get(l) < mountain_arr.get(r):
+            peak = mid
+#         up direction find target
+        l, r = 0, peak
+        while l <= r:
+            mid = (l + r) // 2
+            cur = mountain_arr.get(mid)
+            if cur == target: return mid
+            elif cur < target: l = mid + 1
+            else: r = mid - 1
+#         down direction find targget
+        l, r = peak, n - 1
+        while l <= r:
+            mid = (l + r) // 2
+            cur = mountain_arr.get(mid)
+            if cur == target: return mid
+            elif cur < target: r = mid - 1 
+            else: l = mid + 1
+        return -1
+```
+
+### [Search in Rotated sorted Array][https://leetcode.com/problemset/algorithms/?status=Solved]
 
 - 考虑mid是落在红线还是绿线
-
 
 ```python
 class solution(object):
@@ -535,11 +539,9 @@ class solution(object):
             return -1
 ```
 
-# 81
-### Search in Rotated sorted Array II
-[Leetcode](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/submissions/)
-先判断是否等于
+### [Search in Rotated sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/submissions/)
 
+- 先判断是否等于
 
 ```python
 class Solution(object):
@@ -576,10 +578,7 @@ class Solution(object):
         return False
 ```
 
-# 1060
-### Missing Element in Sorted Array
-[Leetcode](https://leetcode.com/problems/missing-element-in-sorted-array/)
-
+### [Missing Element in Sorted Array](https://leetcode.com/problems/missing-element-in-sorted-array/)
 
 ```python
 class Solution(object):
@@ -607,10 +606,7 @@ class Solution(object):
         return res
 ```
 
-# 981
-### Time Based Key-Value Store
-[Leetcode](https://leetcode.com/problems/time-based-key-value-store/)
-
+### [Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
 
 ```python
 class TimeMap(object):
@@ -651,10 +647,7 @@ class TimeMap(object):
         else: return ''
 ```
 
-# 4
-### Median of Two Sorted Arrays
-[Leetcode](https://leetcode.com/problems/median-of-two-sorted-arrays/)
-
+### [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 
 ```python
 class Solution(object):
@@ -681,10 +674,7 @@ class Solution(object):
         return (c1 + c2) * 0.5
 ```
 
-# 1283
-### Find the Smallest Divisor Given a Threshold
-[Leetcode](https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/)
-
+### [Find the Smallest Divisor Given a Threshold](https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/)
 
 ```python
 class Solution(object):
@@ -705,10 +695,7 @@ class Solution(object):
         
 ```
 
-# 378
-### Kth Smallest Element in a Sorted Matrix
-[Leetcode](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
-
+### [Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
 
 ```python
 class Solution(object):
@@ -732,11 +719,10 @@ class Solution(object):
         return low
 ```
 
-# 540
-### Single Element in a Sorted Array
-[Leetcode](https://leetcode.com/problems/single-element-in-a-sorted-array/)
+### [Single Element in a Sorted Array](https://leetcode.com/problems/single-element-in-a-sorted-array/)
 
 指针移动的条件是，观察邻居点是不是和当前点是相同的，有奇偶的差别。
+
 ```python
 class Solution(object):
     def singleNonDuplicate(self, nums):
@@ -757,10 +743,7 @@ class Solution(object):
         
 ```
 
-# 1011
-### Capacity To Ship Packages Within D Days
-[Leetcode](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/)
-
+### [Capacity To Ship Packages Within D Days](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/)
 
 ```python
 class Solution(object):
@@ -784,10 +767,7 @@ class Solution(object):
         return l
 ```
 
-# 875
-### Koko Eating Bananas
-[Leetcode](https://leetcode.com/problems/koko-eating-bananas/)
-
+### [Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
 
 ```python
 class Solution(object):
@@ -810,10 +790,7 @@ class Solution(object):
                 
 ```
 
-# 410
-### Split Array Largest Sum
-[Leetcode](https://leetcode.com/problems/split-array-largest-sum/)
-
+### [Split Array Largest Sum](https://leetcode.com/problems/split-array-largest-sum/)
 
 ```python
 class Solution(object):
@@ -837,10 +814,7 @@ class Solution(object):
         return l
 ```
 
-# 1231
-### Divide Chocolate
-[Leetcode](https://leetcode.com/problems/divide-chocolate/)
-
+### [Divide Chocolate](https://leetcode.com/problems/divide-chocolate/)
 
 ```python
 class Solution(object):
@@ -864,10 +838,7 @@ class Solution(object):
         return l
 ```
 
-# 774
-### Minimize Max Distance to Gas Station
-[Leetcode](https://leetcode.com/problems/minimize-max-distance-to-gas-station/)
-
+### [Minimize Max Distance to Gas Station](https://leetcode.com/problems/minimize-max-distance-to-gas-station/)
 
 ```python
 class Solution(object):
@@ -889,16 +860,13 @@ class Solution(object):
         return r
 ```
 
-# 1428
-### Leftmost Column with at Least a One
-[Leetcode](https://leetcode.com/problems/leftmost-column-with-at-least-a-one/)
+### [Leftmost Column with at Least a One](https://leetcode.com/problems/leftmost-column-with-at-least-a-one/)
 
 - 两种方法：
 
 binary search o(mlogn)
 
 左上角向下遍历 o(m+n)
-
 
 ```python
 class Solution(object):
@@ -921,11 +889,7 @@ class Solution(object):
         if hasone(l): return l
         elif hasone(r): return r
         else: return -1
-                
-    
-    
 ```
-
 
 ```python
 class Solution(object):
@@ -943,13 +907,9 @@ class Solution(object):
                 j -= 1
             else: i += 1
         return res
-                
 ```
 
-# 69
-### Sqrt(x)
-[Leetcode](https://leetcode.com/problems/sqrtx/)
-
+### [Sqrt(x)](https://leetcode.com/problems/sqrtx/)
 
 ```python
 class Solution(object):
@@ -970,10 +930,7 @@ class Solution(object):
             
 ```
 
-# 367
-### Valid Perfect Square 
-[Leetcode](https://leetcode.com/problems/valid-perfect-square/)
-
+### [Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/)
 
 ```python
 class Solution(object):
@@ -990,16 +947,12 @@ class Solution(object):
             elif mid ** 2 < num: l = mid + 1
             else: r = mid - 1
         return False if l ** 2 != num and r ** 2 != num else True
-            
 ```
 
-# 729
-### My Calendar I
-[Leetcode](https://leetcode.com/problems/my-calendar-i/)
+### [My Calendar I](https://leetcode.com/problems/my-calendar-i/)
 
 O(n) linear search
 O(Logn) binary search
-
 
 ```python
 class MyCalendar(object):
@@ -1022,10 +975,7 @@ class MyCalendar(object):
         return True
 ```
 
-# 1351
-### Count Negative Numbers in a Sorted Matrix
-[Leetcode](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/)
-
+### [Count Negative Numbers in a Sorted Matrix](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/)
 
 ```python
 class Solution(object):
@@ -1047,15 +997,12 @@ class Solution(object):
             elif grid[i][r] < 0: res += n - r
             l, r = 0, r
             i += 1
-        return res
-            
+        return res  
 ```
 
-# 300
-### Longest Increasing Subsequence
-[Leetcode](https://leetcode.com/problems/longest-increasing-subsequence/)
-- 可以dp做
+### [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
 
+- 可以dp做
 
 ```python
 # 优化时间复杂度o（nlogn）
@@ -1076,10 +1023,7 @@ class Solution:
         return len(arr)    
 ```
 
-# 1300
-### Sum of Mutated Array Closest to Target
-[Leetcode](https://leetcode.com/problems/sum-of-mutated-array-closest-to-target/)
-
+### [Sum of Mutated Array Closest to Target](https://leetcode.com/problems/sum-of-mutated-array-closest-to-target/)
 
 ```python
 class Solution(object):
@@ -1108,10 +1052,7 @@ class Solution(object):
         return r if abs(l_sum - target) > abs(r_sum - target) else l
 ```
 
-# 1482
-### Minimum Number of Days to Make m Bouquets
-[Leetcode](https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/)
-
+### [Minimum Number of Days to Make m Bouquets](https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/)
 
 ```python
 class Solution(object):
@@ -1135,48 +1076,9 @@ class Solution(object):
                     if bouq == m: break
             if bouq == m: r = mid
             else: l = mid + 1
-        return l
-        
+        return l 
 ```
 
-# 1095
-### Find in Mountain Array
-[Leetcode](https://leetcode.com/problems/find-in-mountain-array/)
+### Smallest Rectangle Enclosing Black Pixels
 
-
-```python
-class Solution(object):
-    def findInMountainArray(self, target, mountain_arr):
-        """
-        :type target: integer
-        :type mountain_arr: MountainArray
-        :rtype: integer
-        """
-        n = mountain_arr.length()
-        l, r = 0, n - 1
-#         find peak
-        while l + 1 < r:
-            mid = (l + r) // 2
-            if mountain_arr.get(mid) < mountain_arr.get(mid+1):
-                l = mid
-            else: r = mid
-        if mountain_arr.get(l) < mountain_arr.get(r):
-            peak = mid
-#         up direction find target
-        l, r = 0, peak
-        while l <= r:
-            mid = (l + r) // 2
-            cur = mountain_arr.get(mid)
-            if cur == target: return mid
-            elif cur < target: l = mid + 1
-            else: r = mid - 1
-#         down direction find targget
-        l, r = peak, n - 1
-        while l <= r:
-            mid = (l + r) // 2
-            cur = mountain_arr.get(mid)
-            if cur == target: return mid
-            elif cur < target: r = mid - 1 
-            else: l = mid + 1
-        return -1
-```
+### Maximum Number in Mountain Sequence
