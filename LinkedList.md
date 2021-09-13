@@ -1,62 +1,61 @@
-### 总结
+# Linked List总结
+
+## 总结
 
 - linked list 改变结构时，就需要dummy node
 
 - reverse list需要熟练掌握
 
-- subarray
-   - sum(i到j) = sum(0到j) - sum(0到i)
-   
+- subarray: sum(i到j) = sum(0到j) - sum(0到i)
+
 - 对于自身结构上的改变，需要及时存储当前结点的prev和next，以防结构改变后难以track后面的结点
 
 - 自身结构改变的时候需要考虑是不是需要断开链以防cycle
 
 - 看到O(nlogn)的sort基本都是merge sort或者quick sort
 
-### 题型分类
+## 题型分类
 
-- #### 建新的linked list：
+### 建新的linked list
 
-    - [Add Two Numbers](#2)(写法可优化)
-    - [Add Two Numbers II](#445)
-    
-- #### 在原有链表上进行改动：删/并/分类
-    - [Merge Two Sorted Lists](#21)
-    - [Merge k sorted lists](#23)(有更好的做法，比如priority queue)
-    - [Remove Nth Node From End of List](#19)    
-    - [Remove Linked List Elements](#203)
-    - [Remove Duplicates from Sorted List](#83)
-    - [Remove Duplicates from Sorted List II](#82)
-    - [Partition List](#86)
-    - [Rotate List](#61)
-    - [Plus One Linked List](#369)
+- [Add Two Numbers](#add-two-numbers)
+- [Add Two Numbers II](#add-two-numbers-ii)
 
-- #### 需要reverse链表: 
-    - [Swap Nodes in Pairs](#24)
-    - [Reverse Nodes in k-Group](#25)
-    - [Reverse Linked List](#206)
-    - [Reverse Linked List II](#92)
-    - [Reorder List](#143)
-    
+### 在原有链表上进行改动：删/并/分类
 
-- #### 快慢指/ 两指针
-    - [Palindrome Linked List](#234)
-    - [Intersection of Two Linked Lists](#160)
-    - [Linked List Cycle](#141)
-    - [Linked List Cycle II](#142)
-    - [Middle of the Linked List](#876)
-    - [Remove Nth Node From End of List](#19)     
+- [Merge k sorted lists](#merge-k-sorted-lists)
+- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
+- [Remove Linked List Elements](#remove-linked-list-elements)
+- [Remove Duplicates from Sorted List](#remove-duplicates-from-sorted-list)
+- [Remove Duplicates from Sorted List II](#remove-duplicates-from-sorted-list-ii)
+- [Partition List](#partition-list)
+- [Rotate List](#rotate-list)
+- [Plus One Linked List](#plus-one-linked-list)
 
+### 需要reverse链表
 
-- #### 数据结构OOD
-    - [Copy List with Random Pointer](#138)(使用hashmap做一个映射)
-    - [Convert Sorted List to Binary Search Tree](#109)
-    - [LRU Cache](#146)
-    - [Delete Node in a Linked List](#237)
+- [Swap Nodes in Pairs](#swap-nodes-in-pairs)
+- [Reverse Nodes in k-Group](#reverse-nodes-in-k-group)
+- [Reverse Linked List](#reverse-linked-list)
+- [Reverse Linked List II](#reverse-linked-list-ii)
+- [Reorder List](#reorder-list)
 
-- 注意start，end，合并链表类
+### 快慢指/ 两指针
+  
+- [Palindrome Linked List](#palindrome-linked-list)
+- [Intersection of Two Linked Lists](#intersection-of-two-linked-lists)
+- [Linked List Cycle](#linked-list-cycle)
+- [Linked List Cycle II](#linked-list-cycle-ii)
+- [Middle of the Linked List](#middle-of-the-linked-list)
+- [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 
-### 易错点
+### 数据结构OOD
+
+- [Copy List with Random Pointer](#copy-list-with-random-pointer)(使用hashmap做一个映射)
+- [Convert Sorted List to Binary Search Tree](#convert-sorted-list-to-binary-search-tree)
+- [LRU Cache](#lru-cache)
+
+## 易错点
 
 - 在通过两个链表组合创建新的链条的时候， 需要断开连接
 
@@ -66,51 +65,27 @@
 
 如果是单数情况，slow会落在最中点，如果是双数情况，slow会落在第二个中点
 
-### 必备模版/技巧
+- 注意start，end，合并链表类
 
-#### iterative:
-- init (prev, curr, next)
-- iterate:
-    store next node
-    
-    change next of current
-    
-    curr.next = prev
-    
-    move prev and curr
+## 必备模版/技巧
 
-- 要注意prev和curr之间如何标记 如何移动指针
+### Reverse Linked List
 
-
-
-
-
-
-
-#### recursive:
-
-- 注意记录new head，随后return new head。 要搞清楚input是什么 output 是什么
-- 记得断开链条
-
+- iteration
 
 ```python
-# iterative
-class Solution(object):
-    def reverseList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
+    def reverse(head):
+        if not head: return
+        cur = head
         prev = None
-        curr = head
-        while curr:
-            next = curr.next
-            curr.next = prev
-            prev = curr
-            curr = next        
-        return prev
+        while cur.next:
+            next = cur.next
+            cur.next = prev
+            prev, cur = cur, next
+        return cur
 ```
 
+- recursion
 
 ```python
 # recusive
@@ -131,19 +106,11 @@ class Solution(object):
         return n
 ```
 
-----
-
-# 92
-
-[Leetcode](https://leetcode.com/problems/reverse-linked-list-ii/)
-
-### Reverse Linked List II
-
+### [Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/)
 
 - prev, start 可以一开始就定义好
-注意prev start end怎么走的
-
-
+- 注意prev start end怎么走的
+  
 ```python
 class Solution(object):
     def reverseBetween(self, head, m, n):
@@ -175,14 +142,7 @@ class Solution(object):
         return dummy.next
 ```
 
-# 206
-
-[Leetcode](https://leetcode.com/problems/reverse-linked-list/)
-
-### Reverse Linked List
-
-基础
-
+### [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
 
 ```python
 class Solution(object):
@@ -201,17 +161,11 @@ class Solution(object):
         return prev
 ```
 
-# 2
-### Add Two Numbers
-
-
-2
-https://leetcode.com/problems/add-two-numbers/
+### [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
 
 - 注意进位时候的运算
 - 注意位数不同该如何处理，两个head相同处理方式，可以用一个替代另一个去简化代码
 - 注意最后位数如果需要进位如何处理
-
 
 ```python
 class Solution(object):
@@ -251,14 +205,9 @@ class Solution(object):
         return dummy.next
 ```
 
-# 445
-
-[Leetcode](https://leetcode.com/problems/add-two-numbers-ii/)
-
-### Add Two Numbers II
+### [Add Two Numbers II](https://leetcode.com/problems/add-two-numbers-ii/)
 
 reverse + add two number
-
 
 ```python
 class Solution(object):
@@ -302,28 +251,35 @@ class Solution(object):
         return new_head
 ```
 
-### Copy List with Random Pointer
-
-138
-https://leetcode.com/problems/copy-list-with-random-pointer/
-
+### [Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
 
 ```python
-
+class Solution(object):
+    def copyRandomList(self, head):
+        """
+        :type head: Node
+        :rtype: Node
+        """
+        if not head: return 
+        G = {}
+        cur = head
+        while cur:
+            G[cur] = Node(cur.val)
+            cur = cur.next
+        cur = head
+        while cur:
+            node = G[cur]
+            node.next = G[cur.next] if cur.next else None
+            node.random = G[cur.random] if cur.random else None
+            cur = cur.next
+        return G[head]
 ```
 
-# 141
+### [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
 
-[Leetcode](https://leetcode.com/problems/linked-list-cycle/)
-
-### Linked List Cycle
-
--快慢指针
-
--输出node时可以slow指针从头走
-
--注意判断fast.next存在
-
+- 快慢指针
+- 输出node时可以slow指针从头走
+- 注意判断fast.next存在
 
 ```python
 class Solution(object):
@@ -338,17 +294,11 @@ class Solution(object):
             if slow == fast: return True
             slow, fast = slow.next, fast.next.next
         return False
-
 ```
 
-# 142
+### [Linked List Cycle ii](https://leetcode.com/problems/linked-list-cycle-ii/)
 
-[Leetcode](https://leetcode.com/problems/linked-list-cycle-ii/)
-
-### Linked List Cycle ii
-
-- 注意head，headnext如何开始
-
+- 注意head，head next如何开始
 
 ```python
 class Solution(object):
@@ -374,14 +324,9 @@ class Solution(object):
         return slow
 ```
 
-# 19
-
-[Leetcode](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
-
-### Remove Nth Node From End of List
+### [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
 
 - 快慢指针
-
 
 ```python
 class Solution(object):
@@ -395,7 +340,6 @@ class Solution(object):
         dummy.next = head
         curr = dummy
         pivot = dummy
-
         
         for i in range(n):
             pivot = pivot.next
@@ -408,19 +352,10 @@ class Solution(object):
         return dummy.next
 ```
 
-# 83
-[Leetcode](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
+### [Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
 
-### Remove Duplicates from Sorted List
 - 一层一层的断开连接
-
-- 和82做法上的差别在于：
-
-83 一个个remove 元素
-
-
-82 套内循环，重复的链条一起remove
-
+- 和82做法上的差别在于：83 一个个remove 元素, 82 套内循环，重复的链条一起remove
 
 ```python
 class Solution(object):
@@ -444,16 +379,10 @@ class Solution(object):
         return dummy.next
 ```
 
-# 82
-
-[Leetcode](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)
-
-### Remove Duplicates from Sorted List II
+### [Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)
 
 - 快慢指针，再加一个指针标记最前面的node
 - 循环里面套循环
-
-
 
 ```python
 class Solution(object):
@@ -479,18 +408,10 @@ class Solution(object):
                 start = end
                 if not end: break
                 end = end.next
-        return dummy.next
-                
+        return dummy.next    
 ```
 
-### Sort List
-
-使用merge sort
-
-148.
-https://leetcode.com/problems/sort-list/
-
-
+### [Sort List](https://leetcode.com/problems/sort-list/)
 
 ```python
 class Solution(object):
@@ -531,13 +452,9 @@ class Solution(object):
         
 ```
 
-### Odd Even Linked List
+### [Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/)
 
 even node后面要加none来终止死循环
-
-328.
-https://leetcode.com/problems/odd-even-linked-list/
-
 
 ```python
 class Solution(object):
@@ -571,15 +488,10 @@ class Solution(object):
         return dummy.next
 ```
 
-# 143
-
-[Leetcode](https://leetcode.com/problems/reorder-list/)
-
-### Reorder List
+### [Reorder List](https://leetcode.com/problems/reorder-list/)
 
 - 要记得断开连接
 - 考虑是以重新建一条新链，转接不同的node出发
-
 
 ```python
 class Solution(object):
@@ -634,7 +546,6 @@ class Solution(object):
         return prev
 ```
 
-
 ```python
 # 不用复制的版本
 class Solution(object):
@@ -672,13 +583,7 @@ class Solution(object):
         return new_head
 ```
 
-# 25
-
-[Leetcode](https://leetcode.com/problems/reverse-nodes-in-k-group/)
-
-### Reverse Nodes in k-Group
-
-
+### [Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)
 
 ```python
 class Solution:
@@ -714,12 +619,7 @@ class Solution:
         return new_head
 ```
 
-# 24
-
-[Leetcode](https://leetcode.com/problems/swap-nodes-in-pairs/)
-
-### Swap Nodes in Pairs
-
+### [Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/)
 
 ```python
 class Solution(object):
@@ -741,13 +641,9 @@ class Solution(object):
         return dummy.next
 ```
 
-# 234
-[Leetcode](https://leetcode.com/problems/palindrome-linked-list/)
-
-### Palindrome Linked List
+### [Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/)
 
 - 使用快慢指针以及stack
-
 
 ```python
 class Solution(object):
@@ -766,9 +662,7 @@ class Solution(object):
             if head.val != new_head.val: return False
             head, new_head = head.next, new_head.next
         return True
-    
-    
-    
+
     def reverse(self, head):
         if not head or not head.next: return head
         next = head.next
@@ -777,7 +671,6 @@ class Solution(object):
         next.next = head
         return new_head
 ```
-
 
 ```python
 # Time: O(n) 
@@ -801,15 +694,9 @@ class Solution(object):
             if cur != slow.val: return False
             slow = slow.next
         return True
-
- 
 ```
 
-# 203
-[Leetcode](https://leetcode.com/problems/remove-linked-list-elements/)
-
-### Remove Linked List Elements
-
+### [Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/)
 
 ```python
 class Solution(object):
@@ -832,42 +719,9 @@ class Solution(object):
         return dummy.next
 ```
 
-# 83
-
-[Leetcode](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
-
-### Remove Duplicates from Sorted List
-
-
-```python
-class Solution(object):
-    def deleteDuplicates(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-        if not head: return head
-        dummy = ListNode(None)
-        dummy.next = head
-        prev, cur = dummy, head
-        while cur:
-            if cur.val == prev.val:
-                prev.next = cur.next
-            else:
-                prev = cur
-            cur = cur.next
-        return dummy.next
-```
-
-# 160
-
-[Leetcode](https://leetcode.com/problems/intersection-of-two-linked-lists/)
-
-### Intersection of Two Linked Lists
+### [Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)
 
 - 两个指针
-
-
 
 ```python
 class Solution(object):
@@ -885,13 +739,9 @@ class Solution(object):
         return cur1
 ```
 
-# 876
-
-
 ### Middle of the Linked List
 
 -注意单复数
-
 
 ```python
 class Solution(object):
@@ -909,30 +759,9 @@ class Solution(object):
         else: return slow.next
 ```
 
-# 237
-
-### delete node in a linked list
-
-
-```python
-class Solution(object):
-    def deleteNode(self, node):
-        """
-        :type node: ListNode
-        :rtype: void Do not return anything, modify node in-place instead.
-        """
-        node.val = node.next.val
-        node.next = node.next.next
-```
-
-# 86
-
-[Leetcode](https://leetcode.com/problems/partition-list/)
-
-### Partition List
+### [Partition List](https://leetcode.com/problems/partition-list/)
 
 - 建两个新的链表
-
 
 ```python
 class Solution(object):
@@ -955,18 +784,12 @@ class Solution(object):
             head = head.next
         cur2.next = None
         cur1.next = bigger_head.next
-        return smaller_head.next
-            
+        return smaller_head.next   
 ```
 
-# 61
-
-[Leetcode](https://leetcode.com/problems/rotate-list/)
-
-### Rotate List 
+### [Rotate List](https://leetcode.com/problems/rotate-list/)
 
 - 注意corner case
-
 
 ```python
 class Solution(object):
@@ -997,43 +820,7 @@ class Solution(object):
         return dummy.next       
 ```
 
-# 138
-
-[Leetcode](https://leetcode.com/problems/copy-list-with-random-pointer/)
-
-### Copy List with Random Pointer
-
-- 做一个hashmap做映射
-
-
-```python
-class Solution(object):
-    def copyRandomList(self, head):
-        """
-        :type head: Node
-        :rtype: Node
-        """
-        if not head: return 
-        map = {}
-        cur = head
-        while cur:
-            map[cur] = ListNode(cur.val)
-            cur = cur.next
-        cur = head
-        while cur:
-            node = map[cur]
-            node.next = map[cur.next] if cur.next else None
-            node.random = map[cur.random] if cur.random else None
-            cur = cur.next
-        return map[head]
-```
-
-# 109
-
-[Leetcode](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/)
-
-### Convert Sorted List to Binary Search Tree
-
+### [Convert Sorted List to Binary Search Tree](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/)
 
 ```python
 class Solution(object):
@@ -1056,13 +843,10 @@ class Solution(object):
         return root      
 ```
 
-# 146
-[Leetcode](https://leetcode.com/problems/lru-cache/)
-### LRU Cache
+### [LRU Cache](https://leetcode.com/problems/lru-cache/)
 
 - 使用double linked list + hashmap
-> head 和 prev是没有值的
-
+- head 和 prev是没有值的
 
 ```python
 class Node(object):
@@ -1132,10 +916,7 @@ class LRUCache(object):
 # obj.put(key,value)
 ```
 
-# 23
-### Merge k Sorted Lists
-[Leetcode](https://leetcode.com/problems/merge-k-sorted-lists/)
-
+### [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
 
 ```python
 class Solution(object):
@@ -1162,10 +943,7 @@ class Solution(object):
         return dummy.next
 ```
 
-# 708
-### Insert into a Sorted Circular Linked List
-[Leetcode](https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/submissions/)
-
+### [Insert into a Sorted Circular Linked List](https://leetcode.com/problems/insert-into-a-sorted-circular-linked-list/submissions/)
 
 ```python
 class Solution(object):
@@ -1194,10 +972,8 @@ class Solution(object):
         return head
 ```
 
+### [Plus One Linked List](https://leetcode.com/problems/plus-one-linked-list/)
 
-# 369
-### Plus One Linked List
-[Leetcode](https://leetcode.com/problems/plus-one-linked-list/)
 ```python
 class Solution:
     def plusOne(self, head: ListNode) -> ListNode:
