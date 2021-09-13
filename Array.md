@@ -99,24 +99,6 @@
     - [Shortest Word Distance III](#245)
     - [Minimum Swap](#670)
     
-- #### Interval(greedy)
-    - 排序后让可能重叠的interval相邻
-    - [Merge Intervals](#56)
-    - [Insert Interval](#57)
-    - [Meeting Room](#252)
-    - [Meeting Room II](#253) 
-    - [Non-overlapping Intervals](#435)
-    - [Find Right Interval](#436)
-    - [Remove Interval](#1272)
-    - [Data Stream as Disjoint Intervals](#352)
-    - [Add Bold Tab in String](#616)
-    - [Exclusive Time of Functions](#636)
-    - [Falling Squares](#699)
-    - [Range Module](#715)
-    - [Employee Free Time](#759)
-    - [Interval List Intersections](#986)
-    - [Meeting Scheduler](#1229)
-    
 - #### 字符
     - [Group shifted Strings](#249)
 
@@ -137,17 +119,6 @@
     - [Partition Labels](#763)
     - [Longest Consecutive Sequence](#128)
     - [Group Anagram](#)
-
-- #### Monotomic Queue
-- [Sliding Window Maximum](#239)
-
-### Heap
-- [Top K frequent Word](#)
-- [Task Scheduler](#621)
-- [Reorganize String](#767)
-- [Minimum Cost to Connect Sticks](#1167)
-- [K Closest Points to Origin](#973)
-- [Find Median from Data Stream](#295)
 
 - #### Greedy
     - [Queue Reconstruction by Height](#406)
@@ -1633,53 +1604,6 @@ class Solution(object):
         return count
 ```
 
-# 992
-### Subarrays with K Different Integers
-[Leetcode](https://leetcode.com/problems/subarrays-with-k-different-integers/)
-
-1. exact k = (at most k) - (at most k-1)
-2. count += j - i，j的指针已经预先往后了一个
-
-
-
-
-```python
-
-# 0  1  2  3  4  5
-# i:0 j : 3
-# 0,1,2,3
-# 1,2,3
-# 2,3
-# 3
-
-```
-
-
-```python
-class Solution(object):
-    def subarraysWithKDistinct(self, A, K):
-        """
-        :type A: List[int]
-        :type K: int
-        :rtype: int
-        """
-        # return self.helper(A, K) - self.helper(A, K-1) 
-        return self.helper(A, K) - self.helper(A, K - 1)
-        
-    def helper(self, A, K):
-        count = 0
-        i = j = 0
-        d = {}
-        while j < len(A):
-            d[A[j]] = d.get(A[j], 0) + 1
-            j += 1
-            while i < j and len(d) > K:
-                d[A[i]] -= 1
-                if d[A[i]] == 0: del d[A[i]]
-                i += 1
-            count += j - i
-        return count
-```
 
 
 
@@ -2206,29 +2130,7 @@ class Solution(object):
 
 
 
-# 209
-### Minimum Size Subarray Sum
-[Leetcode](https://leetcode.com/problems/minimum-size-subarray-sum/)
 
-
-```python
-class Solution(object):
-    def minSubArrayLen(self, s, nums):
-        """
-        :type s: int
-        :type nums: List[int]
-        :rtype: int
-        """
-        i, res, total = 0, len(nums) + 1, 0
-        for j in xrange(len(nums)):
-            total += nums[j]
-            while total >= s:
-                res = min(res, j - i + 1)
-                total -= nums[i]
-                i += 1
-        return res % (len(nums) + 1)
-                
-```
 
 # 881
 ### Boats to Save People

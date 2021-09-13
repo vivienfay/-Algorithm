@@ -51,6 +51,17 @@
    - [Course Schedule](#630)
    
 
+### Heap
+- [Top K frequent Word](#)
+- [Task Scheduler](#621)
+- [Reorganize String](#767)
+- [Minimum Cost to Connect Sticks](#1167)
+- [K Closest Points to Origin](#973)
+- [Find Median from Data Stream](#295)
+
+- #### Monotomic Queue
+- [Sliding Window Maximum](#239)
+
 
 
 ### 易错点
