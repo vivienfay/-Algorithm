@@ -1,119 +1,123 @@
-### 总结
+# Binary Tree 总结
 
- Top Down
-- 以参数船体信息，用一个全局 变量来记录最终结果
-- 通常不需要返回值 
-- 思维上更straight forward
-- 对于输出完整path的题，top down更实用
-- 如果依赖subtree的结果，用bottom up
+## 总结
 
-Depth first(stack): pre-order / in-order / post-order
+- 如何选择Top Down还是Buttom Up
+Top Down以参数信息，用一个全局 变量来记录最终结果, 通常不需要返回值,思维上更straight forward, 对于输出完整path的题，top down更实用, 如果依赖subtree的结果，用bottom up
 
-breadth first(queue): level order
+- DFS/BFS 如何选择
+Depth first(stack): pre-order / in-order / post-order， breadth first(queue): level order
 
-- Level Order用queue
+- 考虑清楚什么时候要用helper function
 
-- 考虑清楚是否需要helper function
+## 题型分类
 
-### 题型分类
+### Binary Search Tree  
 
-- #### Binary Search Tree  
 要考虑和root比大小，根据大小选择缩小范围，例如左子树和右子树
-    - [Convert Sorted Array to Binary Search Tree](#108)
-    - [Lowest Common Ancestor of a Binary Search Tree](#235)
-    - [Range Sum of BST](#938)
-    - [Construct Binary Search Tree from Preorder Traversal](#1008)
-    
-    
-- #### DFS相关 / depth 相关
-    - 了解postorder, preorder, inorder的结构特点
-    - [Construct Binary Tree from Preorder and Inorder Traversal](#105)
-    - [Construct Binary Tree from Inorder and Postorder Traversal](#106)
-    - [Construct Binary Tree from Preorder and Postorder Traversal](#889)
-    - 考虑使用helper function
-    - [Symmetric Tree](#101)
-    - [Maximum Depth of Binary Tree](#104)
-    - [Maximum Difference Between Node and Ancestor](#1026)(需要有public的变量，同时记录重要变量)
-    - [Sum Root to Leaf Numbers](#129)(有public变量)
-    - [Longest Univalue Path](#687)(有public变量，而且同时需要记录母节点，决定往左计算还是往右计算)
-    - 不需要helper function，而且写法可以很优雅，比较典型的树的dfs写法,
-    - 主要思考current status和下个status之间的关系如何转化
-    - [Path Sum](#112)
-    - [Same Tree](#100)
-    - [Invert Binary Tree](#226)
-    - [Subtree of Another Tree](#572)
-    - [Balanced Binary Tree](#110)
-    - [Minimum Depth of Binary Tree](#111)
-    - [Binary Tree Paths](#257)
-    - [Sum of Left Leaves](#404)
-    - [Convert Sorted List to Binary Search Tree](#109)
-    - [Merge Two Binary Trees](#617)
-    - [Sum Root to Leaf Numbers](#559)
-    - [Flip Equivalent Binary Trees](#951)
-    - [Trim a Binary Search Tree](#669)
-    - [Lowest Common Ancestor of a Binary Tree](#236)
-    - [Balanced Binary Tree](#110)
-    - [Binary Tree Maximum Path Sum](#124)
-    - [Leaf-Similar Trees](#872)
-    - [Two Sum IV - Input is a BST](#653)
-    - [Deepthest Leaves Sum](#1302)
-    - [Univalued Binary Tree](#965)
-    - [Leaf-Similar Trees](#872)
-    - [Delete Leaves with a Given Value](#1325)
-    - [Distribute Coins in Binary Tree](#979)
-    - [Find a Corresponding Node of a Binary Tree in a Clone of That Tree](#1379)
-    - [path sum III](#437)
-    - [Closest Binary Search Tree Value](#270)
-    - [Clone Binary Tree With Random Pointer](#1485)
-    - [Smallest Subtree with all the Deepest Nodes](#865)
-    - [Maximum Binary Tree](#654)
-    - [Delete Node in a BST](#450)
-    - [Binary Tree Longest Consecutive Sequence](#298)
-    - [Find Leaves of Binary Tree](#366)
-    - [Boundary of Binary Tree](#545)
-    - [Maximum Product of Splitted Binary Tree](#1339)
-    
-- #### Backtracking
-    - [Path Sum II](#113)(设置res为全局变量)
-    - [Sum Root to Leaf Numbers](#129)
-    
-- #### 有转角
-    - [Diameter of Binary Tree](#543)
+- [Convert Sorted Array to Binary Search Tree](#convert-sorted-array-to-binary-search-tree)
+- [Lowest Common Ancestor of a Binary Search Tree](#lowest-common-ancestor-of-a-binary-search-tree)
+- [Range Sum of BST](#range-sum-of-bst)
+- [Construct Binary Search Tree from Preorder Traversal](#construct-binary-search-tree-from-preorder-traversal)
 
-- ### Complete Binary Tree
-    - [Count Complete Tree Nodes](#222) 
-    
-- #### BFS
-    - [N-ary Tree Level Order Traversal](#429)
-    - [Populating Next Right Pointers in Each Node](#116)
-    - [Binary Tree Level Order Traversal II](#107)
-    - [Binary Tree Right Side View](#199)
-    - [Cousins in Binary Tree](#993)
-    - [Binary Tree Vertical Order Traversal](#314)
-    - [Maximum Width of Binary Tree](#662)
-    - [Populating Next Right Pointers in Each Node](#116)
-    - [Minimum Depth of Binary Tree](#111)
-    - [Find Bottom Left Tree Value](#513)
-    - [Find Largest Value in Each Tree Row](#515)
-- #### hash
-    - [Two Sum IV - Input is a BST](#653)
-    
-- #### Iterative
-    - [Closest Binary Search Tree Value](#270)
-    - [Inorder Successor in BST](#285)
-    - [Lowest Common Ancestor of a Binary Tree III](#1650)
-    
-- #### dfs/bfs同时使用
-    - [All Nodes Distance K in Binary Tree](#863)
-    
-- #### greedy方法
-    - [Binary Tree Cameras](#968)
+### DFS相关 / depth 相关
+
+- 了解postorder, preorder, inorder的结构特点
+- [Construct Binary Tree from Preorder and Inorder Traversal](#construct-binary-search-tree-from-preorder-traversal)
+- [Construct Binary Tree from Inorder and Postorder Traversal](#construct-binary-tree-from-inorder-and-postorder-traversal)
+- [Construct Binary Tree from Preorder and Postorder Traversal](#construct-binary-tree-from-preorder-and-postorder-traversal)
+- 考虑使用helper function
+- [Symmetric Tree](#symmetric-tree)
+- [Maximum Depth of Binary Tree](#maximum-depth-of-a-tree)
+- [Maximum Difference Between Node and Ancestor](#maximum-difference-between-node-and-ancestor)(需要有public的变量，同时记录重要变量)
+- [Sum Root to Leaf Numbers](#sum-root-to-leaf-numbers)(有public变量)
+- [Longest Univalue Path](#longest-univalue-path)(有public变量，而且同时需要记录母节点，决定往左计算还是往右计算)
+- 不需要helper function，而且写法可以很优雅，比较典型的树的dfs写法,
+- 主要思考current status和下个status之间的关系如何转化
+- [Path Sum](#path-sum)
+- [Same Tree](#same-tree)
+- [Invert Binary Tree](#invert-binary-tree)
+- [Subtree of Another Tree](#subtree-of-another-tree)
+- [Balanced Binary Tree](#balanced-binary-tree)
+- [Minimum Depth of Binary Tree](#minimum-depth-of-binary-tree)
+- [Binary Tree Paths](#binary-tree-paths)
+- [Sum of Left Leaves](#sum-of-left-leaves)
+- [Convert Sorted List to Binary Search Tree](#convert-sorted-list-to-binary-search-tree)
+- [Merge Two Binary Trees](#merge-two-binary-trees)
+- [Sum Root to Leaf Numbers](#sum-root-to-leaf-numbers)
+- [Flip Equivalent Binary Trees](#flip-equivalent-binary-trees)
+- [Trim a Binary Search Tree](#trim-a-binary-search-tree)
+- [Lowest Common Ancestor of a Binary Tree](#lowest-common-ancestor-of-a-binary-tree)
+- [Binary Tree Maximum Path Sum](#binary-tree-maximum-path-sum)
+- [Leaf-Similar Trees](#leaf-similar-trees)
+- [Two Sum IV - Input is a BST](#two-sum-iv---input-is-a-bst)
+- [Deepthest Leaves Sum](#deepest-leaves-sum)
+- [Univalued Binary Tree](#univalued-binary-tree)
+- [Leaf-Similar Trees](#leaf-similar-trees)
+- [Delete Leaves with a Given Value](#delete-leaves-with-a-given-value)
+- [Distribute Coins in Binary Tree](#distribute-coins-in-binary-tree)
+- [Find a Corresponding Node of a Binary Tree in a Clone of That Tree](#find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree)
+- [path sum III](#path-sum-iii)
+- [Closest Binary Search Tree Value](#closest-binary-search-tree-value)
+- [Clone Binary Tree With Random Pointer](#clone-binary-tree-with-random-pointer)
+- [Smallest Subtree with all the Deepest Nodes](#smallest-subtree-with-all-the-deepest-nodes)
+- [Maximum Binary Tree]()
+- [Delete Node in a BST](#delete-node-in-a-bst)
+- [Binary Tree Longest Consecutive Sequence](#binary-tree-longest-consecutive-sequence)
+- [Find Leaves of Binary Tree](#find-leaves-of-binary-tree)
+- [Boundary of Binary Tree](#boundary-of-binary-tree)
+- [Maximum Product of Splitted Binary Tree]()
+
+### Backtracking
+
+- [Path Sum II](#path-sum-ii)
+- [Sum Root to Leaf Numbers](#sum-root-to-leaf-numbers)
+
+### 有转角
+
+- [Diameter of Binary Tree](#diameter-of-binary-tree)
+
+### Complete Binary Tree
+
+- [Count Complete Tree Nodes](#count-complete-tree-nodes) 
+
+### BFS
+
+- [N-ary Tree Level Order Traversal](#n-ary-tree-level-order-traversal)
+- [Populating Next Right Pointers in Each Node](#populating-next-right-pointers-in-each-node)
+- [Binary Tree Level Order Traversal II](#binary-tree-level-order-traversal-ii)
+- [Binary Tree Right Side View](#binary-tree-right-side-view)
+- [Cousins in Binary Tree](#cousins-in-binary-tree)
+- [Binary Tree Vertical Order Traversal](#binary-tree-vertical-order-traversal)
+- [Maximum Width of Binary Tree](#maximum-width-of-binary-tree)
+- [Populating Next Right Pointers in Each Node](#populating-next-right-pointers-in-each-node)
+- [Minimum Depth of Binary Tree](#minimum-depth-of-binary-tree)
+- [Find Bottom Left Tree Value](#find-bottom-left-tree-value)
+- [Find Largest Value in Each Tree Row](#find-largest-value-in-each-tree-row)
+
+### hash
+
+- [Two Sum IV - Input is a BST](#two-sum-iv---input-is-a-bst)
+
+### Iterative
+
+- [Closest Binary Search Tree Value](#closest-binary-search-tree-value)
+- [Inorder Successor in BST](#inorder-successor-in-bst)
+- [Lowest Common Ancestor of a Binary Tree III](#lowest-common-ancestor-of-a-binary-tree-iii)
+
+### dfs/bfs同时使用
+
+- [All Nodes Distance K in Binary Tree](#all-nodes-distance-k-in-binary-tree)
+
+### greedy方法
+
+- [Binary Tree Cameras](#binary-tree-cameras)
 
 ### 必备模版
 
 ### pre-order
-输出root - 输出left子结点 - 输出right子节点
 
+输出root - 输出left子结点 - 输出right子节点
 
 ```python
 def pre_order(root):
@@ -125,8 +129,8 @@ def pre_order(root):
 ```
 
 ### In-order
-探到left子节点-上一级root结点-right子节点
 
+探到left子节点-上一级root结点-right子节点
 
 ```python
 def pre_order(root):
@@ -138,8 +142,8 @@ def pre_order(root):
 ```
 
 ### post-order
-探到left子结点-上一级root结点的right子节点-root结点
 
+探到left子结点-上一级root结点的right子节点-root结点
 
 ```python
 def pre_order(root):
@@ -153,7 +157,6 @@ def pre_order(root):
 ### level-order
 
 O(n)
-
 
 ```python
 # queue top down
@@ -174,15 +177,10 @@ def level_order(root):
 
 -----
 
-# 104
-
-[Leetcode](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
-
-### Maximum Depth of a tree 
+### [Maximum Depth of a tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
 
 - reverse
 - 选择要传的参数
-
 
 ```python
 class Solution(object):
@@ -204,13 +202,7 @@ class Solution(object):
         return max(left,right) + 1
 ```
 
-# 257
-
-### Binary Tree Paths
-
-[Leetcode](https://leetcode.com/problems/binary-tree-paths/)
-
-
+### [Binary Tree Paths](https://leetcode.com/problems/binary-tree-paths/)
 
 ```python
 class Solution(object):
@@ -232,9 +224,6 @@ class Solution(object):
 ```
 
 ### Minimum subtree
-
-
-
 
 ```python
 # traverse and conquer
@@ -277,16 +266,11 @@ class solution(object):
 
 ```
 
-# 110
-
-[Leetcode](https://leetcode.com/problems/balanced-binary-tree/)
-
-### Balanced Binary Tree
+### [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)
 
 - recursive
 - dfs
 - 使用全局变量的时候可以用res = [] 引用list
-
 
 ```python
 class Solution(object):
@@ -310,7 +294,6 @@ class Solution(object):
 ```
 
 ### Subtree with Maximum Average
-
 
 ```python
 class solution(object):
@@ -346,12 +329,7 @@ class solution(object):
 
 ### Binary Tree Longest Consecutive Sequence
 
-# 112
-
-[Leetcode](https://leetcode.com/problems/path-sum/)
-
-### Path Sum
-
+### [Path Sum](https://leetcode.com/problems/path-sum/)
 
 ```python
 class Solution(object):
@@ -366,12 +344,7 @@ class Solution(object):
         return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val) 
 ```
 
-# 113
-
-[Leetcode](https://leetcode.com/problems/path-sum-ii/)
-
-### Path Sum II
-
+### [Path Sum II](https://leetcode.com/problems/path-sum-ii/)
 
 ```python
 class Solution(object):
@@ -394,14 +367,7 @@ class Solution(object):
         return res
 ```
 
-# 993
-
-[Leetcode](https://leetcode.com/problems/cousins-in-binary-tree/)
-
-### Cousins in Binary Tree
-
-
-
+### [Cousins in Binary Tree](https://leetcode.com/problems/cousins-in-binary-tree/)
 
 ```python
 class Solution(object):
@@ -428,10 +394,7 @@ class Solution(object):
         return False
 ```
 
-# 366
-### Find Leaves of Binary Tree
-[Leetcode](https://leetcode.com/problems/find-leaves-of-binary-tree/)
-
+### [Find Leaves of Binary Tree](https://leetcode.com/problems/find-leaves-of-binary-tree/)
 
 ```python
 class Solution(object):
@@ -454,14 +417,10 @@ class Solution(object):
         return res
 ```
 
-# 101
-[Leetcode](https://leetcode.com/problems/symmetric-tree/)
-
-### Symmetric Tree
+### [Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
 
 - recursive
 - 注意要多建一个helper
-
 
 ```python
 class Solution(object):
@@ -482,13 +441,10 @@ class Solution(object):
 
 ```
 
-# 100
-[Leetcode](https://leetcode.com/problems/same-tree/)
-### Same Tree
+### [Same Tree](https://leetcode.com/problems/same-tree/)
 
 - 熟练用到recursive方法
 - 优化写代码的方式
-
 
 ```python
 class Solution(object):
@@ -503,27 +459,7 @@ class Solution(object):
         return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 ```
 
----
-
-### Binary Search Tree 
-
-- in-order
-
-
-
-```python
-
-```
-
-### Minimum Diff in Binary Search Tree
-
-783
-https://leetcode.com/problems/minimum-distance-between-bst-nodes/
-
-
-
-in-order
-
+### [Minimum Diff in Binary Search Tree](https://leetcode.com/problems/minimum-distance-between-bst-nodes/)
 
 ```python
 class Solution(object):
@@ -539,7 +475,6 @@ class Solution(object):
             diff = min(diff, res[i+1]-res[i])
         return diff
     
-    
     def helper(self, root, res):
         if root is None:
             return
@@ -547,7 +482,6 @@ class Solution(object):
         res.append(root.val)
         self.helper(root.right,res)
 ```
-
 
 ```python
 class Solution(object):
@@ -571,12 +505,7 @@ class Solution(object):
         self.helper(root.right, prev, diff)
 ```
 
-# 543
-
-[Leetcode](https://leetcode.com/problems/diameter-of-binary-tree/)
-
-### Diameter of Binary Tree
-
+### [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
 
 ```python
 class Solution(object):
@@ -600,12 +529,7 @@ class Solution(object):
         return max(left, right) + 1
 ```
 
-# 114
-### Flatten Binary Tree to Linked List
-
-[Leetcode](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
-
-
+### [Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
 
 ```python
 class Solution:
@@ -628,14 +552,7 @@ class Solution:
         dfs(root, prev)
 ```
 
-# 107
-
-[Leetcode](#https://leetcode.com/problems/binary-tree-level-order-traversal-ii/)
-
-### Binary Tree Level Order Traversal II
-
-- 使用queue
-
+### [Binary Tree Level Order Traversal II](#https://leetcode.com/problems/binary-tree-level-order-traversal-ii/)
 
 ```python
 class Solution(object):
@@ -658,14 +575,10 @@ class Solution(object):
         return res
 ```
 
-# 108
+### [Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
 
-[Leetcode](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
-
-### Convert Sorted Array to Binary Search Tree
 - BST
 - Recursive, 想清楚要不要helper function
-
 
 ```python
 class Solution(object):
@@ -682,10 +595,7 @@ class Solution(object):
         return root       
 ```
 
-# 110
-[Leetcode](https://leetcode.com/problems/balanced-binary-tree/)
-### Balanced Binary Tree
-
+### [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)
 
 ```python
 class Solution(object):
@@ -706,11 +616,7 @@ class Solution(object):
         return flag[0]
 ```
 
-# 111
-
-[Leetcode](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
-
-### Minimum Depth of Binary Tree
+### [Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
 
 - recursive
 - root.left / root.right 注意特点
@@ -732,13 +638,7 @@ class Solution(object):
             return max(self.minDepth(root.left), self.minDepth(root.right)) + 1
 ```
 
-# 226
-
-[Leetcode](https://leetcode.com/problems/invert-binary-tree/)
-
-
-### Invert Binary Tree
-
+### [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)
 
 ```python
 class Solution(object):
@@ -754,15 +654,7 @@ class Solution(object):
         return root
 ```
 
-# 235
-
-
-[Leetcode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
-
-### Lowest Common Ancestor of a Binary Search Tree
-
-
-
+### [Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
 
 ```python
 class Solution(object):
@@ -783,10 +675,7 @@ class Solution(object):
             return self.lowestCommonAncestor(root.right, p, q)
 ```
 
-# 285
-### Inorder Successor in BST
-[Leetcode](https://leetcode.com/problems/inorder-successor-in-bst/)
-
+### [Inorder Successor in BST](https://leetcode.com/problems/inorder-successor-in-bst/)
 
 ```python
 class Solution(object):
@@ -806,12 +695,7 @@ class Solution(object):
         return res
 ```
 
-# 404
-
-[Leetcode](https://leetcode.com/problems/sum-of-left-leaves/)
-
-### Sum of Left Leaves
-
+### [Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/)
 
 ```python
 class Solution(object):
@@ -837,14 +721,7 @@ class Solution(object):
         
 ```
 
-# 199
-
-[Leetcode](https://leetcode.com/problems/binary-tree-right-side-view/)
-
-### Binary Tree Right Side View
-
-
-
+### [Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)
 
 ```python
 class Solution(object):
@@ -867,14 +744,9 @@ class Solution(object):
         return res
 ```
 
-# 938
-
-[Leetcode](https://leetcode.com/problems/range-sum-of-bst/)
-
-### Range Sum of BST
+### [Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/)
 
 - 注意利用bst的性质
-
 
 ```python
 class Solution(object):
@@ -897,15 +769,7 @@ class Solution(object):
         return sum
 ```
 
-# 109
-
-[Leetcode](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/)
-
-### Convert Sorted List to Binary Search Tree
-
-
-
-
+### [Convert Sorted List to Binary Search Tree](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/)
 
 ```python
 class Solution(object):
@@ -929,12 +793,7 @@ class Solution(object):
         return root
 ```
 
-# 429
-
-[Leetcode](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)
-
-### N-ary Tree Level Order Traversal
-
+### [N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)
 
 ```python
 class Solution(object):
@@ -957,13 +816,9 @@ class Solution(object):
         return res
 ```
 
-# 572
+### [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)
 
-[Leetcode](https://leetcode.com/problems/subtree-of-another-tree/)
-
-### Subtree of Another Tree
 - check is same tree让整个code写的更加整洁
-
 
 ```python
 class Solution(object):
@@ -984,12 +839,7 @@ class Solution(object):
         return self.isSame(s.left, t.left) and self.isSame(s.right, t.right)
 ```
 
-# 617
-
-[leetcode](https://leetcode.com/problems/merge-two-binary-trees/)
-
-### Merge Two Binary Trees
-
+### [Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/)
 
 ```python
 class Solution(object):
@@ -1008,15 +858,9 @@ class Solution(object):
         return t1
 ```
 
-# 559
-
-[Leetcode](https://leetcode.com/problems/maximum-depth-of-n-ary-tree/)
-
-### Maximum Depth of N-ary Tree
-
+### [Maximum Depth of N-ary Tree](https://leetcode.com/problems/maximum-depth-of-n-ary-tree/)
 
 ```python
-
 class Solution(object):
     def maxDepth(self, root):
         """
@@ -1031,12 +875,7 @@ class Solution(object):
         return max_depth + 1
 ```
 
-# 314
-
-[Leetcode](https://leetcode.com/problems/binary-tree-vertical-order-traversal/)
-
-### Binary Tree Vertical Order Traversal
-
+### [Binary Tree Vertical Order Traversal](https://leetcode.com/problems/binary-tree-vertical-order-traversal/)
 
 ```python
 class Solution(object):
@@ -1066,12 +905,9 @@ class Solution(object):
         return res
 ```
 
-# 987
-### Vertical Order Traversal of a Binary Tree
-[Leetcode](https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/)
+### [Vertical Order Traversal of a Binary Tree](https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/)
 
 - 考虑在最后输出的时候进行比大小
-
 
 ```python
 class Solution(object):
@@ -1102,13 +938,7 @@ class Solution(object):
         return res
 ```
 
-# 116
-# 117
-
-[Leetcode](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
-
-### Populating Next Right Pointers in Each Node
-
+### [Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
 
 ```python
 class Solution(object):
@@ -1132,12 +962,7 @@ class Solution(object):
         return root
 ```
 
-# 129
-
-[Leetcode](https://leetcode.com/problems/sum-root-to-leaf-numbers/)
-
-### Sum Root to Leaf Numbers
-
+### [Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/)
 
 ```python
 class Solution(object):
@@ -1161,12 +986,7 @@ class Solution(object):
         return sum(res)
 ```
 
-# 105
-
-[Leetcode](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
-
-### Construct Binary Tree from Preorder and Inorder Traversal
-
+### [Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 
 ```python
 class Solution(object):
@@ -1189,15 +1009,9 @@ class Solution(object):
         root.left = self.buildTree(left_pre, left_in)
         root.right = self.buildTree(right_pre, right_in)
         return root
-            
 ```
 
-# 106
-
-[Leetcode](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
-
-### Construct Binary Tree from Inorder and Postorder Traversal
-
+### [Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
 
 ```python
 class Solution(object):
@@ -1220,12 +1034,7 @@ class Solution(object):
         return root
 ```
 
-# 889
-
-[Leetcode](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)
-
-### Construct Binary Tree from Preorder and Postorder Traversal
-
+### [Construct Binary Tree from Preorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)
 
 ```python
 class Solution(object):
@@ -1249,14 +1058,7 @@ class Solution(object):
         return root
 ```
 
-# 687
-
-[leetcode](https://leetcode.com/problems/longest-univalue-path/)
-
-### Longest Univalue Path
-
-
-
+### [Longest Univalue Path](https://leetcode.com/problems/longest-univalue-path/)
 
 ```python
 class Solution(object):
@@ -1276,14 +1078,9 @@ class Solution(object):
         res = [0]
         dfs(root, TreeNode(None))
         return res[0]
-        
 ```
 
-# 653
-
-[Leetcode](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
-### Two Sum IV - Input is a BST
-
+### [Two Sum IV - Input is a BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
 
 ```python
 class Solution(object):
@@ -1304,12 +1101,7 @@ class Solution(object):
         return dfs(root, k)
 ```
 
-# 270
-
-[Leetcode](https://leetcode.com/problems/closest-binary-search-tree-value/)
-
-### Closest Binary Search Tree Value
-
+### [Closest Binary Search Tree Value](https://leetcode.com/problems/closest-binary-search-tree-value/)
 
 ```python
 class Solution(object):
@@ -1327,11 +1119,7 @@ class Solution(object):
         return r
 ```
 
-# 669
-
-[Leetcode](https://leetcode.com/problems/trim-a-binary-search-tree/)
-### Trim a Binary Search Tree
-
+### [Trim a Binary Search Tree](https://leetcode.com/problems/trim-a-binary-search-tree/)
 
 ```python
 class Solution(object):
@@ -1350,10 +1138,7 @@ class Solution(object):
         return root
 ```
 
-# 951
-### Flip Equivalent Binary Trees
-[Leetcode](https://leetcode.com/problems/flip-equivalent-binary-trees/)
-
+### [Flip Equivalent Binary Trees](https://leetcode.com/problems/flip-equivalent-binary-trees/)
 
 ```python
 class Solution(object):
@@ -1370,11 +1155,7 @@ class Solution(object):
         return root1.val == root2.val and res
 ```
 
-# 236
-
-[Leetcode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
-### Lowest Common Ancestor of a Binary Tree
-
+### [Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 
 ```python
 class Solution(object):
@@ -1397,12 +1178,7 @@ class Solution(object):
             return left
 ```
 
-# 98
-
-[Leetcode](https://leetcode.com/problems/validate-binary-search-tree/)
-
-### Validate Binary Search Tree
-
+### [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
 
 ```python
 class Solution(object):
@@ -1415,12 +1191,7 @@ class Solution(object):
                self.isValidBST(root.right, lessThan, max(root.val, largerThan))
 ```
 
-# 124
-
-[Leetcode](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
-
-### Binary Tree Maximum Path Sum
-
+### [Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
 
 ```python
 class Solution(object):
@@ -1442,10 +1213,7 @@ class Solution(object):
         return res[0]
 ```
 
-# 897
-### Increasing Order Search Tree
-[leetcode](https://leetcode.com/problems/increasing-order-search-tree/)
-
+### [Increasing Order Search Tree](https://leetcode.com/problems/increasing-order-search-tree/)
 
 ```python
 class Solution(object):
@@ -1459,13 +1227,9 @@ class Solution(object):
         root.left = None
         root.right = self.increasingBST(root.right, tail)
         return res
-            
 ```
 
-# 872
-### Leaf-Similar Trees 
-[Leetcode](https://leetcode.com/problems/leaf-similar-trees/)
-
+### [Leaf-Similar Trees](https://leetcode.com/problems/leaf-similar-trees/)
 
 ```python
 class Solution(object):
@@ -1488,10 +1252,7 @@ class Solution(object):
         return False
 ```
 
-# 1026
-### Maximum Difference Between Node and Ancestor
-[Leetcode](https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/)
-
+### [Maximum Difference Between Node and Ancestor](https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/)
 
 ```python
 class Solution(object):
@@ -1511,10 +1272,7 @@ class Solution(object):
         return res[0]
 ```
 
-# 662
-### Maximum Width of Binary Tree
-[Leetcode](https://leetcode.com/problems/maximum-width-of-binary-tree/)
-
+### [Maximum Width of Binary Tree](https://leetcode.com/problems/maximum-width-of-binary-tree/)
 
 ```python
 class Solution(object):
@@ -1536,10 +1294,7 @@ class Solution(object):
         return res
 ```
 
-# 222
-### Count Complete Tree Nodes
-[Leetcode](https://leetcode.com/problems/count-complete-tree-nodes/)
-
+### [Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/)
 
 ```python
 # Solution 1: Brute Force
@@ -1550,18 +1305,7 @@ class Solution(object):
         return 1 + self.countNodes(root.right) + self.countNodes(root.left) if root else 0
 ```
 
-
-```python
-# Solution 2: Binary Search
-# Time
-
-
-```
-
-# 129
-### Sum Root to Leaf Numbers
-[Leetcode](https://leetcode.com/problems/sum-root-to-leaf-numbers/)
-
+### [Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/)
 
 ```python
 class Solution(object):
@@ -1582,13 +1326,10 @@ class Solution(object):
         return res[0]
 ```
 
-# 116
-### Populating Next Right Pointers in Each Node
-[Leetcode](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
-> Time: O(n)
+### [Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
 
-> Space: O(n)
-
+Time: O(n)
+Space: O(n)
 
 ```python
 class Solution(object):
@@ -1611,11 +1352,9 @@ class Solution(object):
         return root
 ```
 
-# 863
-### All Nodes Distance K in Binary Tree
-[Leetcode](https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/)
-> dfs和bfs同时使用
+### [All Nodes Distance K in Binary Tree](https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/)
 
+dfs和bfs同时使用
 
 ```python
 # Definition for a binary tree node.
@@ -1664,9 +1403,7 @@ class Solution(object):
      
 ```
 
-Two Sum IV - Input is a BST
-
-
+[Two Sum IV - Input is a BST]
 
 ```python
 class Solution(object):
@@ -1685,10 +1422,7 @@ class Solution(object):
         return traverse(root)
 ```
 
-# 508
-### Most Frequent Subtree Sum
-[Leetcode](https://leetcode.com/problems/most-frequent-subtree-sum/)
-
+### [Most Frequent Subtree Sum](https://leetcode.com/problems/most-frequent-subtree-sum/)
 
 ```python
 class Solution(object):
@@ -1711,10 +1445,7 @@ class Solution(object):
         return [val for val, count in res.items() if count == max(res.values())]
 ```
 
-# 968
-### Binary Tree Cameras
-[Leetcode](https://leetcode.com/problems/binary-tree-cameras/)
-
+### [Binary Tree Cameras](https://leetcode.com/problems/binary-tree-cameras/)
 
 ```python
 class Solution(object):
@@ -1730,10 +1461,7 @@ class Solution(object):
         return (dfs(root) == 0) + self.res
 ```
 
-# 1302
-### Deepest Leaves Sum
-[leetcode](https://leetcode.com/problems/deepest-leaves-sum/)
-
+### [Deepest Leaves Sum](https://leetcode.com/problems/deepest-leaves-sum/)
 
 ```python
 class Solution(object):
@@ -1759,10 +1487,7 @@ class Solution(object):
         
 ```
 
-# 111
-### Minimum Depth of Binary Tree
-[Leetcode](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
-
+### [Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
 
 ```python
 # BFS
@@ -1788,7 +1513,6 @@ class Solution(object):
         return depth
 ```
 
-
 ```python
 # DFS
 class Solution:
@@ -1800,10 +1524,7 @@ class Solution:
         return 1+ min(self.minDepth(root.left), self.minDepth(root.right))
 ```
 
-# 965
-### Univalued Binary Tree
-[Leetcode](https://leetcode.com/problems/univalued-binary-tree/)
-
+### [Univalued Binary Tree](https://leetcode.com/problems/univalued-binary-tree/)
 
 ```python
 class Solution(object):
@@ -1819,9 +1540,7 @@ class Solution(object):
         return res
 ```
 
-# 872
-### Leaf-Similar Trees
-[Leetcode](https://leetcode.com/problems/leaf-similar-trees/)
+### [Leaf-Similar Trees](https://leetcode.com/problems/leaf-similar-trees/)
 
 
 ```python
@@ -1843,10 +1562,7 @@ class Solution(object):
         return dfs(root1) == dfs(root2)
 ```
 
-# 1325
-### Delete Leaves With a Given Value
-[Leetcode](https://leetcode.com/problems/delete-leaves-with-a-given-value/)
-
+### [Delete Leaves With a Given Value](https://leetcode.com/problems/delete-leaves-with-a-given-value/)
 
 ```python
 class Solution(object):
@@ -1864,10 +1580,7 @@ class Solution(object):
         return root
 ```
 
-# 979
-### Distribute Coins in Binary Tree
-[Leetcode](https://leetcode.com/problems/distribute-coins-in-binary-tree/)
-
+### [Distribute Coins in Binary Tree](https://leetcode.com/problems/distribute-coins-in-binary-tree/)
 
 ```python
 class Solution(object):
@@ -1887,10 +1600,7 @@ class Solution(object):
         return res[0]
 ```
 
-# 1261
-### Find Elements in a Contaminated Binary Tree
-[Leetcode](https://leetcode.com/problems/find-elements-in-a-contaminated-binary-tree/)
-
+### [Find Elements in a Contaminated Binary Tree](https://leetcode.com/problems/find-elements-in-a-contaminated-binary-tree/)
 
 ```python
 class FindElements(object):
@@ -1929,10 +1639,7 @@ class FindElements(object):
             i += 1
 ```
 
-# 1161
-### Maximum Level Sum of a Binary Tree
-[Leetcode](https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/)
-
+### [Maximum Level Sum of a Binary Tree](https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/)
 
 ```python
 class Solution(object):
@@ -1960,10 +1667,7 @@ class Solution(object):
         return levelres
 ```
 
-# 515
-### Find Largest Value in Each Tree Row
-[Leetcode](https://leetcode.com/problems/find-largest-value-in-each-tree-row/)
-
+### [Find Largest Value in Each Tree Row](https://leetcode.com/problems/find-largest-value-in-each-tree-row/)
 
 ```python
 class Solution(object):
@@ -1986,10 +1690,7 @@ class Solution(object):
         return res
 ```
 
-# 513
-### Find Bottom Left Tree Value
-[Leetcode](https://leetcode.com/problems/find-bottom-left-tree-value/)
-
+### [Find Bottom Left Tree Value](https://leetcode.com/problems/find-bottom-left-tree-value/)
 
 ```python
 class Solution(object):
@@ -2010,10 +1711,7 @@ class Solution(object):
         return level[0]
 ```
 
-# 1379
-### Find a Corresponding Node of a Binary Tree in a Clone of That Tree
-[Leetcode](https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/)
-
+### [Find a Corresponding Node of a Binary Tree in a Clone of That Tree](https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/)
 
 ```python
 class Solution(object):
@@ -2036,9 +1734,7 @@ class Solution(object):
 ```
 
 # 1490
-### Clone N-ary Tree
-[Leetcode](https://leetcode.com/problems/clone-n-ary-tree/)
-
+### [Clone N-ary Tree](https://leetcode.com/problems/clone-n-ary-tree/)
 
 ```python
 class Solution(object):
@@ -2055,9 +1751,7 @@ class Solution(object):
         return clonedroot
 ```
 
-# 230
-### Kth Smallest Element in a BST
-[Leetcode](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+### [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
 
 
 ```python
@@ -2080,12 +1774,9 @@ class Solution(object):
          
 ```
 
-# 437
-### Path Sum III
-[Leetcode](https://leetcode.com/problems/path-sum-iii/)
+### [Path Sum III](https://leetcode.com/problems/path-sum-iii/)
 
 presum + dfs
-
 
 ```python
 class Solution(object):
@@ -2109,8 +1800,7 @@ class Solution(object):
 ```
 
 # 1008
-### Construct Binary Search Tree from Preorder Traversal
-[Leetcode](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/)
+### [Construct Binary Search Tree from Preorder Traversal](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/)
 
 
 ```python
@@ -2131,10 +1821,7 @@ class Solution(object):
             
 ```
 
-# 270
-### Closest Binary Search Tree Value
-[Leetcode](https://leetcode.com/problems/closest-binary-search-tree-value/)
-
+### [Closest Binary Search Tree Value](https://leetcode.com/problems/closest-binary-search-tree-value/)
 
 ```python
 class Solution(object):
@@ -2157,10 +1844,7 @@ class Solution(object):
             
 ```
 
-# 1485
-### Clone Binary Tree With Random Pointer
-[Leetcodee](https://leetcode.com/problems/clone-binary-tree-with-random-pointer/)
-
+### [Clone Binary Tree With Random Pointer](https://leetcode.com/problems/clone-binary-tree-with-random-pointer/)
 
 ```python
 class Solution(object):
@@ -2186,10 +1870,7 @@ class Solution(object):
         return node
 ```
 
-# 865
-### Smallest Subtree with all the Deepest Nodes
-[Leetcode](https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/)
-
+### [Smallest Subtree with all the Deepest Nodes](https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/)
 
 ```python
 class Solution(object):
@@ -2208,9 +1889,7 @@ class Solution(object):
         return dfs(root)[1]
 ```
 
-# 1022
-### Sum of Root To Leaf Binary Numbers
-
+### [Sum of Root To Leaf Binary Numbers]
 
 ```python
 class Solution(object):
@@ -2225,7 +1904,6 @@ class Solution(object):
         return self.sumRootToLeaf(root.left, val) + self.sumRootToLeaf(root.right, val)
 ```
 
-
 ```python
 class Solution(object):
     def sumRootToLeaf(self, root, val = 0):
@@ -2239,10 +1917,7 @@ class Solution(object):
         return self.sumRootToLeaf(root.left, val) + self.sumRootToLeaf(root.right, val)
 ```
 
-# 958
-### Check Completeness of a Binary Tree
-[Leetcode](https://leetcode.com/problems/check-completeness-of-a-binary-tree/)
-
+### [Check Completeness of a Binary Tree](https://leetcode.com/problems/check-completeness-of-a-binary-tree/)
 
 ```python
 # bfs
@@ -2265,14 +1940,12 @@ class Solution(object):
         return True
 ```
 
-# 1367
-### Linked List in Binary Tree
-[Leetcode](https://leetcode.com/problems/linked-list-in-binary-tree/)
+### [Linked List in Binary Tree](https://leetcode.com/problems/linked-list-in-binary-tree/)
 
 有两种方法可以做
+
 - dfs：要记住整个是连续的不能断开，所以不能只用一个function就写完，需要考虑helper让他在开始的时候一起开始recursive
 - dp： KMP pattern search
-
 
 ```python
 class Solution(object):
@@ -2291,7 +1964,6 @@ class Solution(object):
         if not root: return False
         return dfs(head, root) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
 ```
-
 
 ```python
 class Solution(object):
@@ -2317,14 +1989,7 @@ class Solution(object):
         return dfs(root, 0)
 ```
 
-# 449
-### Serialize and Deserialize BST
-[Leetcode](https://leetcode.com/problems/serialize-and-deserialize-bst/)
-
-# 449
-### Serialize and Deserialize BST
-[Leetcode](https://leetcode.com/problems/serialize-and-deserialize-bst/)
-
+### [Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/)
 
 ```python
 class Codec:
@@ -2349,18 +2014,9 @@ class Codec:
         return root
 ```
 
-# 450
-### Delete Node in a BST
-[Leetcode](https://leetcode.com/problems/delete-node-in-a-bst/)
-
+### [Delete Node in a BST](https://leetcode.com/problems/delete-node-in-a-bst/)
 
 ```python
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution(object):    
     def deleteNode(self, root, key):
         if not root: return 
@@ -2380,10 +2036,7 @@ class Solution(object):
             return new_root        
 ```
 
-# 663
-### Equal Tree Partition
-[Leetcode](https://leetcode.com/problems/equal-tree-partition/)
-
+### [Equal Tree Partition](https://leetcode.com/problems/equal-tree-partition/)
 
 ```python
 class Solution(object):
@@ -2399,15 +2052,10 @@ class Solution(object):
                 cuts.add(s)
             return s
         cuts = set()
-        return nodesum(root) / 2 in cuts if nodesum(root) % 2 == 0 else False
-        
-        
+        return nodesum(root) / 2 in cuts if nodesum(root) % 2 == 0 else False 
 ```
 
-# 298
-### Binary Tree Longest Consecutive Sequence
-[Leetcode](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/)
-
+### [Binary Tree Longest Consecutive Sequence](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/)
 
 ```python
 class Solution(object):
@@ -2433,10 +2081,7 @@ class Solution(object):
         return res[0] + 1 if res[0] != -float('inf') else 1
 ```
 
-
-# 545
-### Boundary of Binary Tree
-[Leetcode](https://leetcode.com/problems/boundary-of-binary-tree/)
+### [Boundary of Binary Tree](https://leetcode.com/problems/boundary-of-binary-tree/)
 
 - 复杂的问题考虑拆分
   - 为什么不能放在同一个dfs中：因为node append进去的条件完全不一样有时候甚至相反
@@ -2474,16 +2119,13 @@ class Solution:
         return res
 ```
 
-
-
-# 1650
-### Lowest Common Ancestor of a Binary Tree III
-[Leetcode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/)
+### [Lowest Common Ancestor of a Binary Tree III](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/)
 
 - 因为有parent直接遍历不需要做recursion
+
 ```python
 class Solution:
-    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+    def lowestCommonAncestor(self, p, q):
         p_parent = [p]
         q_parent = [q]
         node = p
@@ -2510,11 +2152,8 @@ class Solution:
         return p1
 ```
 
-# 510
+### [Inorder Successor in BST II](https://leetcode.com/problems/inorder-successor-in-bst-ii/)
 
-### Inorder Successor in BST II
-
-[Leetcode](https://leetcode.com/problems/inorder-successor-in-bst-ii/)
 ![](img/510.png)
 - 考虑两种情况
   

@@ -19,7 +19,6 @@
     - [Longest Substring with At Most Two Distinct Characters](#longest-substring-with-at-most-two-distinct-characters)
     - [Replace the Substring for Balanced String](#replace-the-substring-for-balanced-string)
     - [Grumpy Bookstore Owner](#grumpy-bookstore-owner)
-- [1004](#1004)
     - [Max Consecutive Ones III](#max-consecutive-ones-iii)
     - [Maximum Points You Can Obtain from Cards](#maximum-points-you-can-obtain-from-cards)
     - [Subarrays with K Different Integers](#subarrays-with-k-different-integers)
@@ -166,7 +165,6 @@ class Solution(object):
 
 ### [Longest Substring with At Most K Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)
 
-
 ```python
 class Solution(object):
     def lengthOfLongestSubstringKDistinct(self, s, k):
@@ -266,9 +264,7 @@ class Solution(object):
 
 ```
 
-# 1004
-[Leetcode](https://leetcode.com/problems/max-consecutive-ones-iii/)
-### Max Consecutive Ones III
+### [Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/)
 
 ```python
 class Solution(object):

@@ -6,13 +6,12 @@
   - 二分法
   - store prefix information in hash table
   - sliding window
-
 - 寻找subsequence思路
 
 1. 使用多个指针
     - 指针方向相反
     - 指针方向相同
-    - 使用swap的方法：
+    - 使用swap的方法
 
 2. 转化成set
 
@@ -127,7 +126,6 @@
     - [The Skyline Problem](#the-skyline-problem)
 
 ### 解体思路总结
-
 
 ### 易错点
 
@@ -548,79 +546,9 @@ class Solution(object):
         return res
 ```
 
-# 57
-### insert interval
-[Leetcode](https://leetcode.com/problems/insert-interval/)
-
-- 两种做法
-1. 先把新的interval插入进去，再用和merge interval一样的算法 可以直接调用 O(n)/O(n) 
-2. 找index
 
 
-```python
-# solution 1
-class Solution(object):
-    def insert(self, intervals, newInterval):
-        """
-        :type intervals: List[List[int]]
-        :type newInterval: List[int]
-        :rtype: List[List[int]]
-        """
-        start, end = newInterval
-        ind = 0
-        while ind < len(intervals) and intervals[ind][0] < start:
-            ind += 1
-        intervals = intervals[:ind] + [newInterval] + intervals[ind:]
-        res = [intervals[0]]
-        for i, j in intervals[1:]:
-            start, end = res[-1]
-            if i <= end: res[-1][1] = max(j, end)
-            else: res.append([i, j])
-        return res
-         
-        
-        
-```
 
-
-```python
-# solution 2
-class Solution:
-    def insert(self, intervals, newInterval):
-        res, n = [], newInterval
-        for index, i in enumerate(intervals):
-            if i[1] < n[0]:
-                res.append(i)
-            elif n[1] < i[0]:
-                res.append(n)
-                return res + intervals[index:]
-            else:
-                n[0] = min(n[0],i[0])
-                n[1] = max(n[1], i[1])
-        res.append(n)
-        return res
-```
-
-# 435
-### Non-overlapping Intervals
-[Leetcode](https://leetcode.com/problems/non-overlapping-intervals/)
-
-
-```python
-class Solution(object):
-    def eraseOverlapIntervals(self, intervals):
-        """
-        :type intervals: List[List[int]]
-        :rtype: int
-        """
-        end, cnt = float('-inf'), 0
-        for s, e in sorted(intervals, key=lambda x: x[1]):
-            if s >= end: 
-                end = e
-            else: 
-                cnt += 1
-	return cnt
-```
 
 ### partition array
 
@@ -715,30 +643,7 @@ class Solution:
         return nums1
 ```
 
-# 252
 
-[Leetcode](https://leetcode.com/problems/meeting-rooms/)
-
-### Meeting Room
-
-- 还可以用扫描线算法，使用list作为端点容器然后排序
-
-
-
-```python
-# 排序，判断相邻interval是否有重叠
-# o(nlogn)/o(1)
-class Solution(object):
-    def canAttendMeetings(self, intervals):
-        """
-        :type intervals: List[List[int]]
-        :rtype: bool
-        """
-        ls = sorted(intervals, key = lambda x: x[0])
-        for i,j in zip(ls[:-1], ls[1:]):
-            if i[1] > j[0]: return False
-        return True
-```
 
 # 253
 
@@ -771,81 +676,9 @@ class Solution:
                 
 ```
 
-# 56
-
-[Leetcode](https://leetcode.com/problems/merge-intervals/)
-
-### Merge Intervals
 
 
-```python
-class Solution(object):
-    def merge(self, intervals):
-        """
-        :type intervals: List[List[int]]
-        :rtype: List[List[int]]
-        """
-        if not intervals: return []
-        intervals = sorted(intervals, key = lambda x: x[0])
-        res = [intervals[0]]
-        for i in intervals[1:]:
-            end = res[-1][1]
-            if i[0] <= end: res[-1][1] = max(i[1], end)
-            else: res.append(i)
-        return res
-```
 
-# 986
-
-### Interval List Intersections
-[Leetcode](https://leetcode.com/problems/interval-list-intersections/)
-
-
-```python
-class Solution:
-    def intervalIntersection(self, A, B):
-        res = []
-        i, j = 0, 0
-        while i < len(A) and j < len(B):
-            s1, e1, s2, e2 = A[i][0], A[i][1], B[j][0], B[j][1]
-            if e2 < s1: 
-                j += 1
-            elif e1 < s2: 
-                i += 1
-            else:
-                start = max(s1, s2)
-                end = min(e1,e2)
-                res.append([start, end])
-                if e1 > e2: 
-                    j += 1
-                else:
-                    i += 1
-        return res
-```
-
-# 1272
-### Remove Interval
-[Leetcode](https://leetcode.com/problems/remove-interval/)
-
-
-```python
-class Solution(object):
-    def removeInterval(self, intervals, toBeRemoved):
-        """
-        :type intervals: List[List[int]]
-        :type toBeRemoved: List[int]
-        :rtype: List[List[int]]
-        """
-        res = []
-        x, y = toBeRemoved
-        for i, j in intervals:
-            if j <= x or y <= i: res.append([i, j])
-            else:
-                if i < x: res.append([i, x])
-                if j > y: res.append([y, j])
-        return res
-            
-```
 
 ### Minimum Size Subarray Sum
 
@@ -2476,28 +2309,7 @@ class NumArray:
         return self.sum_num[right+1] - self.sum_num[left]
 ```
 
-# 1229
-[Leetcode](https://leetcode.com/problems/meeting-scheduler/)
-- merge interval类型的题，多加一个interval长度判断的条件
-- 注意指针如何移动
 
-```python
-class Solution:
-    def minAvailableDuration(self, slots1: List[List[int]], slots2: List[List[int]], duration: int) -> List[int]:
-        slots1 = sorted(slots1, key = lambda x: (x[0], x[1]))
-        slots2 = sorted(slots2, key = lambda x: (x[0], x[1]))
-        i, j = 0, 0
-        while i < len(slots1) and j < len(slots2):
-            a, b = slots1[i]
-            c, d = slots2[j]
-            interval = min(b, d) - max(a, c)
-            if interval >= duration: return [max(a, c), max(a, c)+duration]
-            else: 
-                if b < d: i += 1
-                else: j += 1
-            print(a,b,c,d,i,j)
-        return []
-```
 
 
 # 510
@@ -2543,4 +2355,3 @@ class Solution:
 ```
 
 ### [The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)
- 
