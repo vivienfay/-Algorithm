@@ -36,27 +36,37 @@
 
 ### 先排序再做指针循环
 
-    - [3Sum](#15)
-    - [3Sum Closest](#16)
-    - [4Sum](#18)
-    - [3Sum Smaller](#259)
-    - 
-- #### 单指针
-    - [Maximum Subarray](#53)
-    - [Monotonic Array](#896)
-    - [Increasing Triplet Subsequence](#334)
+- [3Sum](#15)
+- [3Sum Closest](#16)
+- [4Sum](#18)
+- [3Sum Smaller](#259)
 
-- #### 双指针
-    - #### 同向
-    - [Add Strings](#415)
-    - [Add Binary](#67)
-    - [Next Permutation](#34)
-    - [Best Time to Buy and Sell Stock II](#122)
-    - [Long Pressed Name](#925)
-    - [Intersection of Two array](#349)
-    - [Intersection of Three array]()
+### 单指针
 
-3. 快慢指针
+- [Maximum Subarray](#53)
+- [Monotonic Array](#896)
+- [Increasing Triplet Subsequence](#334)
+
+### 双指针
+
+- [Add Strings](#415)
+- [Add Binary](#67)
+- [Next Permutation](#34)
+- [Best Time to Buy and Sell Stock II](#122)
+- [Long Pressed Name](#925)
+- [Intersection of Two array](#349)
+- [Intersection of Three array]()
+
+### swap
+- [Rotate Image](#48)
+- [Remove Duplicates from Sorted Array](#26)
+- [Remove Duplicates from Sorted Array II](#80)
+- [Move Zeros](#283)
+- [Shortest Word Distance III](#245)
+- [Minimum Swap](#670)
+
+
+1. 快慢指针
 19， 141， 142， 234， 457， 287
 
 
@@ -90,13 +100,13 @@
     - [Product of Array Except Self](#238)
     - [Trapping Rain Water](#42)
     
-- #### swap
-    - [Rotate Image](#48)
-    - [Remove Duplicates from Sorted Array](#26)
-    - [Remove Duplicates from Sorted Array II](#80)
-    - [Move Zeros](#283)
-    - [Shortest Word Distance III](#245)
-    - [Minimum Swap](#670)
+### swap
+- [Rotate Image](#48)
+- [Remove Duplicates from Sorted Array](#26)
+- [Remove Duplicates from Sorted Array II](#80)
+- [Move Zeros](#283)
+- [Shortest Word Distance III](#245)
+- [Minimum Swap](#670)
     
 - #### 字符
     - [Group shifted Strings](#249)
@@ -131,11 +141,9 @@
 
 ### 必备模版技巧
 
+----
+### [Two Sum](https://leetcode.com/problems/two-sum/)
 
-# 1
-### Two Sum
-
-[Leetcode](https://leetcode.com/problems/two-sum/)
 - 由于需要输出index，使用hash dict记住index
 - O（n）
 
@@ -154,13 +162,10 @@ class Solution(object):
         return -1
 ```
 
-# 1099
-### Two Sum Less Than K
-[Leetcode](https://leetcode.com/problems/two-sum-less-than-k/)
+### [Two Sum Less Than K](https://leetcode.com/problems/two-sum-less-than-k/)
+
 - 使用两个指针 反向缩小区间
 - O(nlogn)
-
-
 
 ```python
 class Solution(object):
@@ -183,10 +188,10 @@ class Solution(object):
         return max_sum
 ```
 
-# 334
-### Increasing Triplet Subsequence
-[Leetcode](https://leetcode.com/problems/increasing-triplet-subsequence/)
+### [Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/)
 
+- O(n)
+- 使用 <= 是因为要和 > 做比较
 
 ```python
 class Solution(object):
@@ -195,6 +200,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
+        # first represents the smallest value, second: the second smallest value
         first = second = float('inf')
         for i in nums:
             if i <= first:
@@ -205,12 +211,11 @@ class Solution(object):
         return False
 ```
 
-# 15
-### Three Sum
-[Leetcode](https://leetcode.com/problems/3sum/)
-三个指针轮番走
-注意unique，可以while循环remove 重复值
+### [Three Sum](https://leetcode.com/problems/3sum/)
 
+- O(n**2)
+- 三个指针轮番走
+- 注意unique，可以while循环remove 重复值
 
 ```python
 class Solution(object):
@@ -248,10 +253,7 @@ class Solution(object):
         return result
 ```
 
-# 16
-### 3Sum Closest
-[Leetcode](https://leetcode.com/problems/3sum-closest/m)
-
+### [3Sum Closest](https://leetcode.com/problems/3sum-closest/)
 
 ```python
 class Solution(object):
@@ -278,15 +280,9 @@ class Solution(object):
         return closest   
 ```
 
-# 18
-### 4 Sum
+### [4 Sum](https://leetcode.com/problems/4sum/submissions/)
 
 - 注意duplicate的时候 用while移动指针
-
-
-18.
-https://leetcode.com/problems/4sum/submissions/
-
 
 ```python
 class Solution(object):
@@ -314,18 +310,12 @@ class Solution(object):
                     elif new_sum > target: r -= 1
                     elif new_sum < target: l += 1
         return res
-                        
-                
-                
-        
 ```
 
-# 283
-### Move Zeros
-[Leetcode](https://leetcode.com/problems/move-zeroes/)
+### [Move Zeros](https://leetcode.com/problems/move-zeroes/)
+
 - swap的方法，把不要的东西挪到后面去
 - 两个指针，一个用来标记在它前面都要的东西，一个用来标记需要比较的对象。需要的对象收到第一指针里面去。
-
 
 ```python
 class Solution(object):
@@ -341,10 +331,7 @@ class Solution(object):
                 zero += 1
 ```
 
-# 259
-[Leetcode](https://leetcode.com/problems/3sum-smaller/)
-### 3Sum Smaller
-
+### [3Sum Smaller](https://leetcode.com/problems/3sum-smaller/)
 
 ```python
 class Solution(object):
@@ -368,9 +355,8 @@ class Solution(object):
         
 ```
 
-# 26
-### Remove Duplicates from Sorted Array
-[Leetcode](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+### [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+
 - 两个指针，不断swap
 
 
@@ -399,15 +385,9 @@ class Solution(object):
                 
                 
         return i + 1
-        
-        
 ```
 
-# 80
-### Remove Duplicates from Sorted Array II
-[Leetcode](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
-
-
+### [Remove Duplicates from Sorted Array II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
 
 ```python
 class Solution(object):
