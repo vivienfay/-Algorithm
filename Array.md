@@ -4,10 +4,11 @@
 
 - 寻找连续的subarray的思路
   - 二分法
-  - store prefix information in hash table
+  - store prefix information in hash table, 例如prefix的index
   - sliding window
 - 寻找subsequence思路
 - Palindrome 相关题目思路
+- substring 相关思路
 
 
 1. 使用多个指针
@@ -88,19 +89,19 @@
 5. 应用于有序数列
 977, 360, 532, 881, 167, 15, 16, 259, 923, 18
 
-- #### Presum/Prefix Product
+### Presum/Prefix Product
 
-    - [Maximum Subarray](#53)
-    - [Subarray Sum Equals K](#560)
-    - [Subarray Sums Divisible by K](#974)
-    - [Product of the Last K Numbers](#1352)
-    - [Range Sum Query - Immutable](#303)
-    - [Maximum Size Subarray Sum Equals k](#325)
+- [Maximum Subarray](#53)
+- [Subarray Sum Equals K](#560)
+- [Subarray Sums Divisible by K](#974)
+- [Product of the Last K Numbers](#1352)
+- [Range Sum Query - Immutable](#303)
+- [Maximum Size Subarray Sum Equals k](#maximum-size-subarray-sum-equals-k)
     
-- #### two direction
+### two direction
 
-    - [Product of Array Except Self](#238)
-    - [Trapping Rain Water](#42)
+- [Product of Array Except Self](#238)
+- [Trapping Rain Water](#42)
     
 ### swap
 - [Rotate Image](#48)
@@ -110,32 +111,36 @@
 - [Shortest Word Distance III](#245)
 - [Minimum Swap](#670)
     
-- #### 字符
-    - [Group shifted Strings](#249)
+### 字符
+- [Group shifted Strings](#249)
 
-- #### 记录特别的变量
-    - [Best Time to Buy and Sell Stock](#121)
-    - [Shortest Unsorted Continuous Subarray](#581)
+### 记录特别的变量
+
+- [Best Time to Buy and Sell Stock](#121)
+- [Shortest Unsorted Continuous Subarray](#581)
     
-- #### 三指针
+### 三指针
     - [Intersection of Three Sorted Arrays](#1214)
     
-- #### 用-1做标记
+### 用-1做标记
     - [Find All Duplicates in an Array](#442)
     - [Find All Numbers Disappeared in an Array](#448)
     
-- #### hashmap
-    - [Two Sum]()
-    - [Number of Good Pairs](#1512)
-    - [Partition Labels](#763)
-    - [Longest Consecutive Sequence](#128)
-    - [Group Anagram](#)
+### hashmap
 
-- #### Greedy
-    - [Queue Reconstruction by Height](#406)
+- [Two Sum]()
+- [Number of Good Pairs](#1512)
+- [Partition Labels](#763)
+- [Longest Consecutive Sequence](#128)
+- [Group Anagram](#)
 
-- #### Sweep Line
-    - [The Skyline Problem](#the-skyline-problem)
+### Greedy
+
+- [Queue Reconstruction by Height](#406)
+
+### Sweep Line
+
+- [The Skyline Problem](#the-skyline-problem)
 
 ### 解体思路总结
 
@@ -1078,7 +1083,7 @@ class Solution(object):
         return res
 ```
 
-###[Permutation in String](https://leetcode.com/problems/permutation-in-string/)
+### [Permutation in String](https://leetcode.com/problems/permutation-in-string/)
 
 ```python
 class Solution(object):
@@ -2006,7 +2011,7 @@ class Solution:
         return None
 ```
 
-### Maximum Size Subarray Sum Equals k(https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/)
+### [Maximum Size Subarray Sum Equals k](https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/)
 
 - prefix Sum 的index和 sum存在字典里
 - 遍历字典，并根据对应差找到对应字典中可能的index，寻找最大值
