@@ -7,6 +7,8 @@
   - store prefix information in hash table
   - sliding window
 - 寻找subsequence思路
+- Palindrome 相关题目思路
+
 
 1. 使用多个指针
     - 指针方向相反
@@ -404,24 +406,13 @@ class Solution(object):
         return tail
 ```
 
-# 268
-
-### Missing Number
-[Leetcode](https://leetcode.com/problems/missing-number/)
+### [Missing Number](https://leetcode.com/problems/missing-number/)
 
 
 ```python
 class Solution(object):
     def missingNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        n = len(nums)
-        new_set = set(nums)
-        for i in range(n+1):
-            if i not in new_set:
-                return i
+        return len(nums) * (len(nums) + 1) / 2 - sum(nums)
 ```
 
 ### Maximum Subarray
@@ -429,8 +420,6 @@ class Solution(object):
 ### Subarray Sum
 
 ### merge two sorted array
-
-
 
 ```python
 class Solution(object):
@@ -456,10 +445,7 @@ class Solution(object):
         return dummy.next
 ```
 
-# 349
-### intersection of two arrays
-[Leetcode](https://leetcode.com/problems/intersection-of-two-arrays/)
-
+### [intersection of two arrays](https://leetcode.com/problems/intersection-of-two-arrays/)
 
 ```python
 class Solution(object):
@@ -484,9 +470,7 @@ class Solution(object):
             else:
                 j += 1
         return res
-        
 ```
-
 
 ```python
 class Solution:
@@ -504,11 +488,9 @@ class Solution:
 
 ### sort list
 
-### K-diff Pairs in an Array
+### [K-diff Pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/)
 
-532
-https://leetcode.com/problems/k-diff-pairs-in-an-array/
-
+- 考虑edge case, 如果k=0要如何处理
 
 ```python
 class Solution(object):
@@ -526,20 +508,13 @@ class Solution(object):
         return res
 ```
 
-
-
-
-
 ### partition array
 
 ### Sort letters by oven and even
 
 ### Sort letters by case
 
-# 75
-### Sort Colors
-[Leetcode](https://leetcode.com/problems/sort-colors/)
-
+### [Sort Colors](https://leetcode.com/problems/sort-colors/)
 
 ```python
 class Solution:
@@ -567,9 +542,7 @@ class Solution:
 
 ### pancake sort
 
-# 11
-### Container with most Water
-[Leetcode](https://leetcode.com/problems/container-with-most-water/)
+### [Container with most Water](https://leetcode.com/problems/container-with-most-water/)
 
 
 ```python
@@ -586,15 +559,10 @@ class Solution:
         return max_area
 ```
 
-### Merge Sorted Array
+### [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
 
 - 两个指针是从后面开始遍历的
 - 考虑如果一个走完了，另一个怎么办
-
-
-88
-https://leetcode.com/problems/merge-sorted-array/
-
 
 ```python
 class Solution:
@@ -623,17 +591,10 @@ class Solution:
         return nums1
 ```
 
-
-
-# 253
-
-[Leetcode](https://leetcode.com/problems/meeting-rooms-ii/)
-
-### Meeting Room II
+### [Meeting Room II](https://leetcode.com/problems/meeting-rooms-ii/)
 
 - 贪心算法
 - 也可用扫描线
-
 
 ```python
 class Solution:
@@ -656,40 +617,9 @@ class Solution:
                 
 ```
 
-
-
-
-
-### Minimum Size Subarray Sum
-
-- sliding window
-
-209
-https://leetcode.com/problems/minimum-size-subarray-sum/
-
-
-```python
-class Solution:
-    def minSubArrayLen(self, s, nums):
-        left = total = 0
-        min_res = float('inf')
-        for right, value in enumerate(nums):
-            total += value
-            while total >= s and left <= right:
-                min_res = min(min_res, right - left + 1)
-                total -= nums[left]
-                left += 1
-        return min_res if min_res <= len(nums) else 0
-```
-
-# 647
-### Palindromic Substrings  
+### [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)
 
 - 以index为中心往左右散开test是不是palindromic
-
-[Leetcode](https://leetcode.com/problems/palindromic-substrings/)
-
-
 
 ```python
 class Solution(object):
@@ -713,16 +643,10 @@ class Solution(object):
                 start -= 1
                 end += 1
             else: break
-        return count
-
-        
+        return count     
 ```
 
-### Longest Palindromic Substring
-
-5.
-https://leetcode.com/problems/longest-palindromic-substring/
-
+### [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)
 
 ```python
 class Solution(object):
@@ -737,9 +661,6 @@ class Solution(object):
             res = self.helper(s, res, i, i + 1)
         return res
     
-    
-    
-    
     def helper(self, s, res, start, end):
         while 0 <= start and end < len(s):
             if s[start] == s[end]:
@@ -749,16 +670,11 @@ class Solution(object):
                 end += 1
             else: break
         return res
-        
 ```
 
-# 53
+### [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
 
-[leetcode](https://leetcode.com/problems/maximum-subarray/)
-
-### Maximum Subarray
 - presum
-
 
 ```python
 class Solution(object):
@@ -774,13 +690,9 @@ class Solution(object):
         return maxSum
 ```
 
-# 560
+### [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)
 
-[Leetcode](https://leetcode.com/problems/subarray-sum-equals-k/)
-
-### Subarray Sum Equals K
 - presum = hashmap
-
 
 ```python
 class Solution(object):
@@ -803,14 +715,9 @@ class Solution(object):
         return(count)
 ```
 
-# 974
-
-[Leetcode](https://leetcode.com/problems/subarray-sums-divisible-by-k/)
-
-### Subarray Sums Divisible by K
+### [Subarray Sums Divisible by K](https://leetcode.com/problems/subarray-sums-divisible-by-k/)
 
 - presum + hashmap
-
 
 ```python
 class Solution(object):
@@ -829,13 +736,7 @@ class Solution(object):
         return count
 ```
 
-# 238
-
-[Leetcode](https://leetcode.com/problems/product-of-array-except-self/)
-
-### Product of Array Except Self
-
-
+### [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
 
 ```python
 class Solution(object):
@@ -856,14 +757,9 @@ class Solution(object):
         return res
 ```
 
-# 42
-
-[Leetcode](https://leetcode.com/problems/trapping-rain-water/)
-
-### Trapping Rain Water
+### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
 
 以最高点为中点，两个方向向中间移动
-
 
 ```python
 # O(n)
@@ -889,7 +785,6 @@ class Solution(object):
         return res   
 ```
 
-
 ```python
 # O(1)
 class Solution(object):
@@ -913,14 +808,7 @@ class Solution(object):
         return res   
 ```
 
-# 48
-
-[Leetcode](https://leetcode.com/problems/rotate-image/)
-
-### Rotate Image
-
-
-
+### [Rotate Image](https://leetcode.com/problems/rotate-image/)
 
 ```python
 class Solution(object):
@@ -939,12 +827,7 @@ class Solution(object):
         return matrix
 ```
 
-# 415
-
-[Leetcode](https://leetcode.com/problems/add-strings/)
-
-### Add Strings
-
+### [Add Strings](https://leetcode.com/problems/add-strings/)
 
 ```python
 class Solution(object):
@@ -969,11 +852,7 @@ class Solution(object):
         return res
 ```
 
-# 67
-
-[Leetcode](https://leetcode.com/problems/add-binary/)
-
-### Add Binary
+### [Add Binary](https://leetcode.com/problems/add-binary/)
 
 
 ```python
@@ -1008,12 +887,7 @@ class Solution(object):
         return res
 ```
 
-# 953
-
-[Leetcode](https://leetcode.com/problems/verifying-an-alien-dictionary/)
-
-### Verifying an Alien Dictionary
-
+### [Verifying an Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/)
 
 ```python
 class Solution(object):
@@ -1035,11 +909,7 @@ class Solution(object):
                 
 ```
 
-# 31
-[Leetcode](https://leetcode.com/problems/next-permutation/)
-
-### Next Permutation
-
+### [Next Permutation](https://leetcode.com/problems/next-permutation/)
 
 ```python
 class Solution(object):
@@ -1061,11 +931,7 @@ class Solution(object):
         return nums
 ```
 
-# 54
-[Leetcode](https://leetcode.com/problems/spiral-matrix/)
-
-### Spiral Matrix
-
+### [Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)
 
 ```python
 class Solution(object):
@@ -1091,7 +957,6 @@ class Solution(object):
                         
         return res
 ```
-
 
 ```python
 # two pointer
@@ -1121,17 +986,9 @@ class Solution(object):
             
 ```
 
-# 121
-
-[Leetcode](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
-
-
-### Best Time to Buy and Sell Stock
-
-
+### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
 - 记录要存储的变量， 能够使得他成为o（N）解法
-
 
 ```python
 class Solution(object):
@@ -1148,10 +1005,7 @@ class Solution(object):
         return res
 ```
 
-# 443
-### String Compression
-[Leetcode](https://leetcode.com/problems/string-compression/)
-
+### [String Compression](https://leetcode.com/problems/string-compression/)
 
 ```python
 class Solution(object):
@@ -1174,10 +1028,7 @@ class Solution(object):
                 i = st
 ```
 
-# 122
-[Leetcode](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
-
-### Best Time to Buy and Sell Stock II
+### [Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
 -双指针
 
 
@@ -1201,10 +1052,7 @@ class Solution(object):
         return res
 ```
 
-# 350
-
-[Leetcode](https://leetcode.com/problems/intersection-of-two-arrays-ii/)
-### Intersection of Two Arrays II
+### [Intersection of Two Arrays II](https://leetcode.com/problems/intersection-of-two-arrays-ii/)
 
 
 ```python
@@ -1230,9 +1078,7 @@ class Solution(object):
         return res
 ```
 
-# 567
-
-
+###[Permutation in String](https://leetcode.com/problems/permutation-in-string/)
 
 ```python
 class Solution(object):
@@ -1258,10 +1104,7 @@ class Solution(object):
         return False
 ```
 
-
-# 1151
-### Minimum Swaps to Group All 1's Together
-[Leetcode](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/)
+### [Minimum Swaps to Group All 1's Together](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/)
 
 
 ```python
@@ -1286,18 +1129,10 @@ class Solution(object):
                     cnt1 += 1
                 i += 1
             if j - i - total1 == cnt1: res = min(res, j - i - total1)
-        return res
-            
-        
+        return res     
 ```
 
-
-
-# 904
-
-[Leetcode](https://leetcode.com/problems/fruit-into-baskets/)
-### Fruit Into Baskets
-
+### [Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
 
 ```python
 class Solution(object):
@@ -1323,16 +1158,11 @@ class Solution(object):
         return res
 ```
 
-
-
-# 1156
-### Swap For Longest Repeated Character Substring
-[Leetcode](https://leetcode.com/problems/swap-for-longest-repeated-character-substring/)
+### [Swap For Longest Repeated Character Substring](https://leetcode.com/problems/swap-for-longest-repeated-character-substring/)
 
 - 用一个inner outer分别记录区间内和区间外的的情况
 - max——ch记录众数的情况
 - 要考虑两种情况：需要替换或者不需要替换
-
 
 ```python
 class Solution(object):
@@ -1359,10 +1189,7 @@ class Solution(object):
         return res
 ```
 
-# 424
-### Longest Repeating Character Replacement
-[Leetcode](https://leetcode.com/problems/longest-repeating-character-replacement/)
-
+### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
 
 ```python
 class Solution(object):
@@ -1388,10 +1215,7 @@ class Solution(object):
         return res
 ```
 
-# 1100
-### Find K-Length Substrings With No Repeated Characters
-[Leetcode](https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/)
-
+### [Find K-Length Substrings With No Repeated Characters](https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/)
 
 ```python
 class Solution(object):
@@ -1417,16 +1241,7 @@ class Solution(object):
         return count
 ```
 
-
-
-
-
-
-# 925
-[Leetcode](https://leetcode.com/problems/long-pressed-name/)
-
-### Long Pressed Name
-
+### [Long Pressed Name](https://leetcode.com/problems/long-pressed-name/)
 
 ```python
 class Solution(object):
@@ -1445,10 +1260,7 @@ class Solution(object):
         return i == len(name)
 ```
 
-# 1213
-[Leetcode](https://leetcode.com/problems/intersection-of-three-sorted-arrays/)
-### Intersection of Three Sorted Arrays
-
+### [Intersection of Three Sorted Arrays](https://leetcode.com/problems/intersection-of-three-sorted-arrays/)
 
 ```python
 class Solution(object):
@@ -1492,12 +1304,9 @@ class Solution(object):
         
 ```
 
-# 442
-[Leetcode](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
-### Find All Duplicates in an Array
+### [Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/)
 
 用-1给index做标记
-
 
 ```python
 class Solution(object):
@@ -1515,10 +1324,7 @@ class Solution(object):
         return res
 ```
 
-# 448
-### Find All Numbers Disappeared in an Array
-[Leetcode](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
-
+### [Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
 
 ```python
 class Solution(object):
@@ -1534,10 +1340,7 @@ class Solution(object):
        
 ```
 
-# 55
-[Leetcode](https://leetcode.com/problems/jump-game/)
-### Jump Game
-
+### [Jump Game](https://leetcode.com/problems/jump-game/)
 
 ```python
 class Solution(object):
@@ -1554,10 +1357,7 @@ class Solution(object):
         return True        
 ```
 
-# 125
-[Leetcode](https://leetcode.com/problems/valid-palindrome/)
-# Valid Palindrome
-
+### [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
 
 ```python
 class Solution(object):
@@ -1579,10 +1379,7 @@ class Solution(object):
         return True
 ```
 
-# 896
-### Monotonic Array
-[Leetcode](https://leetcode.com/problems/monotonic-array/)
-
+### [Monotonic Array](https://leetcode.com/problems/monotonic-array/)
 
 ```python
 class Solution(object):
@@ -1602,10 +1399,7 @@ class Solution(object):
         
 ```
 
-# 1512
-### Number of Good Pairs
-[Leetcode](https://leetcode.com/problems/number-of-good-pairs/)
-
+### [Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/)
 
 ```python
 class Solution(object):
@@ -1623,10 +1417,7 @@ class Solution(object):
         return res
 ```
 
-# 763
-### Partition Labels
-[Leetcode](https://leetcode.com/problems/partition-labels/)
-
+### [Partition Labels](https://leetcode.com/problems/partition-labels/)
 
 ```python
 class Solution(object):
@@ -1655,10 +1446,7 @@ class Solution(object):
             
 ```
 
-# 1041
-### Robot Bounded In Circle
-[Leetcode](https://leetcode.com/problems/robot-bounded-in-circle/)
-
+### [Robot Bounded In Circle](https://leetcode.com/problems/robot-bounded-in-circle/)
 
 ```python
 class Solution(object):
@@ -1676,10 +1464,7 @@ class Solution(object):
         return (x==0 and y==0) or (dx, dy) != (0,1)
 ```
 
-# 1658
-### Minimum Operations to Reduce X to Zero
-[Leetcode](https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/)
-
+### [Minimum Operations to Reduce X to Zero](https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/)
 
 ```python
 class Solution(object):
@@ -1706,10 +1491,7 @@ class Solution(object):
             
 ```
 
-# 128
-### Longest Consecutive Sequence
-[Leetcode](https://leetcode.com/problems/longest-consecutive-sequence/)
-
+### [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
 
 ```python
 class Solution(object):
@@ -1730,10 +1512,7 @@ class Solution(object):
         return max(d.values()) if d else 0
 ```
 
-# 977
-### Squares of a Sorted Array
-[Leetcode](https://leetcode.com/problems/squares-of-a-sorted-array/)
-
+### [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)
 
 ```python
 class Solution(object):
@@ -1765,10 +1544,7 @@ class Solution(object):
                 
 ```
 
-# 680
-### Valid Palindrome II 
-[Leetcode](https://leetcode.com/problems/valid-palindrome-ii/)
-
+### [Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)
 
 ```python
 class Solution(object):
@@ -1779,10 +1555,7 @@ class Solution(object):
         return s[1:] == s[1:][::-1] or s[:-1] == s[:-1][::-1]
 ```
 
-# 347
-### Top K Frequent Elements
-[Leetcode](https://leetcode.com/problems/top-k-frequent-elements/)
-
+### [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
 
 ```python
 class Solution(object):
@@ -1804,10 +1577,7 @@ class Solution(object):
         return res
 ```
 
-# 49
-### Group Anagrams
-[Leetcode](https://leetcode.com/problems/group-anagrams/)
-
+### [Group Anagrams](https://leetcode.com/problems/group-anagrams/)
 
 ```python
 class Solution(object):
@@ -1825,10 +1595,7 @@ class Solution(object):
             
 ```
 
-# 249
-### Group Shifted mStrings
-[Leetcode](https://leetcode.com/problems/group-shifted-strings/)
-
+### [Group Shifted mStrings](https://leetcode.com/problems/group-shifted-strings/)
 
 ```python
 class Solution(object):
@@ -1849,17 +1616,10 @@ class Solution(object):
         for s in strings:
             shifted = shift(s)
             d[shifted].append(s)
-        return [v for k, v in d.items()]
-        
-        
-        
-        
+        return [v for k, v in d.items()]  
 ```
 
-# 406
-### Queue Reconstruction by Height
-[Leetcode](https://leetcode.com/problems/queue-reconstruction-by-height/)
-
+### [Queue Reconstruction by Height](https://leetcode.com/problems/queue-reconstruction-by-height/)
 
 ```python
 class Solution(object):
@@ -1875,10 +1635,7 @@ class Solution(object):
         return res
 ```
 
-# 215
-### Kth Largest Element in an Array
-[Leetcode](https://leetcode.com/problems/kth-largest-element-in-an-array/)
-
+### [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 
 ```python
 class Solution(object):
@@ -1914,11 +1671,7 @@ class Solution(object):
         return findk(nums, 0, len(nums)-1, len(nums)-k)
 ```
 
-# 581
-### Shortest Unsorted Continuous Subarray
-[Leetcode](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/)
-
-
+### [Shortest Unsorted Continuous Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/)
 
 ```python
 class Solution(object):
@@ -1941,14 +1694,7 @@ class Solution(object):
         return end - start + 1 if start != float('inf') else 0
 ```
 
-
-
-
-
-# 881
-### Boats to Save People
-[Leetcode](https://leetcode.com/problems/boats-to-save-people/)
-
+### [Boats to Save People](https://leetcode.com/problems/boats-to-save-people/)
 
 ```python
 class Solution(object):
@@ -1966,10 +1712,7 @@ class Solution(object):
         return i
 ```
 
-# 36
-### Valid Sudoku
-[Leetcode](https://leetcode.com/problems/valid-sudoku/)
-
+### [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)
 
 ```python
 class Solution(object):
@@ -1993,10 +1736,7 @@ class Solution(object):
         return True
 ```
 
-# 239
-### Sliding Window Maximum
-[Leecode](https://leetcode.com/problems/sliding-window-maximum/)
-
+### [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
 
 ```python
 class Solution(object):
@@ -2023,12 +1763,9 @@ class Solution(object):
         return res
 ```
 
-# 767
-### Reorganize String
-[Leetcode](https://leetcode.com/problems/reorganize-string/)
+### [Reorganize String](https://leetcode.com/problems/reorganize-string/)
 
 - 使用heapq能够帮助形成greedy的机制
-
 
 ```python
 class Solution(object):
@@ -2056,10 +1793,7 @@ class Solution(object):
             else: return ''
 ```
 
-# 621
-### Task Scheduler
-[Leetcode](https://leetcode.com/problems/task-scheduler/)
-
+### [Task Scheduler](https://leetcode.com/problems/task-scheduler/)
 
 ```python
 class Solution(object):
@@ -2092,10 +1826,7 @@ class Solution(object):
 
 ```
 
-# 670
-### Maximum Swap
-[Leetcode](https://leetcode.com/problems/maximum-swap/)
-
+### [Maximum Swap](https://leetcode.com/problems/maximum-swap/)
 
 ```python
 A = map(int, str(num))
@@ -2108,26 +1839,7 @@ for i, x in enumerate(A):
 return num
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-31-a5b5fae0872a> in <module>
-    ----> 1 A = map(int, str(num))
-          2 last = {x: i for i, x in enumerate(A)}
-          3 for i, x in enumerate(A):
-          4     for d in xrange(9, x, -1):
-          5         if last.get(d, None) > i:
-
-
-    NameError: name 'num' is not defined
-
-
-# 1167
-### Minimum Cost to Connect Sticks
-[Leetcode](https://leetcode.com/problems/minimum-cost-to-connect-sticks/)
-
+### [Minimum Cost to Connect Sticks](https://leetcode.com/problems/minimum-cost-to-connect-sticks/)
 
 ```python
 class Solution(object):
@@ -2148,10 +1860,7 @@ class Solution(object):
         
 ```
 
-# 973
-### K Closest Points to Origin
-[Leetcode](https://leetcode.com/problems/k-closest-points-to-origin/)
-
+### [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)
 
 ```python
 class Solution(object):
@@ -2169,10 +1878,7 @@ class Solution(object):
             
 ```
 
-# 289
-### Game of Life 
-[Leetcode](https://leetcode.com/problems/game-of-life/)
-
+### [Game of Life](https://leetcode.com/problems/game-of-life/)
 
 ```python
 class Solution(object):
@@ -2200,10 +1906,7 @@ class Solution(object):
         return board
 ```
 
-# 259
-### Find Median from Data Stream
-[Leetcode](https://leetcode.com/problems/find-median-from-data-stream/)
-
+### [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)
 
 ```python
 from heapq import *
@@ -2240,9 +1943,7 @@ class MedianFinder(object):
 # param_2 = obj.findMedian()
 ```
 
-# 1352
-### Product of the Last K Numbers
-[Leetcode](https://leetcode.com/problems/product-of-the-last-k-numbers/)
+### [Product of the Last K Numbers](https://leetcode.com/problems/product-of-the-last-k-numbers/)
 
 重点： 对于0的情况应该重新清理
 
@@ -2270,9 +1971,8 @@ class ProductOfNumbers(object):
         return self.q[-1] / self.q[-k-1]
 ```
 
-# 303
-### Range Sum Query - Immutable
-[Leetcode]()
+### [Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/)
+
 ```python
 class NumArray:
 
@@ -2289,12 +1989,8 @@ class NumArray:
         return self.sum_num[right+1] - self.sum_num[left]
 ```
 
+### [Inorder Successor in BST II](https://leetcode.com/problems/inorder-successor-in-bst-ii/)
 
-
-
-# 510
-### Inorder Successor in BST II
-[Leetcode](https://leetcode.com/problems/inorder-successor-in-bst-ii/)
 ```python
 class Solution:
     def inorderSuccessor(self, node: 'Node') -> 'Node':
@@ -2310,12 +2006,11 @@ class Solution:
         return None
 ```
 
+### Maximum Size Subarray Sum Equals k(https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/)
 
-# 325
-### Maximum Size Subarray Sum Equals k
-[Leetcode](https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/)
 - prefix Sum 的index和 sum存在字典里
 - 遍历字典，并根据对应差找到对应字典中可能的index，寻找最大值
+
 ```python
 class Solution:
     def maxSubArrayLen(self, nums: List[int], k: int) -> int:
