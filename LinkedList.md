@@ -993,3 +993,11 @@ class Solution:
         new_head.next = head
         return new_head
 ```
+
+### [Linked List Random Node](https://leetcode.com/problems/linked-list-random-node/)
+
+- 水库抽样
+
+```python
+
+```

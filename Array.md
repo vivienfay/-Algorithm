@@ -7,6 +7,7 @@
   - store prefix information in hash table, 例如prefix的index
   - sliding window
 - 寻找subsequence思路
+  - DP,生成两维数组
 - Palindrome 相关题目思路
 - substring 相关思路
 
@@ -97,6 +98,7 @@
 - [Product of the Last K Numbers](#1352)
 - [Range Sum Query - Immutable](#303)
 - [Maximum Size Subarray Sum Equals k](#maximum-size-subarray-sum-equals-k)
+- [Range Addition](#range-addition)
     
 ### two direction
 
@@ -2035,3 +2037,26 @@ class Solution:
 ```
 
 ### [The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/)
+
+### [Range Addition](https://leetcode.com/problems/range-addition/)
+
+```python
+class Solution(object):
+    def getModifiedArray(self, length, updates):
+        """
+        :type length: int
+        :type updates: List[List[int]]
+        :rtype: List[int]
+        """
+        res = [0] * length
+        for s, e, diff in updates:
+            res[s] += diff
+            
+            if e + 1 <= length - 1:
+                res[e+1] -= diff
+        sum = 0
+        for i in range(length):
+            sum += res[i]
+            res[i] = sum
+        return res
+```

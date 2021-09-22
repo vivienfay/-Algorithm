@@ -3,16 +3,24 @@
 ## 总结
 
 - 什么时候会用到sliding window
+  - 求 longest subarray
+  - 求 shortest subarray
+  - 如果有pattern permutation(其实实质上就是subarray)，可以考虑把pettern化作hashmap 找对应是的cnt map是否在string中存在
+  - 如果是要求连续，很有可能
+- 时间复杂度通常是o（n）， 空间复杂度中，如果有使用hashmap存储 应该是o（k）
 - 解题注意点
+  - 沟通的时候可以说，每次iterate一个letter，然后遇到什么情况下才需要shrink window
 - 解题习惯与技巧
+  - 可以使用for j in range() 然后再嵌套while 比较不容易出错
+
 
 ## 题型分类
 
 - [Sliding Window 总结](#sliding-window-总结)
   - [总结](#总结)
   - [题型分类](#题型分类)
-    - [Minimum Window Substring](#minimum-window-substring)
-    - [Permutation in String](#permutation-in-string)
+    - [Hard: Minimum Window Substring](#hard-minimum-window-substring)
+    - [Hard: Permutation in String](#hard-permutation-in-string)
     - [Find All Anagrams in a String](#find-all-anagrams-in-a-string)
     - [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
     - [Longest Substring with At Most K Distinct Characters](#longest-substring-with-at-most-k-distinct-characters)
@@ -23,10 +31,14 @@
     - [Maximum Points You Can Obtain from Cards](#maximum-points-you-can-obtain-from-cards)
     - [Subarrays with K Different Integers](#subarrays-with-k-different-integers)
     - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
+    - [Fruit Into Baskets](#fruit-into-baskets)
+    - [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
+    - [Max Consecutive Ones III](#max-consecutive-ones-iii-1)
+    - [Substring with Concatenation of All Words](#substring-with-concatenation-of-all-words)
 
 ------
 
-### [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
+### [Hard: Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
 
 维护一个dictionary，key为字母，value为字母的count。初始化时是t字符串的字母个数，随着指针移动，字典中的count代表了区间范围内还剩多少个字母需要包含才能符合条件。同时cnt表示还剩下多少个数字，当达到零，说明区间内已经达到要求，可以进行清算，去更新min_range。
 
@@ -53,7 +65,7 @@ class Solution:
         return ans
 ```
 
-### [Permutation in String](https://leetcode.com/problems/permutation-in-string/)
+### [Hard: Permutation in String](https://leetcode.com/problems/permutation-in-string/)
 
 ```python
 class Solution(object):
@@ -371,4 +383,106 @@ class Solution(object):
                 total -= nums[i]
                 i += 1
         return res % (len(nums) + 1)
+```
+
+### [Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
+
+```python
+class Solution(object):
+    def totalFruit(self, fruits):
+        """
+        :type fruits: List[int]
+        :rtype: int
+        """
+        d = {}
+        i = 0
+        res = 0
+        for j in range(len(fruits)):
+            d[fruits[j]] = d.get(fruits[j], 0) + 1
+            while len(d) > 2:
+                d[fruits[i]] -= 1
+                if d[fruits[i]] == 0: del d[fruits[i]]
+                i += 1
+            res = max(res, j - i + 1)  
+        return res
+```
+
+### [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
+
+- We will iterate through the string to add one letter at a time in the window.
+- We will also keep track of the count of the maximum repeating letter in any window.
+- Why don't we update the maxcurCnt? since we have to replace all the remaining letters to get the longeest substring having the same letter in any window,
+
+```python
+class Solution(object):
+    def characterReplacement(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        i = 0
+        res = 0
+        d = {}
+        curCnt = 0
+        for j in range(len(s)):
+            d[s[j]] = d.get(s[j], 0) + 1
+            curCnt = max(d[s[j]], curCnt)
+            if j - i + 1 - curCnt > k:
+                d[s[i]] -= 1
+                i += 1
+            res = max(res, j - i + 1)
+        return res
+
+```
+
+### [Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/)
+
+```python
+def length_of_longest_substring(arr, k):
+  # TODO: Write your code here
+  i = 0
+  res = 0
+  cnt0 = 0
+  for j in range(len(arr)):
+    if arr[j] == 0: cnt0 += 1
+    while cnt0 > k:
+      if arr[i] == 0: cnt0 -= 1
+      i += 1
+    res = max(res, j - i + 1)
+
+  return res
+```
+
+
+### [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)
+
+- Keep the frequency of every word in a HashMap.
+- Starting from every index in the string, try to match all the words.
+- In each iteration, keep track of all the words that we have already seen in another HashMap.
+- If a word is not found or has a higher frequency than required, we can move on to the next character in the string.
+- Store the index if we have found all the words.
+
+```python
+def find_word_concatenation(str, words):
+  from collections import Counter
+  if len(words) == 0 or len(words[0]) == 0:
+    return []
+  d = {}
+  word_d = Counter(words)
+  res = []
+  cnt = len(words)
+  length = len(words[0])
+  for i in range((len(str) - cnt * length)+1):
+    seen = {}
+    for j in range(0, cnt):
+      next_word = i + j * length
+      word = str[next_word: next_word + length]
+      if word not in word_d:
+        break
+      seen[word] = seen.get(word, 0) + 1
+      if seen[word] > word_d.get(word, 0): break
+      if j + 1 == cnt:  # Store index if we have found all the words
+        res.append(i)
+  return res
 ```

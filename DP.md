@@ -113,10 +113,11 @@
 
 
 
-- #### 最长序列
+- #### 序列
     - [Longest Increasing Subsequence](#300)
     - [Maximum Length of Pair Chain](#646)
     - [Russian Doll Envelops](#354)
+    - [Distinct Subsequences](#distinct-subsequences)
     
     
 - #### 博弈型
@@ -1068,3 +1069,32 @@ class Solution:
 
 
 ### [Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
+
+
+### [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/)
+
+- 开dp数组的时候多开一行一列 能够涵盖没有相等的情况
+- 转移方程需要注意，dp[i][j] 是s[:i]和t子序列的可能性，dp[i][j-1]是以本次可能性的情况
+
+```python
+class Solution(object):
+    def numDistinct(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: int
+        """
+        # create dp list
+        m, n = len(t), len(s)
+        dp = [[0] * (n+1) for _ in range(m+1)]
+        # filling the first row
+        for i in range(n+1):
+            dp[0][i] = 1
+        # the first column is 0 by default in every other rows but the first, which we need.
+        for i in range(m):
+            for j in range(n):
+                if t[i] == s[j]: dp[i+1][j+1] = dp[i][j] + dp[i+1][j]
+                else: dp[i+1][j+1] = dp[i+1][j]
+        return dp[-1][-1]
+        
+```
