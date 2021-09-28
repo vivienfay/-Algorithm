@@ -40,10 +40,10 @@
 
 ### 先排序再做指针循环
 
-- [3Sum](#15)
-- [3Sum Closest](#16)
-- [4Sum](#18)
-- [3Sum Smaller](#259)
+- [3Sum](#three-sum)
+- [3Sum Closest](#3sum-closest)
+- [4Sum](#4-sum)
+- [3Sum Smaller](#3sum-smaller)
 
 ### 单指针
 
@@ -61,7 +61,7 @@
 - [Intersection of Two array](#349)
 - [Intersection of Three array]()
 
-### swap
+### Swap
 - [Rotate Image](#48)
 - [Remove Duplicates from Sorted Array](#26)
 - [Remove Duplicates from Sorted Array II](#80)
@@ -69,6 +69,7 @@
 - [Shortest Word Distance III](#245)
 - [Minimum Swap](#670)
 
+### Cycl
 
 1. 快慢指针
 19， 141， 142， 234， 457， 287
@@ -79,10 +80,10 @@
     - [Two Sum Less Than K](#1099)
     - [Valid Palindrom](#125)
     - [Valid palindrome II](#680)
-    - [Squares of a Sorted Array](#977)
+    - [Squares of a Sorted Array](#squares-of-a-sorted-array)
     - [Reverse String](#344)
     - [Reverse Vowels of a String](#345)
-    - [Sort Colors](#75)
+    - [Sort Colors](#sort-colors)
     - [Statistics from a large Sample](#1093)
     - [Boats to Save People](#881)
 
@@ -368,31 +369,20 @@ class Solution(object):
 
 - 两个指针，不断swap
 
-
 ```python
 class Solution(object):
-    def swap(self, nums, i, j):
-        temp = nums[i]
-        nums[i] = nums[j]
-        nums[j] = temp
-        
-    def removeDuplicates(self, nums):
+    def removeDuplicates(self, arr):
         """
         :type nums: List[int]
         :rtype: int
         """
-        
-        i, j = 0, 0
-        
-        while j < len(nums):
-            if nums[j] > nums[i]:
-                self.swap(nums,i+1,j)
-                i += 1
-                j += 1
-            else:
-                j += 1
-                
-                
+        if len(arr) <= 1: return len(arr)
+        i, j = 0, 1
+        while j < len(arr):
+            if arr[i] == arr[j]: j += 1
+            else: 
+                arr[i+1], arr[j] = arr[j], arr[i+1]
+                i += 1; j += 1
         return i + 1
 ```
 
@@ -1523,32 +1513,22 @@ class Solution(object):
 
 ```python
 class Solution(object):
-    def sortedSquares(self, nums):
+    def sortedSquares(self, arr):
         """
         :type nums: List[int]
         :rtype: List[int]
         """
-        res = []
-        n = len(nums)
-        j = 0
-        while j < n and nums[j] < 0:
-            j += 1
-        i = j - 1
-        while 0 <= i and j < n:
-            if nums[i] ** 2 < nums[j] ** 2:
-                res.append(nums[i] ** 2)
-                i -= 1
-            else:
-                res.append(nums[j] ** 2)
-                j += 1
-        while i >= 0:
-            res.append(nums[i] ** 2)
-            i -= 1
-        while j < n:
-            res.append(nums[j] ** 2)
-            j += 1
-        return res
-                
+        squares = []
+        # TODO: Write your code here
+        i, j = 0, len(arr) - 1
+        while i < j:
+            if arr[i] ** 2 < arr[j] ** 2:
+                squares = [arr[j] ** 2] + squares
+                j -= 1
+            else: 
+                squares = [arr[i] ** 2] + squares
+                i += 1
+        return [arr[i] ** 2] + squares
 ```
 
 ### [Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)

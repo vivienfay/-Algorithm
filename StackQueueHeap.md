@@ -58,6 +58,8 @@
 - [Minimum Cost to Connect Sticks](#1167)
 - [K Closest Points to Origin](#973)
 - [Find Median from Data Stream](#295)
+- [Sort Characters By Frequency](#sort-characters-by-frequency)
+
 
 - #### Monotomic Queue
 - [Sliding Window Maximum](#239)
@@ -870,4 +872,31 @@ class Solution(object):
                 cur += heapq.heappop(pq)            
         return len(pq)
         
+```
+
+### [Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
+
+- max Heap 的运用
+
+
+```python
+from collections import Counter
+from heapq import *
+
+
+class Solution(object):
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        res = ''
+        d = Counter(s)
+        ls = [(-freq, ch) for ch, freq in d.items()]
+        heapify(ls)
+        while ls:
+            freq, ch = heappop(ls)
+            res += ch * (-freq)
+        return res
+            
 ```

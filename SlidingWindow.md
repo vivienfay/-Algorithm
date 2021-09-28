@@ -35,6 +35,7 @@
     - [Longest Repeating Character Replacement](#longest-repeating-character-replacement)
     - [Max Consecutive Ones III](#max-consecutive-ones-iii-1)
     - [Substring with Concatenation of All Words](#substring-with-concatenation-of-all-words)
+    - [Subarray Product Less Than K](#subarray-product-less-than-k)
 
 ------
 
@@ -454,7 +455,6 @@ def length_of_longest_substring(arr, k):
   return res
 ```
 
-
 ### [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)
 
 - Keep the frequency of every word in a HashMap.
@@ -485,4 +485,24 @@ def find_word_concatenation(str, words):
       if j + 1 == cnt:  # Store index if we have found all the words
         res.append(i)
   return res
+```
+
+### [Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/)
+
+```python
+class Solution(object):
+    def numSubarrayProductLessThanK(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        left, prod, count = 0, 1, 0
+        for right in range(len(nums)):
+            prod *= nums[right]
+            while prod >= k and left <= right:
+                prod /= nums[left]
+                left += 1
+            count += right - left + 1
+        return count 
 ```
