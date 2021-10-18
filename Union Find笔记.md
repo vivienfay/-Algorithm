@@ -19,7 +19,6 @@
     - [Satisfiability of Equality Equations](#satisfiability-of-equality-equations)
 - [1061](#1061)
     - [Lexicographically Smallest Equivalent String](#lexicographically-smallest-equivalent-string)
-- [1101](#1101)
     - [The Earliest Moment When Everyone Become Friends](#the-earliest-moment-when-everyone-become-friends)
 - [737](#737)
     - [Sentence Similarity II](#sentence-similarity-ii)
@@ -333,11 +332,7 @@ class Solution(object):
         return ''.join([find(i) for i in S])
 ```
 
-# 1101
-
-[Leetcode](https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/)
-### The Earliest Moment When Everyone Become Friends
-
+### [The Earliest Moment When Everyone Become Friends](https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/)
 
 ```python
 class Solution(object):

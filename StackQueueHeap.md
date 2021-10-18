@@ -44,7 +44,6 @@
 
 
 #### 3. Piority Queue
-   - [Top K frequent Word](#692)
    - [Furthest Building You Can Reach](#1642)
    - [Least Number of Unique Integers after K Removals](#1481)
    - [Design A Leaderboard](#1244)
@@ -52,14 +51,23 @@
    
 
 ### Heap
-- [Top K frequent Word](#)
+
+### 1. Top k 类型
+
+- [Top K frequent Word](#top-k-frequent-words)
+- [Sort Characters By Frequency](#sort-characters-by-frequency)
+- [Car Pooling](#car-pooling)
+- [Reduce Array Size to The Half](#reduce-array-size-to-the-half)
 - [Task Scheduler](#621)
 - [Reorganize String](#767)
 - [Minimum Cost to Connect Sticks](#1167)
-- [K Closest Points to Origin](#973)
-- [Find Median from Data Stream](#295)
-- [Sort Characters By Frequency](#sort-characters-by-frequency)
 
+### 2. Two Heap类型
+
+多数用来找median
+
+- [Find Median from Data Stream](#find-median-from-data-stream)
+- [K Closest Points to Origin](#973)
 
 - #### Monotomic Queue
 - [Sliding Window Maximum](#239)
@@ -898,5 +906,93 @@ class Solution(object):
             freq, ch = heappop(ls)
             res += ch * (-freq)
         return res
-            
+```
+
+### [Car Pooling](https://leetcode.com/problems/car-pooling/)
+
+```python
+
+from heapq import *
+class Solution(object):
+    def carPooling(self, trips, capacity):
+        """
+        :type trips: List[List[int]]
+        :type capacity: int
+        :rtype: bool
+        """
+        h = []
+        for num, start, end in trips:
+            heappush(h, (start, num))
+            heappush(h, (end, -num))
+        cur = 0
+        while h:
+            station, ppl = heappop(h)
+            cur += ppl
+            if cur > capacity: return False
+        return True
+        
+```
+
+### [Reduce Array Size to The Half](https://leetcode.com/problems/reduce-array-size-to-the-half/)
+
+```python
+from collections import Counter
+from heapq import *
+class Solution(object):
+    def minSetSize(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        d = Counter(arr)
+        ls = [(-freq, i) for i, freq in d.items()]
+        heapify(ls)
+        size = 0
+        cnt = 0
+        while size < len(arr) // 2:
+            freq, i = heappop(ls)
+            size += -freq
+            cnt += 1
+        return cnt
+```
+
+### [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/submissions/)
+
+```python
+from heapq import *
+
+class MedianFinder(object):
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        # put bigger number to minH
+        self.minH = []
+        # put smaller number to maxH
+        self.maxH = []
+
+    def addNum(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        if not self.minH or num > self.minH[0]:
+            heappush(self.minH, num)
+        else: heappush(self.maxH, -num)
+        
+        if len(self.minH) + 1 < len(self.maxH):
+            heappush(self.minH, -heappop(self.maxH))
+        elif len(self.maxH) + 1 < len(self.minH):
+            heappush(self.maxH, -heappop(self.minH))
+
+    def findMedian(self):
+        """
+        :rtype: float
+        """
+        if len(self.minH) == len(self.maxH):
+            return (self.minH[0] - self.maxH[0]) * 1.0 / 2
+        elif len(self.minH) > len(self.maxH):
+            return self.minH[0]
+        else: return -self.maxH[0]
 ```

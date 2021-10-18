@@ -18,7 +18,7 @@
   - 输入数据是一个集合而不是序列
   - 暴力算法的复杂度是多项式级别
 
-## 动态规划组成部分：
+## 动态规划组成部分
 
 1. 确定状态
     - 最后一步
@@ -30,107 +30,110 @@
 4. 计算顺序
     - f（0），f（1）
 
-
 - 坐标型: 初始条件i[0]就是指以a0为结尾的子序列的性质
 - 序列型：f[i]表示前i个元素，并随时记录状态
 - 划分型：加上段数信息，记录j段性质
 - 博弈：从第一步开始思考
-        
 
-#### 残酷算法
+## 残酷算法
+
 1. 时间序列型： 给出一个序列，其中每个元素可以认为一天，并且今天的状态只取决于昨天的状态。
-    套路：
-        - 定义dp[i][j]: 表示第i-th轮的第j种状态
-        - 千方百计将dp[i][j]与前一轮的状态产生关系
-        - 最终的结果是dp[last][j]中的某种aggregation
-        
-        
-2. 时间序列加强版：给出一个序列，其中每个元素可以认为一天，并且今天的状态与之前的某一天有关。
-    套路：
-        - 定义dp[i] 状态和元素i直接有关
-        - 千方百计将dp[i][j]与前一轮的状态产生关系
-        - 最终的结果是dp[i]中的某一个
-    一般两层循环
-    
-    
+     - 定义dp[i][j]: 表示第i-th轮的第j种状态
+     - 千方百计将dp[i][j]与前一轮的状态产生关系
+     - 最终的结果是dp[last][j]中的某种aggregation
+2. 时间序列加强版：给出一个序列，其中每个元素可以认为一天，并且今天的状态与之前的某一天有关。一般两层循环
+     - 定义dp[i] 状态和元素i直接有关
+     - 千方百计将dp[i][j]与前一轮的状态产生关系
+     - 最终的结果是dp[i]中的某一个
 3. 双序列型： 给两个序列s和t
-    套路：
-        - 定义dp[i][j]:表示针对s[0:i] 和t[1:j]的子问题的求解
-        - 千方百计把dp[i][j]往之前的状态去转移
-        - 最终结果是dp[m][n]
-        
+     - 定义dp[i][j]:表示针对s[0:i] 和t[1:j]的子问题的求解
+     - 千方百计把dp[i][j]往之前的状态去转移
+     - 最终结果是dp[m][n]
 4. 第i类区间型： 明确要求分割成k个连续区间，要你计算这些区间某个最优性质
-    套路：
-        - 状态定义：dp[i][k]表示针对s[1:i]分成k个区间，此时能够得到的最优解
-        - 搜寻最后一个区间的起始位置j，将dp[i][k] 分割成dp[j-1][k-1]和s[j:i]两个部分
-        - 最终的结果是dp[N][K]
+     - 状态定义：dp[i][k]表示针对s[1:i]分成k个区间，此时能够得到的最优解
+     - 搜寻最后一个区间的起始位置j，将dp[i][k] 分割成dp[j-1][k-1]和s[j:i]两个部分
+     - 最终的结果是dp[N][K]
+  
+### 什么时候需要建立n+1大小的dp列？
 
-#### 什么时候需要建立n+1大小的dp列？
+## 题型分类
 
+### 坐标型
 
-### 题型分类
+    Notice: 
+    1. 要注意initialize的时候边缘如何处理
+    2. 是不是有障碍，有则需要分类处理 
 
-- #### 坐标型
-    - [Unique Path](#62)
-    - [Unique Path II](#63)
-    - [Minimum Path sum](#64)
-    - [Coin Change](#322)
-    - [Coin Change II](#518) 
-    - [Maximal Squares](#221)
+- [Unique Path](#unique-path)
+- [Unique Path II](#unique-path-ii)
+- [Minimum Path sum](#minimum-path-sum)
+- [Maximal Squares](#maximal-square)
 
-- #### 序列型
-    - [Jump Game](#55)
-    - [Maximum Product Subarray](#152)
-    - [Paint House](#256)
-    - [Paint House II](#)
-    - [Climbing Stairs](#70)
-    - [House Robbery](#198)
-    - [House Robbery II](#213)
-    - [House Robber III](#house-robber-iii)
-    - [Counting Bits](#338)
-    - [Target Sum](#target-sum))
-    - [Best Time to Buy and Sell Stock III](#best-time-to-buy-and-sell-stock-iii)
-    - [Best Time to Buy and Sell Stock IV]()
+### 背包问题
+
+- [Coin Change](#322)
+- [Coin Change II](#518)
+
+### 序列型
+  
+- [Jump Game](#55)
+- [Maximum Product Subarray](#152)
+- [Paint House](#256)
+- [Paint House II](#)
+- [Climbing Stairs](#70)
+- [House Robbery](#198)
+- [House Robbery II](#213)
+- [House Robber III](#house-robber-iii)
+- [Counting Bits](#338)
+- [Target Sum](#target-sum))
+- [Best Time to Buy and Sell Stock III](#best-time-to-buy-and-sell-stock-iii)
+- [Best Time to Buy and Sell Stock IV]()
+
+### 划分型
+
+- [Decode ways](#91)
+- [Perfect Sqaures](#279)
+- [Palindrome Partition II]()
+- [Copy Books]()
+- [Integer break](#343)
+
+### 位操作型
+
+### 区间型
+- [Range Sum Query - Immutable](#303)
+- [Arithmetic Slices](#413)
+
+- [Maximum Sum of Two Non-Overlapping Subarrays](#1031)
+
+### 背包型
+
+- [Backpack]()
+- [BackpackII]()
+- [Backpack III]()
+- [Target Sum](#494)
+
+### 序列
+
+- [Longest Increasing Subsequence](#300)
+- [Maximum Length of Pair Chain](#646)
+- [Russian Doll Envelops](#354)
+- [Distinct Subsequences](#distinct-subsequences)
     
-- #### 划分型
-    - [Decode ways](#91)
-    - [Perfect Sqaures](#279)
-    - [Palindrome Partition II]()
-    - [Copy Books]()
-    - [Integer break](#343)
+### 博弈型
 
-- #### 位操作型
-- #### 区间型
-    - [Range Sum Query - Immutable](#303)
-    - [Arithmetic Slices](#413)
-    
-    - [Maximum Sum of Two Non-Overlapping Subarrays](#1031)
-- #### 背包型
-    - [Backpack]()
-    - [BackpackII]()
-    - [Backpack III]()
-    - [Target Sum](#494)
+- [coins in a line]()
 
+### 字符匹配
 
+- 匹配字符，匹配连续数组
+- 求 2 个字符串(或数组)之间的某种关系
 
-- #### 序列
-    - [Longest Increasing Subsequence](#300)
-    - [Maximum Length of Pair Chain](#646)
-    - [Russian Doll Envelops](#354)
-    - [Distinct Subsequences](#distinct-subsequences)
-    
-    
-- #### 博弈型
-    - [coins in a linne]()
-
-
-
-- 综合型
-
-
-- #### 字符匹配
-    - [Edit Distance](#edit-distance)
-    - [Wildcard Matching](#wildcard-matching)
+- [Edit Distance](#edit-distance)
+- [Wildcard Matching](#wildcard-matching)
+- [Maximum Length of Repeated Subarray](#maximum-length-of-repeated-subarray)
+- [Longest Common Subsequence](#longest-common-subsequences)
+- [Delete Operation for Two Strings]()
+- [Regular Express Matching]()
 
 ### 易错点
 
@@ -140,12 +143,7 @@
 
 ### Triangle
 
-### minimum path sum
-
-# 62
-[Leetcode](https://leetcode.com/problems/unique-paths/)
-### unique path
-
+### [unique path](https://leetcode.com/problems/unique-paths/)
 
 ```python
 class Solution(object):
@@ -165,11 +163,9 @@ class Solution(object):
         return dp[m - 1][n - 1]                
 ```
 
-# 63
+### [Unique path II](https://leetcode.com/problems/unique-paths-ii/)
 
-[Leetcode](https://leetcode.com/problems/unique-paths-ii/)
-### Unique path II
-
+- 要注意避障
 
 ```python
 class Solution(object):
@@ -187,7 +183,6 @@ class Solution(object):
             if obstacleGrid[0][i] == 1: break
             print(dp, i)
             dp[0][i] = 1
-            
         for i in range(1, m):
             for j in range(1, n):
                 if obstacleGrid[i][j] != 1:
@@ -264,10 +259,7 @@ class Solution(object):
         return dp[-1]
 ```
 
-# 322
-[Leetcode](https://leetcode.com/problems/coin-change/)
-### Coin Change
-
+### [Coin Change](https://leetcode.com/problems/coin-change/)
 
 ```python
 class Solution(object):
@@ -495,28 +487,22 @@ class Solution(object):
 
 ```
 
-# 64
-[Leetcode](https://leetcode.com/problems/minimum-path-sum/)
-### Minimum Path Sum
-
+### [Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/)
 
 ```python
-class Solution(object):
-    def minPathSum(self, grid):
-        """
-        :type grid: List[List[int]]
-        :rtype: int
-        """
-        m = len(grid)
-        if m != 0: n = len(grid[0])
-        dp = [[0] * n] * m
-        for i in range(m):
-            for j in range(n):
-                if i >= 1 and j >= 1:
-                    dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
-                elif j < 1:  dp[i][j] = dp[i-1][j] + grid[i][j]
-                elif i < 1:  dp[i][j] = dp[i-1][j] + grid[i][j]
-        return dp[m-1][n-1]
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        dp = [[0] * n for _ in range(m)]
+        dp[0][0] = grid[0][0]
+        for i in range(1, m):
+            dp[i][0] = dp[i-1][0] + grid[i][0]
+        for j in range(1, n):
+            dp[0][j] = dp[0][j-1] + grid[0][j]
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+        return dp[-1][-1]  
 ```
 
 - 滚动数组， 优化空间
@@ -824,10 +810,10 @@ class Solution(object):
         
 ```
 
-# 221
-### Maximal Square
-[Leetcode](https://leetcode.com/problems/maximal-square/)
+### [Maximal Square](https://leetcode.com/problems/maximal-square/)
 
+- dp中的元素代表了边长
+- 使用global res去逐渐更新output
 
 ```python
 class Solution(object):
@@ -847,7 +833,6 @@ class Solution(object):
                     res = max(res, dp[i][j] ** 2)
                 else: dp[i][j] = 0
         return res
-        
 ```
 
 # 338
@@ -871,10 +856,7 @@ class Solution(object):
         return res
 ```
 
-# 718
-### Maximum Length of Repeated Subarray
-[Leetcode](https://leetcode.com/problems/maximum-length-of-repeated-subarray/submissions/)
-
+### [Maximum Length of Repeated Subarray](https://leetcode.com/problems/maximum-length-of-repeated-subarray/submissions/)
 
 ```python
 class Solution(object):
@@ -890,7 +872,6 @@ class Solution(object):
                 if A[i] == B[j]:
                     dp[i+1][j+1] = dp[i][j] + 1
         return max(max(row) for row in dp)
-
 ```
 
 # 1031
@@ -1070,6 +1051,44 @@ class Solution:
 
 ### [Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
 
+- 记录三种状态:hold / sold / res
+- 可以使用滚动数组的方法，优化更多的空间
+T: O(n) S:o(n)
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # hold 0 <- hold0, rest2 - prices[i]
+        # sold 1 <- hold0 + prices[i]
+        # rest 2 <- sold1 + rest2
+
+        n = len(prices)
+        dp = [[0] * 3 for _ in range(n)]
+        dp[0][0], dp[0][1], dp[0][1] = -prices[0], 0, 0
+        for i in range(1, n):
+            dp[i][0] = max(dp[i-1][0], dp[i-1][2] - prices[i])
+            dp[i][1] = dp[i-1][0] + prices[i]
+            dp[i][2] = max(dp[i-1][1], dp[i-1][2])
+            
+        return max(dp[-1][1], dp[-1][2]) 
+```
+
+T: O(n) S:o(1)
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # hold 0 <- hold0, rest2 - prices[i]
+        # sold 1 <- hold0 + prices[i]
+        # rest 2 <- sold1 + rest2
+
+        n = len(prices)
+        sold, rest, hold = 0, 0, -prices[0]
+        for i in range(1, n):
+            hold = max(hold, rest - prices[i])
+            rest = max(rest, sold)
+            sold = hold + prices[i]
+        return max(rest, sold)
+```
 
 ### [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/)
 
@@ -1096,5 +1115,29 @@ class Solution(object):
                 if t[i] == s[j]: dp[i+1][j+1] = dp[i][j] + dp[i+1][j]
                 else: dp[i+1][j+1] = dp[i+1][j]
         return dp[-1][-1]
-        
+```
+
+### [Longest Common Subsequences](https://leetcode.com/problems/longest-common-subsequence/)
+
+```python
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+    #     '' a c e
+    # ''  0  0 0 0
+    # a   0  1 1 1
+    # b   0  1 1 1
+    # c   0  1 2 2
+    # d   0  1 2 2
+    # e   0  1 2 3
+    # if text1[i] == text2[j]: dp[i][j] = dp[i-1][j-1] + 1
+    # else: dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    # dp[-1][-1]
+        m, n = len(text1), len(text2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if text1[i-1] == text2[j-1]: dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+        return dp[-1][-1]
 ```

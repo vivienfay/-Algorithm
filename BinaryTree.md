@@ -19,6 +19,7 @@ Depth first(stack): pre-order / in-order / post-order， breadth first(queue): l
 - [Lowest Common Ancestor of a Binary Search Tree](#lowest-common-ancestor-of-a-binary-search-tree)
 - [Range Sum of BST](#range-sum-of-bst)
 - [Construct Binary Search Tree from Preorder Traversal](#construct-binary-search-tree-from-preorder-traversal)
+- [Largest BST Subtree](#largest-bst-subtree)
 
 ### DFS相关 / depth 相关
 
@@ -68,6 +69,10 @@ Depth first(stack): pre-order / in-order / post-order， breadth first(queue): l
 - [Boundary of Binary Tree](#boundary-of-binary-tree)
 - [Maximum Product of Splitted Binary Tree]()
 
+### DFS - bottom up
+
+- [Count Univalue Subtrees](#count-univalue-subrees)
+
 ### Backtracking
 
 - [Path Sum II](#path-sum-ii)
@@ -98,6 +103,7 @@ Depth first(stack): pre-order / in-order / post-order， breadth first(queue): l
 ### hash
 
 - [Two Sum IV - Input is a BST](#two-sum-iv---input-is-a-bst)
+- [Find Duplicate Subtrees](#find-duplicate-subtrees)
 
 ### Iterative
 
@@ -2170,4 +2176,78 @@ class Solution:
                 return node.parent
             node = node.parent
         return None
+```
+
+### [Largest BST Subtree](https://leetcode.com/problems/largest-bst-subtree/)
+
+- 找BST， 所以要确认最小值和最大值， 所以要同时传四个参数
+- BST有一些特殊情况，比如有left没right，有right没left，传新的min和max的时候需要注意使用min（left_min, root）和max（right_max, root_val）这样可以避免很多的分类讨论
+- 利用一个global variable去确认全局最大值
+
+```
+class Solution(object):
+    def largestBSTSubtree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(root):
+            if not root: return float('inf'), -float('inf'), True, 0
+            min_left, max_left, is_left_bst, left_cnt = dfs(root.left)
+            min_right, max_right, is_right_bst, right_cnt = dfs(root.right)
+            if is_left_bst and is_right_bst and max_left < root.val < min_right:
+                res[0] = max(res[0], left_cnt + right_cnt + 1)
+                return min(min_left, root.val), max(max_right, root.val), True, left_cnt + right_cnt + 1
+            else: return 0, 0, False, 0
+            
+        res = [0]
+        dfs(root)
+        return res[0]
+```
+
+### [Find Duplicate Subtrees](https://leetcode.com/problems/find-duplicate-subtrees/)
+
+- 使用hashmap
+- 转换成str去标注
+  
+```
+class Solution(object):
+    def findDuplicateSubtrees(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[TreeNode]
+        """
+        def dfs(root):
+            if not root: return 'null'
+            left, right = dfs(root.left), dfs(root.right)
+            ans = str(root.val) + ',' + left + ',' + right
+            str_d[ans].append(root)
+            return ans
+        
+        str_d = defaultdict(list)
+        dfs(root)
+        return [str_d[k][0] for k, v in str_d.items() if len(v) > 1]
+```
+
+
+### [Count Univalue Subrees](https://leetcode.com/problems/count-univalue-subtrees/)
+
+```python
+class Solution(object):
+    def countUnivalSubtrees(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(root):
+            if not root: return True
+            l, r = dfs(root.left), dfs(root.right)
+            if l and r and (not root.left or root.left.val == root.val) and (not root.right or root.right.val == root.val):
+                res[0] += 1
+                return True
+            return False
+        
+        res = [0]
+        dfs(root)
+        return res[0]
 ```

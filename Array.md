@@ -44,6 +44,7 @@
 - [3Sum Closest](#3sum-closest)
 - [4Sum](#4-sum)
 - [3Sum Smaller](#3sum-smaller)
+- [Valid Triangle Number](#)
 
 ### 单指针
 
@@ -60,6 +61,7 @@
 - [Long Pressed Name](#925)
 - [Intersection of Two array](#349)
 - [Intersection of Three array]()
+- []
 
 ### Swap
 - [Rotate Image](#48)
@@ -123,11 +125,11 @@
 - [Shortest Unsorted Continuous Subarray](#581)
     
 ### 三指针
-    - [Intersection of Three Sorted Arrays](#1214)
+- [Intersection of Three Sorted Arrays](#intersection-of-three-sorted-arrays)
     
 ### 用-1做标记
-    - [Find All Duplicates in an Array](#442)
-    - [Find All Numbers Disappeared in an Array](#448)
+- [Find All Duplicates in an Array](#find-all-duplicates-in-an-array)
+- [Find All Numbers Disappeared in an Array](#find-all-duplicates-in-an-array)
     
 ### hashmap
 
@@ -2039,4 +2041,26 @@ class Solution(object):
             sum += res[i]
             res[i] = sum
         return res
+```
+
+### [Valid Triangle Number](https://leetcode.com/problems/valid-triangle-number/)
+
+```python
+class Solution(object):
+    def triangleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        res = 0
+        for i in range(len(nums) - 1, 1, -1):
+            l, r = 0, i - 1
+            while l < r:
+                if nums[l] + nums[r] > nums[i]:
+                    res += r - l
+                    r -= 1
+                else: l += 1
+        return res
+                    
 ```
