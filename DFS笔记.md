@@ -637,7 +637,7 @@ class Solution(object):
 [Leetcode](https://leetcode.com/problems/target-sum/)
 - dfs会tle
 - 最好使用dp
-
+- 加个memo
 
 ```python
 class Solution(object):
@@ -1251,7 +1251,26 @@ class Solution(object):
         return res
 ```
 
-
+## [Combination Sum III](https://leetcode.com/problems/combination-sum-iii/)
 ```python
+class Solution(object):
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        def dfs(cur):
+            if sum(cur) == n and len(cur) == k:
+                res.append([i for i in cur])
+                return
+            if sum(cur) < n and len(cur) < k:
+                for i in range(cur[-1] + 1, 10):
+                    dfs(cur + [i])
+                
 
+        res = []
+        for i in range(1, 10):
+            dfs([i])
+        return res
 ```

@@ -329,8 +329,6 @@ class solution(object):
 
 ```
 
-### Flatten Binary Tree to Linked List
-
 ### Lower Common Ancestor
 
 ### Binary Tree Longest Consecutive Sequence

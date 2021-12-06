@@ -996,3 +996,52 @@ class MedianFinder(object):
             return self.minH[0]
         else: return -self.maxH[0]
 ```
+
+# MinHeap实现
+
+```python
+Class MinHeap(object):
+    def __init__(self):
+        self.size = size
+        self.h = []
+        
+    def push(self, num):
+        self.size += 1
+        self.h.append(num)
+        self._siftup(self.size - 1)
+        
+    def pop(self):
+        self.h[0], self.h[-1] = self.h[-1], self.h[0]
+        self._siftdown(0)
+        res = self.h.pop()
+        self.size -= 1
+        return res
+        
+    def peek(self):
+        return self.h[0]
+        
+    def _siftdown(self, i):
+        l, r = 2 * i + 1, 2 * i + 2
+        left, right = float('inf'), float('inf')
+        if l < self.size: left = self.h[l]
+        if r < self.size: right = self.h[r]
+        if left < right:
+            if self.h[i] < left: return
+            else: 
+                self.h[i], self.h[l] = self.h[l], self.h[i]
+                self._siftdown(l)
+        else:
+            if self.h[i] < right: return
+            else: 
+                self.h[i], self.h[r] = self.h[r], self.h[i]
+                self._siftdown(r)
+        
+    def _siftup(self,i):
+        if 0 < i:
+            parent = (i-1) // 2
+            if self.h[parent] > self.h[i]:
+                self.h[i], self.h[parent] = self.h[parent], self.h[i]
+                self._siftup(parent)
+
+```
+
