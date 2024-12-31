@@ -171,38 +171,25 @@ class Solution(object):
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
         """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
+        :type l1: Optional[ListNode]
+        :type l2: Optional[ListNode]
+        :rtype: Optional[ListNode]
         """
-        dummy = ListNode(-1)
-        curr = dummy
+        head = cur = ListNode(-1)
         reminder = 0
-        while l1 and l2:
-            val = l1.val + l2.val + reminder
+        while l1 or l2 or reminder != 0:
+            val = reminder
+            if l1: 
+                val += l1.val
+                l1 = l1.next
+            if l2: 
+                val += l2.val
+                l2 = l2.next
             reminder = val // 10
-            num = val % 10
-            curr.next = ListNode(num)
-            curr = curr.next
-            l1 = l1.next
-            l2 = l2.next     
-            
-        if l2:
-            l1 = l2
-            
-        while l1:
-            val = l1.val + reminder
-            reminder = val // 10
-            new_val = val % 10  
-            curr.next = ListNode(new_val)
-            curr = curr.next
-            l1 = l1.next
-        
-        if reminder != 0:
-            curr.next = ListNode(reminder)
-            
-                        
-        return dummy.next
+            val = val % 10
+            cur.next = ListNode(val)
+            cur = cur.next
+        return head.next
 ```
 
 ### [Add Two Numbers II](https://leetcode.com/problems/add-two-numbers-ii/)
